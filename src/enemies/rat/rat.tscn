@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://crour35kot2o4"]
+
+[ext_resource type="Script" uid="uid://cb7uorcfl4xgr" path="res://enemies/rat/rat.gd" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://bdm0fi2v3xm8u" path="res://enemies/rat/Frog_Prince_Rat.webp" id="2_4gyqm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_boad6"]
+radius = 8.062258
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi2p4"]
+atlas = ExtResource("2_4gyqm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iifgy"]
+atlas = ExtResource("2_4gyqm")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epg4t"]
+atlas = ExtResource("2_4gyqm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yqyl"]
+atlas = ExtResource("2_4gyqm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7k104"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi2p4")
+}],
+"loop": 1,
+"name": &"Chase",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iifgy")
+}],
+"loop": 1,
+"name": &"Defeated",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epg4t")
+}],
+"loop": 1,
+"name": &"Patrol",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yqyl")
+}],
+"loop": 1,
+"name": &"Paused",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ak7xk"]
+radius = 5.0
+
+[node name="Rat" type="CharacterBody2D" unique_id=1398069199]
+collision_layer = 4
+collision_mask = 25
+script = ExtResource("1_7k104")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047681626]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_boad6")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=647851619]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=1248425379]
+sprite_frames = SubResource("SpriteFrames_7k104")
+animation = &"Patrol"
+
+[node name="GroundCheck" type="RayCast2D" parent="Visuals" unique_id=1337068727]
+position = Vector2(16, 0)
+target_position = Vector2(0, 64)
+collide_with_areas = true
+
+[node name="WallCheck" type="RayCast2D" parent="Visuals" unique_id=1825833265]
+target_position = Vector2(16, 0)
+collision_mask = 9
+
+[node name="PlayerCheck" type="RayCast2D" parent="Visuals" unique_id=740926283]
+target_position = Vector2(96, 0)
+collision_mask = 3
+
+[node name="HitBox" type="Area2D" parent="Visuals" unique_id=931063329]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=119850208]
+position = Vector2(3, 1)
+shape = SubResource("CircleShape2D_ak7xk")
+
+[connection signal="body_entered" from="Visuals/HitBox" to="." method="_on_hit_box_body_entered"]

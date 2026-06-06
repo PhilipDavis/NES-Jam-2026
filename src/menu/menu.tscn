@@ -1,0 +1,429 @@
+[gd_scene format=3 uid="uid://cq2he73myu6h6"]
+
+[ext_resource type="Script" uid="uid://bk3048d315err" path="res://menu/menu.gd" id="1_ouk20"]
+[ext_resource type="Theme" uid="uid://d3xccly8i81cd" path="res://display/theme.tres" id="2_mae5d"]
+[ext_resource type="Texture2D" uid="uid://d0ugjsck8tn2x" path="res://menu/Frog-Head.png" id="3_6nwqt"]
+[ext_resource type="FontFile" uid="uid://480upapctiyo" path="res://fonts/Pixuf.ttf" id="4_pbjm4"]
+[ext_resource type="AudioStream" uid="uid://bxegs32cnsu7s" path="res://menu/audio/menu_theme.mp3" id="5_s4hbh"]
+[ext_resource type="AudioStream" uid="uid://cprb75o1b7dc7" path="res://menu/audio/menu_in.wav" id="5_v6yed"]
+[ext_resource type="AudioStream" uid="uid://c0xxdftnfc4c0" path="res://menu/audio/menu_out.wav" id="6_s4hbh"]
+[ext_resource type="AudioStream" uid="uid://dpbo2hayvfcox" path="res://menu/audio/menu_move.wav" id="7_6fswf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crfae"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak7xk"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pbjm4"]
+load_path = "res://.godot/imported/fade-to-black.png-7c87b5dd4af22ee0dadf14ccf867aa92.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_svuvw"]
+load_path = "res://.godot/imported/fade-to-black.png-7c87b5dd4af22ee0dadf14ccf867aa92.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nwqt"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(16, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iesyu"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(32, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuxab"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(48, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmxns"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(64, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vbpa"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(80, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aycgx"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(96, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpqio"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(112, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbjm4"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(0, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svuvw"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(16, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juveg"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(32, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6yed"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(48, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4hbh"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(64, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fswf"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(80, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc54p"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(96, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_043lm"]
+atlas = ExtResource("3_6nwqt")
+region = Rect2(112, 0, 16, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ak7xk"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nwqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iesyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuxab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmxns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vbpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aycgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpqio")
+}],
+"loop": 1,
+"name": &"Blink",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 50.0,
+"texture": SubResource("AtlasTexture_pbjm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svuvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juveg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6yed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4hbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fswf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc54p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_043lm")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 20.0
+}]
+
+[node name="Menu" type="CanvasLayer" unique_id=410386570]
+script = ExtResource("1_ouk20")
+
+[node name="MainPage" type="Control" parent="." unique_id=328339431]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Sprite2D" parent="MainPage" unique_id=1662288144]
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPage" unique_id=31996886]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_bottom = 48
+
+[node name="MainMenu" type="VBoxContainer" parent="MainPage/MarginContainer" unique_id=1913397095]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 8
+
+[node name="StartButton" type="Button" parent="MainPage/MarginContainer/MainMenu" unique_id=2106378349]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+action_mode = 0
+text = "Start"
+alignment = 0
+
+[node name="OptionsButton" type="Button" parent="MainPage/MarginContainer/MainMenu" unique_id=1515369980]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+action_mode = 0
+text = "Options"
+alignment = 0
+
+[node name="CreditsButton" type="Button" parent="MainPage/MarginContainer/MainMenu" unique_id=1932926162]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+text = "Credits"
+alignment = 0
+
+[node name="OptionsPage" type="Control" parent="." unique_id=234403257]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="OptionsPage" unique_id=1563021005]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_bottom = 70
+
+[node name="OptionsMenu" type="VBoxContainer" parent="OptionsPage/MarginContainer" unique_id=29681890]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 8
+
+[node name="MusicButton" type="Button" parent="OptionsPage/MarginContainer/OptionsMenu" unique_id=458495948]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+action_mode = 0
+text = "Music Volume"
+alignment = 0
+
+[node name="EffectsButton" type="Button" parent="OptionsPage/MarginContainer/OptionsMenu" unique_id=2099339432]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+action_mode = 0
+text = "Effects Volume"
+alignment = 0
+
+[node name="LanguageButton" type="Button" parent="OptionsPage/MarginContainer/OptionsMenu" unique_id=1284887964]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+text = "Language"
+alignment = 0
+
+[node name="BackButton" type="Button" parent="OptionsPage/MarginContainer/OptionsMenu" unique_id=56171798]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+action_mode = 0
+text = "Back"
+alignment = 0
+
+[node name="LanguagePage" type="Control" parent="." unique_id=1651681526]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LanguagePage" unique_id=259532249]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_bottom = 70
+
+[node name="LanguageMenu" type="VBoxContainer" parent="LanguagePage/MarginContainer" unique_id=1020334259]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 8
+
+[node name="EnglishButton" type="Button" parent="LanguagePage/MarginContainer/LanguageMenu" unique_id=2037809081]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+action_mode = 0
+text = "English"
+alignment = 0
+
+[node name="EstonianButton" type="Button" parent="LanguagePage/MarginContainer/LanguageMenu" unique_id=2056656922]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+action_mode = 0
+text = "Eesti"
+alignment = 0
+
+[node name="ItalianButton" type="Button" parent="LanguagePage/MarginContainer/LanguageMenu" unique_id=438167800]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+action_mode = 0
+text = "Italiano"
+alignment = 0
+
+[node name="FinnishButton" type="Button" parent="LanguagePage/MarginContainer/LanguageMenu" unique_id=613562305]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+text = "Suomi"
+alignment = 0
+
+[node name="CreditsPage" type="Control" parent="." unique_id=2127939337]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CreditsPage" unique_id=185514795]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_crfae")
+
+[node name="CreditsMenu" type="VBoxContainer" parent="CreditsPage" unique_id=17494757]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 178.0
+offset_right = 94.0
+offset_bottom = 192.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 8
+
+[node name="BackButton" type="Button" parent="CreditsPage/CreditsMenu" unique_id=1759917340]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+action_mode = 0
+text = "Back"
+alignment = 0
+
+[node name="CreditsContainer" type="PanelContainer" parent="CreditsPage" unique_id=702246895]
+clip_children = 2
+custom_minimum_size = Vector2(0, 188)
+custom_maximum_size = Vector2(-1, 188)
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_right = -8.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ak7xk")
+
+[node name="Control" type="Control" parent="CreditsPage/CreditsContainer" unique_id=2012975927]
+layout_mode = 2
+
+[node name="Credits" type="RichTextLabel" parent="CreditsPage/CreditsContainer/Control" unique_id=206243]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 172.0
+theme = ExtResource("2_mae5d")
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+justification_flags = 131
+
+[node name="FadeToBlack" type="TextureRect" parent="CreditsPage/CreditsContainer" unique_id=2121509197]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("CompressedTexture2D_pbjm4")
+stretch_mode = 1
+flip_v = true
+
+[node name="FadeFromBlack" type="TextureRect" parent="CreditsPage/CreditsContainer" unique_id=343160805]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 8
+texture = SubResource("CompressedTexture2D_svuvw")
+stretch_mode = 1
+
+[node name="FrogHead" type="AnimatedSprite2D" parent="." unique_id=273851206]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(42, 141)
+sprite_frames = SubResource("SpriteFrames_ak7xk")
+animation = &"Idle"
+
+[node name="Copyright" type="RichTextLabel" parent="." unique_id=320817604]
+offset_left = 1.0
+offset_top = 220.0
+offset_right = 255.0
+offset_bottom = 238.0
+theme_override_fonts/normal_font = ExtResource("4_pbjm4")
+theme_override_font_sizes/normal_font_size = 8
+text = "(c) Copyright 2026
+Philip Davis (pdw3), Roone Mägi (Aureolin), and Amanda Mägi"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 3
+
+[node name="Audio" type="Node" parent="." unique_id=1523060283]
+
+[node name="MenuTheme" type="AudioStreamPlayer" parent="Audio" unique_id=1573941354]
+stream = ExtResource("5_s4hbh")
+parameters/looping = true
+
+[node name="MenuIn" type="AudioStreamPlayer" parent="Audio" unique_id=1279673909]
+stream = ExtResource("5_v6yed")
+
+[node name="MenuOut" type="AudioStreamPlayer" parent="Audio" unique_id=1320704085]
+stream = ExtResource("6_s4hbh")
+
+[node name="MenuMove" type="AudioStreamPlayer" parent="Audio" unique_id=744163600]
+stream = ExtResource("7_6fswf")
+max_polyphony = 2
+
+[connection signal="animation_looped" from="FrogHead" to="." method="_on_frog_head_animation_looped"]

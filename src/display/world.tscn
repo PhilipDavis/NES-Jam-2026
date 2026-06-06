@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c8nmsrtfrdp4r"]
+
+[ext_resource type="Script" uid="uid://xaow3uolh4vu" path="res://display/world.gd" id="1_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://dpu6cyurak4vj" path="res://player/player.tscn" id="3_036b0"]
+
+[node name="World" type="Node2D" unique_id=171525234]
+script = ExtResource("1_aqk2v")
+
+[node name="ScreenContainer" type="Node2D" parent="." unique_id=740511934]
+
+[node name="Player" parent="." unique_id=1037101777 instance=ExtResource("3_036b0")]
+position = Vector2(0, 72)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2106554302]

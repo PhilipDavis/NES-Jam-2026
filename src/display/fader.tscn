@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dmoim5jbvili0"]
+
+[ext_resource type="Script" uid="uid://cpq7ybllg774n" path="res://menu/fader.gd" id="1_t2gxf"]
+[ext_resource type="Texture2D" uid="uid://fhjc4omqj3g0" path="res://display/fades.png" id="2_cbh1o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wm66n"]
+atlas = ExtResource("2_cbh1o")
+region = Rect2(0, 0, 16, 16)
+
+[node name="Fader" type="Control" unique_id=686092733]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t2gxf")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1895673759]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_wm66n")
+expand_mode = 1
+stretch_mode = 1

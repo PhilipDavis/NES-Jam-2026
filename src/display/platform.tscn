@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dm6uigm5l3a7h"]
+
+[ext_resource type="Script" uid="uid://dn1t5i7r7m078" path="res://display/platform.gd" id="1_mi635"]
+[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://display/tile_set.tres" id="2_qdknf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbht8"]
+resource_local_to_scene = true
+size = Vector2(32, 8)
+
+[node name="Platform" type="StaticBody2D" unique_id=1396442759]
+script = ExtResource("1_mi635")
+type = null
+width_in_cells = null
+cell_position = null
+min_position = null
+max_position = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2002824830]
+position = Vector2(16, 4)
+shape = SubResource("RectangleShape2D_bbht8")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1969257001]
+tile_set = ExtResource("2_qdknf")

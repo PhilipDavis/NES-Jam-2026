@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dt37qanypwn8k"]
+
+[ext_resource type="Script" uid="uid://dgn4h4trs7wvm" path="res://screens/screen_02/screen_02.gd" id="1_01m6e"]
+[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://display/platform.tscn" id="1_i15ip"]
+[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://display/Frog_Prince_Tower_Dungeon_Walls.webp" id="1_trl7i"]
+[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://display/tile_set.tres" id="3_01m6e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfdv2"]
+size = Vector2(16, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iotsf"]
+size = Vector2(16, 240)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_crfae"]
+
+[node name="Screen02" type="Node2D" unique_id=1782149466]
+script = ExtResource("1_01m6e")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=332717096]
+texture = ExtResource("1_trl7i")
+
+[node name="Boundary" type="StaticBody2D" parent="." unique_id=2085931094]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundary" unique_id=1237264303]
+position = Vector2(-120, 0)
+shape = SubResource("RectangleShape2D_mfdv2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundary" unique_id=1650399693]
+position = Vector2(120, 0)
+shape = SubResource("RectangleShape2D_iotsf")
+
+[node name="Platform" parent="." unique_id=1396442759 instance=ExtResource("1_i15ip")]
+position = Vector2(-112, 112)
+type = 0
+start_visible = null
+width_in_cells = 28
+cell_position = Vector2i(0, 27)
+min_position = Vector2i(0, 0)
+max_position = Vector2i(0, 0)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=917953544]
+tile_set = ExtResource("3_01m6e")
+
+[node name="Floor" type="Area2D" parent="." unique_id=2338376]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1831621443]
+position = Vector2(0, 114)
+shape = SubResource("WorldBoundaryShape2D_crfae")
+
+[connection signal="body_entered" from="Floor" to="." method="_on_floor_body_entered"]

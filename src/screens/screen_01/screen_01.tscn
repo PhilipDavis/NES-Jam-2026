@@ -1,0 +1,176 @@
+[gd_scene format=4 uid="uid://bcrr0nvjlg2qo"]
+
+[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://display/platform.tscn" id="1_w7wyk"]
+[ext_resource type="Theme" uid="uid://d3xccly8i81cd" path="res://display/theme.tres" id="2_00nf7"]
+[ext_resource type="Script" uid="uid://boj4v2jw3nnfw" path="res://screens/screen_01/tutorial_label_3.gd" id="3_3ufey"]
+[ext_resource type="Script" uid="uid://d1sfwto5y5v1e" path="res://screens/screen_01/platform_2.gd" id="4_n075s"]
+[ext_resource type="Script" uid="uid://lo7y6exl8us1" path="res://screens/screen_01/tutorial_label_2.gd" id="5_pxxrn"]
+[ext_resource type="Script" uid="uid://ctleeiftv77ex" path="res://screens/screen_01/tutorial_label_1.gd" id="6_intcw"]
+[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://display/tile_set.tres" id="8_3ufey"]
+[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://display/Frog_Prince_Tower_Dungeon_Walls.webp" id="8_n075s"]
+[ext_resource type="PackedScene" uid="uid://crour35kot2o4" path="res://enemies/rat/rat.tscn" id="10_vou4n"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vef74"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hve3p"]
+size = Vector2(16, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crfae"]
+size = Vector2(16, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eow3j"]
+size = Vector2(142, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlh51"]
+size = Vector2(8, 84)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vef74"]
+size = Vector2(11.5, 75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
+size = Vector2(8, 56)
+
+[node name="Screen01" type="Node2D" unique_id=699924115]
+auto_translate_mode = 1
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1711825821]
+position = Vector2(0, 8)
+texture = ExtResource("8_n075s")
+region_enabled = true
+region_rect = Rect2(0, 16, 256, 224)
+
+[node name="Boundary" type="StaticBody2D" parent="." unique_id=345547873]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary" unique_id=1407736824]
+position = Vector2(0, 104)
+shape = SubResource("WorldBoundaryShape2D_vef74")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundary" unique_id=826438852]
+position = Vector2(-120, 8)
+shape = SubResource("RectangleShape2D_hve3p")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundary" unique_id=351794975]
+position = Vector2(120, 8)
+shape = SubResource("RectangleShape2D_crfae")
+
+[node name="TutorialPlatform3" type="StaticBody2D" parent="." unique_id=232375866]
+position = Vector2(32, -36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialPlatform3" unique_id=2047689379]
+position = Vector2(9, 0)
+shape = SubResource("RectangleShape2D_eow3j")
+
+[node name="TutorialLabel3" type="RichTextLabel" parent="TutorialPlatform3" unique_id=1847186827]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72.0
+offset_top = 7.0
+offset_right = 80.0
+offset_bottom = 20.0
+grow_horizontal = 2
+theme = ExtResource("2_00nf7")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Press A to Attack"
+scroll_active = false
+vertical_alignment = 2
+script = ExtResource("3_3ufey")
+metadata/_edit_use_anchors_ = true
+
+[node name="TutorialPlatform2" type="StaticBody2D" parent="." unique_id=1063078225]
+position = Vector2(-8, 28)
+script = ExtResource("4_n075s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialPlatform2" unique_id=117681156]
+position = Vector2(12, 0)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_jlh51")
+one_way_collision = true
+one_way_collision_direction = Vector2(1, 0)
+
+[node name="TutorialLabel2" type="RichTextLabel" parent="TutorialPlatform2" unique_id=2109785122]
+unique_name_in_owner = true
+offset_left = -35.0
+offset_top = -35.0
+offset_right = 115.0
+offset_bottom = -23.0
+theme = ExtResource("2_00nf7")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Jump off the wall"
+scroll_active = false
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("5_pxxrn")
+metadata/_edit_use_anchors_ = true
+
+[node name="Area2D" type="Area2D" parent="TutorialPlatform2" unique_id=1295170841]
+collision_mask = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TutorialPlatform2/Area2D" unique_id=1320075251]
+position = Vector2(17, 7.25)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_vef74")
+one_way_collision_direction = Vector2(1, 0)
+
+[node name="TutorialPlatform1" type="StaticBody2D" parent="." unique_id=1125326754]
+position = Vector2(64, 76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialPlatform1" unique_id=1452595134]
+position = Vector2(-4, 0)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_fc0e3")
+one_way_collision = true
+one_way_collision_direction = Vector2(1, 0)
+
+[node name="TutorialLabel1" type="RichTextLabel" parent="TutorialPlatform1" unique_id=866849215]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.0
+offset_top = -24.0
+offset_right = 64.0
+offset_bottom = -9.0
+grow_horizontal = 2
+theme = ExtResource("2_00nf7")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Press B to Jump"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_intcw")
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftSidePlatform" parent="." unique_id=1396442759 instance=ExtResource("1_w7wyk")]
+position = Vector2(-112, 0)
+type = 1
+width_in_cells = 6
+cell_position = Vector2i(0, 13)
+min_position = Vector2i(0, 0)
+max_position = Vector2i(0, 0)
+
+[node name="LadderPlatform1" parent="." unique_id=1259616272 instance=ExtResource("1_w7wyk")]
+position = Vector2(80, -72)
+type = 1
+width_in_cells = 4
+cell_position = Vector2i(24, 4)
+min_position = Vector2i(0, 0)
+max_position = Vector2i(0, 0)
+
+[node name="LadderPlatform2" parent="." unique_id=626993057 instance=ExtResource("1_w7wyk")]
+position = Vector2(80, -96)
+type = 1
+width_in_cells = 4
+cell_position = Vector2i(24, 1)
+min_position = Vector2i(0, 0)
+max_position = Vector2i(0, 0)
+
+[node name="Foreground" type="TileMapLayer" parent="." unique_id=592448791]
+tile_map_data = PackedByteArray("AAAMAA0AAAADAAIAAAAMAA4AAAADAAMAAAANAA0AAAABAAIAAAANAA4AAAABAAMAAADy/w0AAAABAAIAAADy/w4AAAABAAMAAADz/w0AAAACAAIAAADz/w4AAAACAAMAAAD0/w0AAAADAAIAAAD0/w4AAAADAAMAAAD1/w0AAAABAAIAAAD1/w4AAAABAAMAAAD2/w0AAAACAAIAAAD2/w4AAAACAAMAAAD3/w0AAAADAAIAAAD3/w4AAAADAAMAAAD4/w0AAAABAAIAAAD4/w4AAAABAAMAAAD5/w0AAAACAAIAAAD5/w4AAAACAAMAAAD6/w0AAAADAAIAAAD6/w4AAAADAAMAAAD7/w0AAAABAAIAAAD7/w4AAAABAAMAAAD8/w0AAAACAAIAAAD8/w4AAAACAAMAAAD9/w0AAAADAAIAAAD9/w4AAAADAAMAAAD+/w0AAAABAAIAAAD+/w4AAAABAAMAAAD//w0AAAACAAIAAAD//w4AAAACAAMAAAAAAA0AAAADAAIAAAAAAA4AAAADAAMAAAABAA0AAAABAAIAAAABAA4AAAABAAMAAAACAA0AAAACAAIAAAACAA4AAAACAAMAAAADAA0AAAADAAIAAAADAA4AAAADAAMAAAAEAA0AAAABAAIAAAAEAA4AAAABAAMAAAAFAA0AAAACAAIAAAAFAA4AAAACAAMAAAAGAA0AAAADAAIAAAAGAA4AAAADAAMAAAAHAA0AAAABAAIAAAAHAA4AAAABAAMAAAAIAA0AAAACAAIAAAAIAA4AAAACAAMAAAAJAA0AAAADAAIAAAAJAA4AAAADAAMAAAAKAA0AAAABAAIAAAAKAA4AAAABAAMAAAALAA0AAAACAAIAAAALAA4AAAACAAMAAAD7/wMAAAAAAAcAAAD8/wMAAAABAAcAAAD9/wMAAAACAAcAAAD+/wMAAAACAAcAAAAEAAkAAAACAAgAABAFAAkAAAAEAAcAAAAGAAkAAAAEAAcAAAAHAAkAAAAEAAcAAAAIAAkAAAAFAAcAAAAJAAkAAAAFAAcAAAD9//v/AAAJAAQAAAD+//v/AAAKAAQAAAD///v/AAABAAUAAAAAAPv/AAACAAUAAAABAPv/AAADAAUAAAACAPv/AAAEAAUAAAADAPv/AAAFAAUAAAAEAPv/AAAGAAUAAAAFAPv/AAAHAAUAAAAGAPv/AAAIAAUAAAAHAPv/AAAHAAUAAAAIAPv/AAAIAAUAAAAJAPv/AAAJAAUAAAAKAPv/AAAKAAUAAAALAPv/AAALAAUAAAAMAPv/AAAMAAUAAAANAPv/AAANAAUAAAAKAAkAAAAGAAcAAAAOAA0AAAACAAIAAAAOAA4AAAACAAMAAAAPAA0AAAADAAIAAAAPAA4AAAADAAMAAADy/wwAAAAAAAkAAADz/wwAAAABAAkAAAD0/wwAAAACAAkAAAD2/wwAAAABAAkAAAD3/wwAAAACAAkAAAD5/wwAAAABAAkAAAD6/wwAAAACAAkAAAD8/wwAAAABAAkAAAD9/wwAAAACAAkAAAAMAAwAAAABAAkAAAANAAwAAAAGAAkAAAALAAwAAAAFAAkAAAAIAAwAAAAFAAkAAAAFAAwAAAAFAAkAAAACAAwAAAAFAAkAAAAAAAwAAAADAAkAAAAKAAwAAAABAAkAAAAJAAwAAAABAAkAAAAHAAwAAAABAAkAAAAGAAwAAAABAAkAAAAEAAwAAAABAAkAAAADAAwAAAABAAkAAAABAAwAAAABAAkAAAD//wwAAAABAAkAAAD+/wwAAAABAAkAAAD7/wwAAAABAAkAAAD1/wwAAAABAAkAAAD4/wwAAAABAAkAAAD8//v/AAAAAAYAAAD1/wEAAAAPAAQAAAD1/wIAAAAPAAUAAAALAPj/AAAPAAQAAAALAPn/AAAPAAUAAAD9/wQAAAAPAAQAAAD9/wUAAAAPAAUAAAADAAMAAAAEAAcAAAAEAAMAAAAFAAcAAAAFAAMAAAAGAAcAAAD//wMAAAACAAcAAAAAAAMAAAADAAcAAAABAAMAAAAEAAcAAAACAAMAAAAEAAcAAAAKAPf/AAACAAgAABALAPf/AAAEAAcAAAA=")
+tile_set = ExtResource("8_3ufey")
+
+[node name="Rat1" parent="." unique_id=1398069199 instance=ExtResource("10_vou4n")]
+position = Vector2(0, -48)
+
+[connection signal="body_exited" from="TutorialPlatform2/Area2D" to="TutorialPlatform2" method="_on_area_2d_body_exited"]

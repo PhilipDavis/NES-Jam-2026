@@ -1,0 +1,35 @@
+Fonts
+- https://yukipixels.itch.io/boldpixels
+- https://erytau.itch.io/pixuf
+
+- beepbox.co
+	- Tongue attack
+		- https://www.beepbox.co/#9n31sbk0l00e00t2ma7g0fj07r1i0o322T0v0u00f0q8816d46w2h4E0T7v1u71f50p61770q72d42g3q0F21a90k762d06HT-SRJJJJIAAAAAh0IaE1c11T1v1ue9f12meq0y10j53d4aA4F0BaQ0500Pf5a0E4ba61b62c75T2v1u02f10w4qw827d03w0E0b4h400000000h4g000000014h000000004h400000000p1cFXY2hVu00000
+	- Jump
+		- https://www.beepbox.co/#9n31sbk0l00e00t2ma7g0fj07r1i0o322T0v0u00f0qE8237d56w2h1E0T7v1u71f50p61770q72d42g3q0F21a90k762d06HT-SRJJJJIAAAAAh0IaE1c11T1v1ue9f12meq0y10j53d4aA4F0BaQ0500Pf5a0E4ba61b62c75T2v1u02f10w4qw827d03w0E0b4h400000000h4g000000014h000000004h400000000p1cFX_F7BU00000
+	- Landing
+		- https://www.beepbox.co/#9n31sbk0l00e00t2ma7g0fj07r1i0o322T0v0u00f0q8816d46w2h4E0T7v1u71f50p61770q72d42g3q0F21a90k762d06HT-SRJJJJIAAAAAh0IaE1c11T1v1ue9f12meq0y10j53d4aA4F0BaQ0500Pf5a0E4ba61b62c75T2v0u02f10w4qx0211d00w0E0b4h400000000h4g000000014h000000004h400000000p1b0000FBe7E80
+	- Menu In
+		- https://www.beepbox.co/#9n31sbk0l00e00t2Qa7g0fj07r1i0o442T5v1u88f0q0x10r81d35HKT-DRJABBBszrrh2E1b2T0v1u00f0qg01d22w2h0E0T5v1u88f0q0x10r81d35HKT-DRJABBBszrrh2E1b2T2v1u02f10w4qw02d22w0E0b4h400000000h4g000000014h000000004h400000000p1i0atvp7E800FR9Muww0
+	- Menu Move
+		- https://www.beepbox.co/#9n31sbk0l00e00t2Qa7g0fj07r1i0o442T5v1u88f0q0x10r81d35HKT-DRJABBBszrrh2E1b2T0v1u00f0qg01d22w2h0E0T5v1u88f0q0x10r81d35HKT-DRJABBBszrrh2E1b2T2v1u02f10w4qw02d22w0E0b4h400000000h4g000000014h000000004h400000000p1h0apu1W200atis7E80
+	- Menu Out
+		- https://www.beepbox.co/#9n31sbk0l00e00t2Qa7g0fj07r1i0o442T5v1u88f0q0x10r81d35HKT-DRJABBBszrrh2E1b2T0v1u00f0qg01d22w2h0E0T5v1u88f0q0x10r81d35HKT-DRJABBBszrrh2E1b2T2v1u02f10w4qw02d22w0E0b4h400000000h4g000000014h000000004h400000000p1i0atud7E800FR9Muww0
+	- Menu Theme
+		- https://www.beepbox.co/#9n31s0k0l02e0dt2ma7g0fj07r1i0o432T0v2u10f0qg01d04w2h0E0T0v0u11f0qg01d04w1h0E0T0v3u12f10s4q00d03w2h2E0T2v3u15f10w4qw02d03w0E0b018i4x8i4x804h4h000h018i4x8i4x8i028hcN4h8w0p21DFKrNN79AuIhOp61jnY86CiGGFwg5dPue8VczRyej8Mbd60u8QQpVBQi6np7BCnghYCxN-jisTjas5E5E5E5O2eAzOhq1q1q1swzH8M0
+	- Death
+		- https://www.beepbox.co/#9n31sbk0l00e00t2ma7g0fj07r1i0o432T0v2u00f0qo8136d07w1h0E0T0v1u00f0qU0123d04w2h0E0T3v1ud6f10tcq0x11p61d13SU0010508whhaa9hE2c0612T2v5u15f10w4qw02d03w0E0b4h400000000h4g000000014h000000004h400000000p1SFUZ50hQ84t216CRZ0UY1pUY8l0hQ284t0v4rdHW0hNU00D7FJsUUY0
+
+TO DO
+- crow enemy
+- level design & more screens
+- Options: music volume, sfx volume (or hide the controls)
+- Translate the Credits screen
+- Animate the gained and lost lives
+- game icon
+- itch.io page (including game play instructions!)
+- death screen / animation
+- add option to enable/disable the tutorial text 
+- add option to make enemies easier / normal / harder
+- add dialog functionality
+- pause timer when dialog is active

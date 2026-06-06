@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://c1h8tgffr47tk"]
+
+[ext_resource type="Script" uid="uid://d16qmyb0h45iq" path="res://enemies/spider/spider.gd" id="1_njt6w"]
+[ext_resource type="Texture2D" uid="uid://bcspd4tahphrc" path="res://enemies/spider/dragline.png" id="2_64l5s"]
+[ext_resource type="Texture2D" uid="uid://y6gkkdvvkhkv" path="res://enemies/spider/Frog_Prince_Spider.webp" id="2_njt6w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1oxsa"]
+size = Vector2(15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64l5s"]
+atlas = ExtResource("2_njt6w")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bhmf"]
+atlas = ExtResource("2_njt6w")
+region = Rect2(24, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4d20"]
+atlas = ExtResource("2_njt6w")
+region = Rect2(24, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_njt6w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64l5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bhmf")
+}],
+"loop": 1,
+"name": &"Attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64l5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bhmf")
+}],
+"loop": 1,
+"name": &"Crawl",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4d20")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 1.0
+}]
+
+[node name="Spider" type="CharacterBody2D" unique_id=1398069199]
+collision_layer = 4
+collision_mask = 25
+script = ExtResource("1_njt6w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047681626]
+position = Vector2(-0.5, 8)
+shape = SubResource("RectangleShape2D_1oxsa")
+
+[node name="PlayerAboveLeftCheck" type="RayCast2D" parent="." unique_id=218446682]
+position = Vector2(-7, 8)
+target_position = Vector2(0, -120)
+collision_mask = 3
+
+[node name="PlayerAboveRightCheck" type="RayCast2D" parent="." unique_id=366934639]
+position = Vector2(6, 8)
+target_position = Vector2(0, -120)
+collision_mask = 3
+
+[node name="PlayerBelowLeftCheck" type="RayCast2D" parent="." unique_id=1731432242]
+position = Vector2(-7, 8)
+target_position = Vector2(0, 120)
+collision_mask = 3
+
+[node name="PlayerBelowRightCheck" type="RayCast2D" parent="." unique_id=2063258271]
+position = Vector2(6, 8)
+target_position = Vector2(0, 120)
+collision_mask = 3
+
+[node name="Visuals" type="Node2D" parent="." unique_id=647851619]
+position = Vector2(0, 8)
+
+[node name="DragLine" type="Sprite2D" parent="Visuals" unique_id=811329519]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, -12)
+texture = ExtResource("2_64l5s")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=1248425379]
+sprite_frames = SubResource("SpriteFrames_njt6w")
+animation = &"Attack"

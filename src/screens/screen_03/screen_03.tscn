@@ -1,0 +1,85 @@
+[gd_scene format=4 uid="uid://dtog1ox8srgj6"]
+
+[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://display/Frog_Prince_Tower_Dungeon_Walls.webp" id="2_cg2e0"]
+[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://display/platform.tscn" id="3_mu76m"]
+[ext_resource type="PackedScene" uid="uid://c1h8tgffr47tk" path="res://enemies/spider/spider.tscn" id="4_cg2e0"]
+[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://display/tile_set.tres" id="4_omgdw"]
+[ext_resource type="PackedScene" uid="uid://crour35kot2o4" path="res://enemies/rat/rat.tscn" id="5_mu76m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfdv2"]
+size = Vector2(16, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iotsf"]
+size = Vector2(16, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ak7xk"]
+size = Vector2(158, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_omgdw"]
+size = Vector2(158, 8)
+
+[node name="Screen03" type="Node2D" unique_id=1782149466]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=332717096]
+texture = ExtResource("2_cg2e0")
+
+[node name="Boundary" type="StaticBody2D" parent="." unique_id=2085931094]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundary" unique_id=1237264303]
+position = Vector2(-120, 0)
+shape = SubResource("RectangleShape2D_mfdv2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundary" unique_id=1650399693]
+position = Vector2(120, 0)
+shape = SubResource("RectangleShape2D_iotsf")
+
+[node name="Platform" parent="." unique_id=1396442759 instance=ExtResource("3_mu76m")]
+position = Vector2(24, 116)
+allow_fall_through = false
+width = 176.0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=917953544]
+tile_map_data = PackedByteArray("AAD4/w4AAAAAAAYAAAD5/w4AAAAIAAUAABD6/w4AAAAHAAUAABD7/w4AAAAGAAUAABD8/w4AAAAFAAUAABD9/w4AAAAEAAUAABD+/w4AAAADAAUAABD//w4AAAACAAUAABAAAA4AAAABAAUAABABAA4AAAADAAUAAAACAA4AAAAEAAUAAAADAA4AAAAFAAUAAAAEAA4AAAAGAAUAAAAFAA4AAAAHAAUAAAAGAA4AAAAIAAUAAAAHAA4AAAAJAAUAAAAIAA4AAAAFAAQAABAJAA4AAAAEAAQAABAKAA4AAAADAAQAABALAA4AAAACAAQAABAMAA4AAAABAAQAABANAA4AAAAAAAQAABDy/wgAAAAAAAQAAADz/wgAAAABAAQAAAD0/wgAAAACAAQAAAD1/wgAAAADAAQAAAD2/wgAAAAEAAQAAAD3/wgAAAAFAAQAAAD4/wgAAAAJAAUAABD5/wgAAAAIAAUAABD6/wgAAAAHAAUAABD7/wgAAAAGAAUAABD8/wgAAAAFAAUAABD9/wgAAAAEAAUAABD+/wgAAAADAAUAABD//wgAAAACAAUAABAAAAgAAAABAAUAABABAAgAAAADAAUAAAACAAgAAAAEAAUAAAADAAgAAAAFAAUAAAAEAAgAAAAGAAUAAAAFAAgAAAABAAYAABD7/wIAAAAGAAUAABD8/wIAAAAFAAUAABD9/wIAAAAEAAUAABD+/wIAAAADAAUAABD//wIAAAACAAUAABAAAAIAAAABAAUAABABAAIAAAADAAUAAAACAAIAAAAEAAUAAAADAAIAAAAFAAUAAAAEAAIAAAAGAAUAAAAFAAIAAAAHAAUAAAAGAAIAAAAIAAUAAAAHAAIAAAAJAAUAAAAIAAIAAAAFAAQAABAJAAIAAAAEAAQAABAKAAIAAAADAAQAABALAAIAAAACAAQAABAMAAIAAAABAAQAABANAAIAAAAAAAQAABDy//z/AAAAAAQAAADz//z/AAABAAQAAAD0//z/AAACAAQAAAD1//z/AAADAAQAAAD2//z/AAAEAAQAAAD3//z/AAAFAAQAAAD4//z/AAAJAAUAABD5//z/AAAIAAUAABD6//z/AAAHAAUAABD7//z/AAAGAAUAABD8//z/AAAFAAUAABD9//z/AAAEAAUAABD+//z/AAADAAUAABD///z/AAACAAUAABAAAPz/AAABAAUAABABAPz/AAADAAUAAAACAPz/AAAEAAUAAAADAPz/AAAFAAUAAAAEAPz/AAAGAAUAAAAFAPz/AAABAAYAABD6//b/AAABAAYAAAD7//b/AAAGAAUAABD8//b/AAAFAAUAABD9//b/AAAEAAUAABD+//b/AAADAAUAABD///b/AAACAAUAABAAAPb/AAABAAUAABABAPb/AAADAAUAAAACAPb/AAAEAAUAAAADAPb/AAAFAAUAAAAEAPb/AAAGAAUAAAAFAPb/AAAHAAUAAAAGAPb/AAAIAAUAAAAHAPb/AAAJAAUAAAAIAPb/AAAFAAQAABAJAPb/AAAEAAQAABAKAPb/AAADAAQAABALAPb/AAACAAQAABAMAPb/AAABAAQAABANAPb/AAAAAAQAABD6/wIAAAABAAYAAAA=")
+tile_set = ExtResource("4_omgdw")
+
+[node name="Floor2" type="StaticBody2D" parent="." unique_id=138205864]
+position = Vector2(-32, 68)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2" unique_id=1499148262]
+shape = SubResource("RectangleShape2D_ak7xk")
+
+[node name="Floor3" type="StaticBody2D" parent="." unique_id=1660278494]
+position = Vector2(32, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3" unique_id=2045188569]
+shape = SubResource("RectangleShape2D_omgdw")
+
+[node name="Floor4" type="StaticBody2D" parent="." unique_id=110526999]
+position = Vector2(-32, -28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor4" unique_id=1080734572]
+shape = SubResource("RectangleShape2D_ak7xk")
+
+[node name="Floor5" type="StaticBody2D" parent="." unique_id=2011459130]
+position = Vector2(32, -76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor5" unique_id=1945215969]
+shape = SubResource("RectangleShape2D_omgdw")
+
+[node name="Spider1" parent="." unique_id=1398069199 instance=ExtResource("4_cg2e0")]
+position = Vector2(18, 72)
+
+[node name="Spider2" parent="." unique_id=1124625088 instance=ExtResource("4_cg2e0")]
+position = Vector2(-32, 24)
+
+[node name="Spider3" parent="." unique_id=642507462 instance=ExtResource("4_cg2e0")]
+position = Vector2(72, -72)
+
+[node name="Rat1" parent="." unique_id=904843866 instance=ExtResource("5_mu76m")]
+position = Vector2(32, 7)
+
+[node name="Rat2" parent="." unique_id=1163569041 instance=ExtResource("5_mu76m")]
+position = Vector2(-90, -41)
+
+[node name="Rat3" parent="." unique_id=453868010 instance=ExtResource("5_mu76m")]
+position = Vector2(95, -89)

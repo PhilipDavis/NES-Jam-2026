@@ -1,0 +1,21 @@
+[gd_resource type="Theme" format=3 uid="uid://d3xccly8i81cd"]
+
+[ext_resource type="FontFile" uid="uid://clph3i2c2ksus" path="res://fonts/BoldPixels.ttf" id="1_cjfk0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5wjh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eow3j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vef74"]
+
+[resource]
+default_base_scale = 1.0
+default_font = ExtResource("1_cjfk0")
+default_font_size = 16
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_cjfk0")
+Button/styles/hover = SubResource("StyleBoxEmpty_j5wjh")
+Button/styles/normal = SubResource("StyleBoxEmpty_eow3j")
+Button/styles/pressed = SubResource("StyleBoxEmpty_vef74")

@@ -1,0 +1,57 @@
+
+
+
+
+
+[color=#386d00]*****[/color]
+
+[color=#51a200]Frog Prince[/color]
+NES Jam 2026
+
+[color=#386d00]*****[/color]
+
+[color=#b2b2b2]Programming[/color]
+Philip Davis
+
+[color=#b2b2b2]Artwork[/color]
+Roone Mägi
+
+[color=#b2b2b2]Music[/color]
+Amanda Mägi
+Roone Mägi
+
+[color=#b2b2b2]Level Design[/color]
+TODO
+
+[color=#b2b2b2]Sound Effects[/color]
+Philip Davis
+
+[color=#b2b2b2]Fonts[/color]
+yukipixels
+erytau
+
+[color=#b2b2b2]Playtesters[/color]
+TODO
+
+[color=#b2b2b2]Special Thanks[/color]
+Godot
+Aseprite
+BeepBox.co
+Itch.io
+Doctor Succubus
+Nintendo
+
+[color=#386d00]*****[/color]
+
+No animals were
+harmed in the
+making of this
+game.
+
+[color=#386d00]*****[/color]
+
+
+Thank you
+for playing!
+
+ 
