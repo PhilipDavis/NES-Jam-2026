@@ -1,32 +1,51 @@
 [gd_scene format=3 uid="uid://crour35kot2o4"]
 
 [ext_resource type="Script" uid="uid://cb7uorcfl4xgr" path="res://enemies/rat/rat.gd" id="1_7k104"]
-[ext_resource type="Texture2D" uid="uid://bdm0fi2v3xm8u" path="res://enemies/rat/Frog_Prince_Rat.webp" id="2_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://foqhkak6fokm" path="res://enemies/rat/Frog_Prince_Rat_2.webp" id="2_60367"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_boad6"]
 radius = 8.062258
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qi2p4"]
-atlas = ExtResource("2_4gyqm")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcpyj"]
+atlas = ExtResource("2_60367")
+region = Rect2(0, 24, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iifgy"]
-atlas = ExtResource("2_4gyqm")
-region = Rect2(32, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3m13"]
+atlas = ExtResource("2_60367")
+region = Rect2(24, 24, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_epg4t"]
-atlas = ExtResource("2_4gyqm")
+[sub_resource type="AtlasTexture" id="AtlasTexture_60367"]
+atlas = ExtResource("2_60367")
+region = Rect2(0, 24, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bptt2"]
+atlas = ExtResource("2_60367")
+region = Rect2(24, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ev0x0"]
+atlas = ExtResource("2_60367")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3yqyl"]
-atlas = ExtResource("2_4gyqm")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqrh8"]
+atlas = ExtResource("2_60367")
+region = Rect2(24, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4swqd"]
+atlas = ExtResource("2_60367")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou6vw"]
+atlas = ExtResource("2_60367")
+region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7k104"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qi2p4")
+"texture": SubResource("AtlasTexture_fcpyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3m13")
 }],
 "loop": 1,
 "name": &"Chase",
@@ -34,7 +53,15 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iifgy")
+"texture": SubResource("AtlasTexture_60367")
+}],
+"loop": 1,
+"name": &"ChasePaused",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bptt2")
 }],
 "loop": 1,
 "name": &"Defeated",
@@ -42,7 +69,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_epg4t")
+"texture": SubResource("AtlasTexture_ev0x0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqrh8")
 }],
 "loop": 1,
 "name": &"Patrol",
@@ -50,11 +80,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3yqyl")
+"texture": SubResource("AtlasTexture_4swqd")
 }],
 "loop": 1,
 "name": &"Paused",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou6vw")
+}],
+"loop": 1,
+"name": &"Surprised",
+"speed": 4.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ak7xk"]
@@ -73,7 +111,7 @@ shape = SubResource("CircleShape2D_boad6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=1248425379]
 sprite_frames = SubResource("SpriteFrames_7k104")
-animation = &"Patrol"
+animation = &"ChasePaused"
 
 [node name="GroundCheck" type="RayCast2D" parent="Visuals" unique_id=1337068727]
 position = Vector2(10, 0)

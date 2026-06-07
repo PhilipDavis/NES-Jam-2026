@@ -14,6 +14,7 @@ class_name Rat
 @onready var player_check: RayCast2D = $Visuals/PlayerCheck
 
 const PATROL_SPEED := 64.0
+const SURPRISE_JUMP_SPEED := -64.0
 const CHASE_SPEED := 192.0
 const DIE_SPEED := 128.0
 const GROUND_ACCEL := 512.0
@@ -36,6 +37,7 @@ var state_speed := 0.0
 enum BehaviorState {
 	Patrol,
 	Paused, # e.g. when turning around, impeded, etc.
+	Surprised, # Just saw the player and is about to chase
 	Chase,
 	Defeated,
 	# TODO: different enemies might have different move states
@@ -43,7 +45,9 @@ enum BehaviorState {
 
 var behavior_state := BehaviorState.Patrol
 var paused_time := 0.0
-const PAUSE_TIME := 1.0 # How long to pause before resuming another behaviour state
+const PAUSE_TIME := 0.8 # How long to pause before resuming another behaviour state
+var surprised_time := 0.0
+const SURPRISE_TIME := 0.2 # How long to pause after seeing the player and starting the attack behaviour
 var chase_ending_time := 0.0
 const CHASE_END_TIME := 2.0 # How long to stop chasing after losing sight of player
 
@@ -84,6 +88,9 @@ func _update_movement(delta: float) -> void:
 		BehaviorState.Paused:
 			velocity.x = move_toward(velocity.x, 0.0, GROUND_DECEL * delta)
 		
+		BehaviorState.Surprised:
+			velocity.x = move_toward(velocity.x, 0.0, GROUND_DECEL * delta)
+		
 		BehaviorState.Chase:
 			velocity.x = move_toward(velocity.x, facing_direction * CHASE_SPEED, GROUND_ACCEL * delta)
 	
@@ -93,6 +100,8 @@ func _update_timers(delta: float) -> void:
 	match behavior_state:
 		BehaviorState.Paused:
 			paused_time += delta
+		BehaviorState.Surprised:
+			surprised_time += delta
 		BehaviorState.Chase:
 			chase_ending_time += delta
 
@@ -114,8 +123,10 @@ func _update_state(delta: float) -> void:
 				resume_direction = -facing_direction
 				paused_time = 0.0
 			elif _can_see_player():
-				behavior_state = BehaviorState.Chase
-				_play_animation('Chase')
+				behavior_state = BehaviorState.Surprised
+				surprised_time = 0.0
+				velocity.y = SURPRISE_JUMP_SPEED
+				_play_animation('Surprised')
 		
 		BehaviorState.Paused:
 			if paused_time >= PAUSE_TIME:
@@ -127,11 +138,16 @@ func _update_state(delta: float) -> void:
 					_play_animation('Patrol')
 					facing_direction = resume_direction
 		
+		BehaviorState.Surprised:
+			if surprised_time >= SURPRISE_TIME:
+				behavior_state = BehaviorState.Chase
+				_play_animation('Chase')
+		
 		BehaviorState.Chase:
 			if not ground_check.is_colliding():
 				# Pause at the end of a platform, then turn around
 				behavior_state = BehaviorState.Paused
-				_play_animation('Paused')
+				_play_animation('ChasePaused')
 				resume_direction = facing_direction # maintain the same direction for now
 				velocity.x /= 4 # Cut velocity quickly or else will run off the platform
 				paused_time = 0.0

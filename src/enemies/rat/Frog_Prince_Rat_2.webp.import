@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf58jlu0k4sk7"
-path="res://.godot/imported/Frog_Prince_Rat.png-02e82b3877d200e0a339076dfd65114f.ctex"
+uid="uid://foqhkak6fokm"
+path="res://.godot/imported/Frog_Prince_Rat_2.webp-ea830764d62316f75ad7d824e3600c57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/rat/Frog_Prince_Rat.png"
-dest_files=["res://.godot/imported/Frog_Prince_Rat.png-02e82b3877d200e0a339076dfd65114f.ctex"]
+source_file="res://enemies/rat/Frog_Prince_Rat_2.webp"
+dest_files=["res://.godot/imported/Frog_Prince_Rat_2.webp-ea830764d62316f75ad7d824e3600c57.ctex"]
 
 [params]
 
