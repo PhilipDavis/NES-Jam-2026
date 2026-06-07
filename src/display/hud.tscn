@@ -34,6 +34,7 @@ theme_override_constants/separation = 5
 [node name="HealthLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1991595599]
 unique_name_in_owner = true
 auto_translate_mode = 1
+visible = false
 custom_minimum_size = Vector2(48, 16)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -92,6 +93,7 @@ vertical_alignment = 1
 [node name="TimeLabel" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1172295636]
 unique_name_in_owner = true
 auto_translate_mode = 1
+visible = false
 layout_mode = 2
 theme = ExtResource("1_37p78")
 theme_override_colors/font_color = Color(0.69803923, 0.69803923, 0.69803923, 1)

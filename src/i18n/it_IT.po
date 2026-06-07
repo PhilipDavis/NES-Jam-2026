@@ -64,3 +64,63 @@ msgstr "Salta via dal muro"
 
 msgid "Press B to Jump"
 msgstr "Premi B per Saltare"
+
+#
+# Credits
+#
+
+msgid "Concept"
+msgstr "Ideazione"
+
+msgid "Programming"
+msgstr "Programmazione"
+
+msgid "Artwork"
+msgstr "Grafica"
+
+msgid "Music"
+msgstr "Musica"
+
+msgid "Level Design"
+msgstr "Level Design"
+
+msgid "Sound Effects"
+msgstr "Effetti Sonori"
+
+msgid "Fonts"
+msgstr "Font"
+
+msgid "Playtesters"
+msgstr "Collaudatori"
+
+msgid "Special Thanks"
+msgstr "Ringraziamenti Speciali"
+
+msgid "No animals were harmed in the making of this game."
+msgstr "Nessun animale è stato maltrattato durante la realizzazione di questo gioco."
+
+msgid "Thank you for playing!"
+msgstr "Grazie per aver giocato!"
+
+#
+# Difficulty
+#
+
+msgid "Difficulty:"
+msgstr "Difficoltà:"
+
+msgctxt "difficulty level"
+msgid "Easy"
+msgstr "Facile"
+
+msgctxt "difficulty level"
+msgid "Normal"
+msgstr "Normale"
+
+msgctxt "difficulty level"
+msgid "Hard"
+msgstr "Difficile"
+
+msgctxt "difficulty level"
+msgid "Nightmare"
+msgstr "Da Incubo"

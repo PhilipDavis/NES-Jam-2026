@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+@onready var standard_collision := $StandardCollision
+@onready var extended_collision := $ExtendedCollision
 @onready var visuals: Node2D = $Visuals
 @onready var sprite: AnimatedSprite2D = $Visuals/AnimatedSprite2D
 @onready var tongue: Tongue = %Tongue
@@ -101,11 +103,14 @@ func _ready() -> void:
 
 func reset() -> void:
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+	collision_layer = 2 # Player
+	collision_mask = 1 | 8 # Background and Objects
 	hit_box.collision_layer = 2 # Player
 	hit_box.collision_mask = 4 | 8 # Enemies and Objects
 	visible = false
 	velocity = Vector2.ZERO
-	position.y = 80 + 112
+	visuals.global_rotation_degrees = 0
+	position = Vector2i(0, 80 + 112)
 	#position = Vector2i(100, -80 + 112) # KILL: position to fast-forward to end of tutorial screen
 
 func _on_game_started() -> void:
@@ -136,9 +141,13 @@ func _on_player_health_changed(health: int, was_lost: bool) -> void:
 
 func _die() -> void:
 	state = MoveState.Defeated
+	collision_layer = 0
+	collision_mask = 0
 	hit_box.collision_layer = 0
 	hit_box.collision_mask = 0
 	$Audio/Death.play()
+	await get_tree().create_timer(1.0).timeout
+	Events.player_death_finished.emit()
 
 func _flicker() -> void:
 	for i in range(0, FLICKER_DURATION / FLICKER_STEP):

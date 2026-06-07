@@ -64,3 +64,59 @@ msgstr "Jump off the wall"
 
 msgid "Press B to Jump"
 msgstr "Press B to Jump"
+
+#
+# Credits
+#
+
+msgid "Concept"
+msgstr "Concept"
+
+msgid "Programming"
+msgstr "Programming"
+
+msgid "Artwork"
+msgstr "Artwork"
+
+msgid "Music"
+msgstr "Music"
+
+msgid "Level Design"
+msgstr "Level Design"
+
+msgid "Sound Effects"
+msgstr "Sound Effects"
+
+msgid "Fonts"
+msgstr "Fonts"
+
+msgid "Playtesters"
+msgstr "Playtesters"
+
+msgid "Special Thanks"
+msgstr "Special Thanks"
+
+msgid "No animals were harmed in the making of this game."
+msgstr "No animals were harmed in the making of this game."
+
+msgid "Thank you for playing!"
+msgstr "Thank you for playing!"
+
+#
+# Difficulty
+#
+
+msgid "Difficulty:"
+msgstr "Difficulty:"
+
+msgid "Easy"
+msgstr "Easy"
+
+msgid "Normal"
+msgstr "Normal"
+
+msgid "Hard"
+msgstr "Hard"
+
+msgid "Nightmare"
+msgstr "Nightmare"

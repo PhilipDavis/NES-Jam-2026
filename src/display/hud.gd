@@ -23,5 +23,18 @@ func _on_time_changed(total_seconds: int) -> void:
 func _on_player_health_changed(health: int, was_lost: bool) -> void:
 	for i in range(hearts_container.get_child_count()):
 		var life := hearts_container.get_child(i)
+		var visible = life.visible
+		
+		# Blink and increase rapidly until it disappears
+		if visible and i >= health:
+			var tween = create_tween()
+			var delay := 0.18
+			while delay >= 0.08:
+				tween.tween_callback(func(): life.visible = false)
+				tween.tween_interval(delay)
+				tween.tween_callback(func(): life.visible = true)
+				tween.tween_interval(delay)
+				delay /= 1.5
+			await tween.finished
+		
 		life.visible = i < health
-		# TODO: animate gained and lost lives

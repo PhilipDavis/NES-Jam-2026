@@ -66,12 +66,25 @@ func _load_screen(index: int) -> void:
 		return
 	is_loaded_by_index[index] = true
 	
+	if not screen_name_by_index.has(index):
+		# No more screens!
+		Events.game_ended.emit()
+		return
+	
 	# Instantiate the screen and at it to the top of the growing tower
 	var screen_name := screen_name_by_index[index]
 	var scene := screen_map[screen_name]
 	var screen := scene.instantiate() as Node2D
 	screen.global_position.y = next_y_offset
 	$ScreenContainer.add_child(screen)
+	
+	# Notify that the screen has loaded.
+	# Enemies will listen for this to know when to activate.
+	# We do this outside of the standard _ready() processing
+	# because the enemies are marked as @tool and they were
+	# moving prematurely.
+	# TODO: must be a way to fix/improve this and remove this hack
+	Events.screen_ready.emit(screen)
 	
 	# Update the next offset for the next screen
 	var background := screen.get_node('Background')

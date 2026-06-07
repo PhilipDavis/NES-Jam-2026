@@ -1,7 +1,13 @@
+@tool
 extends Enemy
 class_name Rat
 
 @export var attack_damage := 1
+@export var facing_direction := 1:
+	set(value):
+		facing_direction = signf(value)
+		if is_node_ready():
+			visuals.scale.x = facing_direction
 
 @onready var ground_check: RayCast2D = $Visuals/GroundCheck
 @onready var wall_check: RayCast2D = $Visuals/WallCheck
@@ -52,11 +58,13 @@ var combat_state := CombatState.Idle
 var resume_direction := -1.0
 
 func _ready() -> void:
+	super._ready()
 	ground_check.force_raycast_update()
 	wall_check.force_raycast_update()
 	player_check.force_raycast_update()
 	add_to_group('enemies')
 	Events.enemy_damaged.connect(_on_enemy_damaged)
+	facing_direction = facing_direction # Force a visual update
 	_play_animation('Patrol')
 
 func _physics_process(delta: float) -> void:
@@ -71,13 +79,13 @@ func _update_movement(delta: float) -> void:
 	
 	match behavior_state:
 		BehaviorState.Patrol:
-			velocity.x = move_toward(velocity.x, visuals.scale.x * PATROL_SPEED, GROUND_ACCEL * delta)
+			velocity.x = move_toward(velocity.x, facing_direction * PATROL_SPEED, GROUND_ACCEL * delta)
 		
 		BehaviorState.Paused:
 			velocity.x = move_toward(velocity.x, 0.0, GROUND_DECEL * delta)
 		
 		BehaviorState.Chase:
-			velocity.x = move_toward(velocity.x, visuals.scale.x * CHASE_SPEED, GROUND_ACCEL * delta)
+			velocity.x = move_toward(velocity.x, facing_direction * CHASE_SPEED, GROUND_ACCEL * delta)
 	
 	move_and_slide()
 
@@ -98,12 +106,12 @@ func _update_state(delta: float) -> void:
 		BehaviorState.Patrol:
 			if wall_check.is_colliding():
 				# Turn around immediately at a wall
-				visuals.scale.x *= -1
+				facing_direction *= -1
 			elif not ground_check.is_colliding():
 				# Pause at the end of a platform, then turn around
 				behavior_state = BehaviorState.Paused
 				_play_animation('Paused')
-				resume_direction = -visuals.scale.x
+				resume_direction = -facing_direction
 				paused_time = 0.0
 			elif _can_see_player():
 				behavior_state = BehaviorState.Chase
@@ -117,14 +125,14 @@ func _update_state(delta: float) -> void:
 				else:
 					behavior_state = BehaviorState.Patrol
 					_play_animation('Patrol')
-					visuals.scale.x = resume_direction
+					facing_direction = resume_direction
 		
 		BehaviorState.Chase:
 			if not ground_check.is_colliding():
 				# Pause at the end of a platform, then turn around
 				behavior_state = BehaviorState.Paused
 				_play_animation('Paused')
-				resume_direction = visuals.scale.x # maintain the same direction for now
+				resume_direction = facing_direction # maintain the same direction for now
 				velocity.x /= 4 # Cut velocity quickly or else will run off the platform
 				paused_time = 0.0
 			elif _can_see_player():
@@ -132,7 +140,7 @@ func _update_state(delta: float) -> void:
 			elif chase_ending_time >= CHASE_END_TIME:
 				behavior_state = BehaviorState.Paused
 				_play_animation('Paused')
-				resume_direction = -visuals.scale.x
+				resume_direction = -facing_direction
 				paused_time = 0.0
 		
 		BehaviorState.Defeated: # This is a terminal state

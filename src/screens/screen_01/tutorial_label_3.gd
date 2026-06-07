@@ -8,9 +8,18 @@ var is_done := false
 
 func _ready() -> void:
 	visible_ratio = 0.0
+	Events.game_started.connect(_on_game_started)
 	Events.tutorial_step_completed.connect(_on_tutorial_step_completed)
 	Events.player_jumped.connect(_on_player_jumped)
 	Events.player_attacked.connect(_on_player_attacked)
+
+func _on_game_started() -> void:
+	if Settings.get_setting('tutorial', 'attack', false):
+		is_done = true
+		Events.tutorial_step_completed.emit('attack')
+		get_parent().remove_child(self)
+		queue_free()
+		return
 
 func _on_tutorial_step_completed(step: String) -> void:
 	if step == 'wall-jump' and not is_done and not activated:

@@ -8,8 +8,14 @@ func _ready() -> void:
 	Events.player_jumped.connect(_on_player_jumped)
 
 func _on_game_started() -> void:
-	_reveal()
+	if Settings.get_setting('tutorial', 'ground-jump', false):
+		Events.tutorial_step_completed.emit('ground-jump')
+		get_parent().remove_child(self)
+		queue_free()
+		return
 	
+	_reveal()
+
 func _on_player_jumped(_wall_jump: bool) -> void:
 	Events.tutorial_step_completed.emit('ground-jump')
 	_hide()

@@ -1,6 +1,8 @@
 extends Enemy
 class_name Spider
 
+@export var attack_damage := 1
+
 @onready var player_above_left_check: RayCast2D = $PlayerAboveLeftCheck
 @onready var player_above_right_check: RayCast2D = $PlayerAboveRightCheck
 @onready var player_below_left_check: RayCast2D = $PlayerBelowLeftCheck
@@ -24,7 +26,7 @@ enum BehaviorState {
 	Defeated,
 }
 
-var behavior_state := BehaviorState.Wait
+var behavior_state := BehaviorState.Patrol
 var direction := 0.0
 var wait_time := 0.0
 const WAIT_THRESHOLD := 1.0 # How long to pause before resuming another behaviour state
@@ -34,12 +36,21 @@ var health_remaining := 3
 var origin := Vector2.ZERO
 
 func _ready() -> void:
+	super._ready()
 	origin = position
 	set_drag_line_length(0)
 	player_above_left_check.force_raycast_update()
 	player_above_right_check.force_raycast_update()
 	player_below_left_check.force_raycast_update()
 	player_below_right_check.force_raycast_update()
+	
+	# Only aggressively attack the player in hard mode
+	var is_hard_mode := Settings.get_setting('game', 'difficulty', 'easy') as String == 'hard'
+	player_above_left_check.enabled = is_hard_mode
+	player_above_right_check.enabled = is_hard_mode
+	player_below_left_check.enabled = is_hard_mode
+	player_below_right_check.enabled = is_hard_mode
+	
 	add_to_group('enemies')
 	Events.enemy_damaged.connect(_on_enemy_damaged)
 	_play_animation('Idle')
@@ -81,7 +92,6 @@ func _update_movement(delta: float) -> void:
 	move_and_slide()
 	position.y = maxf(position.y, origin.y)
 
-
 func _attack_player() -> bool:
 	# HACK: The first screen loads before the player... so can't get the player reference in _ready()
 	if not player:
@@ -112,13 +122,13 @@ func _update_state(delta: float) -> void:
 				pass
 			elif wait_time >= WAIT_THRESHOLD:
 				behavior_state = BehaviorState.Patrol
-				direction = 1.0 if position.y <= origin.y else -1.0
+				direction = 1.0 if is_on_ceiling() else -1.0
 				_play_animation('Crawl')
 		
 		BehaviorState.Patrol:
 			if _attack_player():
 				pass
-			elif is_on_floor() or position.y <= origin.y:
+			elif is_on_floor() or is_on_ceiling():
 				behavior_state = BehaviorState.Wait
 				velocity.y = 0.0
 				wait_time = 0.0
@@ -126,7 +136,7 @@ func _update_state(delta: float) -> void:
 				_play_animation('Idle')
 		
 		BehaviorState.Attack:
-			if (position.y <= origin.y and direction <= 0.0) or (is_on_floor() and direction >= 0.0):
+			if (is_on_ceiling() and direction <= 0.0) or (is_on_floor() and direction >= 0.0):
 				behavior_state = BehaviorState.Wait
 				wait_time = 0.0
 				_play_animation('Idle')
@@ -154,6 +164,7 @@ func _on_enemy_damaged(enemy: Enemy, amount: int, direction: float) -> void:
 	
 	health_remaining -= amount
 	if health_remaining > 0:
+		_flicker()
 		return
 	
 	# Don't collide with anything anymore... just fall offscreen
@@ -171,3 +182,8 @@ func _on_enemy_damaged(enemy: Enemy, amount: int, direction: float) -> void:
 	velocity = Vector2(direction * DIE_SPEED, -DIE_SPEED)
 	
 	die_direction = direction
+
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	if body.is_in_group('player'):
+		var attack_direction = signf(body.position.x - position.x)
+		Events.player_damaged.emit(attack_damage, attack_direction)

@@ -9,9 +9,18 @@ var is_done := false
 
 func _ready() -> void:
 	visible_ratio = 0.0
+	Events.game_started.connect(_on_game_started)
 	Events.tutorial_step_completed.connect(_on_tutorial_step_completed)
 	Events.player_jumped.connect(_on_player_jumped)
 	Events.player_landed.connect(_on_player_landed)
+
+func _on_game_started() -> void:
+	if Settings.get_setting('tutorial', 'wall-jump', false):
+		is_done = true
+		Events.tutorial_step_completed.emit('wall-jump')
+		get_parent().remove_child(self)
+		queue_free()
+		return
 
 func _on_tutorial_step_completed(step: String) -> void:
 	if step == 'ground-jump':
@@ -24,7 +33,7 @@ func _on_player_jumped(wall_jump: bool) -> void:
 		Events.tutorial_step_completed.emit('wall-jump')
 
 func _on_player_landed() -> void:
-	if not activated:
+	if not activated or is_done:
 		return
 	failed_jumps += 1
 	activated = false # Make player fail twice

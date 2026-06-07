@@ -52,6 +52,9 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ak7xk"]
+size = Vector2(15, 16)
+
 [node name="Spider" type="CharacterBody2D" unique_id=1398069199]
 collision_layer = 4
 collision_mask = 25
@@ -64,22 +67,22 @@ shape = SubResource("RectangleShape2D_1oxsa")
 [node name="PlayerAboveLeftCheck" type="RayCast2D" parent="." unique_id=218446682]
 position = Vector2(-7, 8)
 target_position = Vector2(0, -120)
-collision_mask = 3
+collision_mask = 11
 
 [node name="PlayerAboveRightCheck" type="RayCast2D" parent="." unique_id=366934639]
 position = Vector2(6, 8)
 target_position = Vector2(0, -120)
-collision_mask = 3
+collision_mask = 11
 
 [node name="PlayerBelowLeftCheck" type="RayCast2D" parent="." unique_id=1731432242]
 position = Vector2(-7, 8)
 target_position = Vector2(0, 120)
-collision_mask = 3
+collision_mask = 11
 
 [node name="PlayerBelowRightCheck" type="RayCast2D" parent="." unique_id=2063258271]
 position = Vector2(6, 8)
 target_position = Vector2(0, 120)
-collision_mask = 3
+collision_mask = 11
 
 [node name="Visuals" type="Node2D" parent="." unique_id=647851619]
 position = Vector2(0, 8)
@@ -95,3 +98,13 @@ region_rect = Rect2(0, 0, 8, 8)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=1248425379]
 sprite_frames = SubResource("SpriteFrames_njt6w")
 animation = &"Attack"
+
+[node name="HitBox" type="Area2D" parent="." unique_id=1240293109]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=934251325]
+position = Vector2(-0.5, 8)
+shape = SubResource("RectangleShape2D_ak7xk")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

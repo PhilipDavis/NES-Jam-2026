@@ -4,4 +4,5 @@ extends StaticBody2D
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:
-		tutorial_label.activate()
+		if tutorial_label:
+			tutorial_label.activate()

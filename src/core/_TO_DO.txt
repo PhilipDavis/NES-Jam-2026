@@ -21,15 +21,16 @@ Fonts
 		- https://www.beepbox.co/#9n31sbk0l00e00t2ma7g0fj07r1i0o432T0v2u00f0qo8136d07w1h0E0T0v1u00f0qU0123d04w2h0E0T3v1ud6f10tcq0x11p61d13SU0010508whhaa9hE2c0612T2v5u15f10w4qw02d03w0E0b4h400000000h4g000000014h000000004h400000000p1SFUZ50hQ84t216CRZ0UY1pUY8l0hQ284t0v4rdHW0hNU00D7FJsUUY0
 
 TO DO
+- improve screen transitions when player near the seam (too much flipping back and forth right now)
 - crow enemy
 - level design & more screens
 - Options: music volume, sfx volume (or hide the controls)
-- Translate the Credits screen
-- Animate the gained and lost lives
 - game icon
 - itch.io page (including game play instructions!)
 - death screen / animation
-- add option to enable/disable the tutorial text 
-- add option to make enemies easier / normal / harder
+- add option to reset / disable the tutorial 
+- adjust game for easy / normal / hard / nightmare
+	- enemy speed... hits required to defeat... starting health
 - add dialog functionality
 - pause timer when dialog is active
+- high scores page... sort by screen number then time

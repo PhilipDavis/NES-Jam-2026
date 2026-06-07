@@ -19,17 +19,12 @@ var current_screen_index := -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var os_locale := OS.get_locale()
-	if TranslationServer.has_translation_for_locale(os_locale, false):
-		TranslationServer.set_locale(os_locale)
-	else:
-		TranslationServer.set_locale('en_CA')
-	
 	Events.start_requested.connect(_on_start_requested)
 	Events.player_entered_screen.connect(_on_player_entered_screen)
 	Events.player_damaged.connect(_on_player_damaged)
 	Events.player_death_finished.connect(_on_player_death_finished)
 	Events.game_ended.connect(_on_game_ended)
+	Events.tutorial_step_completed.connect(_on_tutorial_step_completed)
 	
 	# Darken the screen
 	$FaderContainer/Fader.start_dark()
@@ -86,6 +81,10 @@ func _physics_process(delta: float) -> void:
 	if not is_clock_running:
 		return
 	
+	# Stop processing screen transitions if the player is dead
+	if player.state == Player.MoveState.Defeated:
+		return
+	
 	var screen_index = floori(-(player.position.y - WORLD_OFFSET) / SCREEN_HEIGHT)
 	if screen_index < 0:
 		return
@@ -136,12 +135,16 @@ func _transition_to_screen(index: int) -> void:
 	elif current_screen_index == -1:
 		current_screen_index = index
 		return
+	# Also bail out if we're already transitioning
+	if is_camera_moving:
+		return
+	
 	var old_screen_index = current_screen_index
 	current_screen_index = index
 	
 	Events.screen_transition_started.emit(old_screen_index)
 	is_camera_moving = true
-	world.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+	world.set_physics_process(false)
 	world.set_process_input(false)
 	
 	var chunk_count = SCREEN_HEIGHT / CHUNK_SIZE
@@ -161,8 +164,11 @@ func _transition_to_screen(index: int) -> void:
 			tween.tween_interval(chunk_time)
 	await tween.finished
 
-	world.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
+	world.set_physics_process(true)
 	world.set_process_input(true)
 	
 	is_camera_moving = false
 	Events.screen_transition_ended.emit(current_screen_index)
+
+func _on_tutorial_step_completed(name: String) -> void:
+	Settings.set_setting('tutorial', name, true)

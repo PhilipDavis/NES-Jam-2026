@@ -20,6 +20,7 @@ config/icon="res://core/icon.svg"
 [autoload]
 
 Events="*uid://dgqdf1o81j2ft"
+Settings="*uid://cft340ip5v4iv"
 I18n="*uid://c8ind7ixd32ey"
 
 [display]

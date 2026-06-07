@@ -30,7 +30,7 @@ size = Vector2(11.5, 75)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
 size = Vector2(8, 56)
 
-[node name="Screen01" type="Node2D" unique_id=699924115]
+[node name="Screen01" type="Node2D" unique_id=1556592034]
 auto_translate_mode = 1
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1711825821]

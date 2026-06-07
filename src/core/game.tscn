@@ -1,23 +1,23 @@
 [gd_scene format=3 uid="uid://dai164qqdlpxu"]
 
-[ext_resource type="Script" uid="uid://c5kx4kxyb0i4x" path="res://core/game.gd" id="1_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://c8nmsrtfrdp4r" path="res://display/world.tscn" id="2_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://dmoim5jbvili0" path="res://display/fader.tscn" id="5_7jktm"]
-[ext_resource type="PackedScene" uid="uid://cmkvlki35j233" path="res://display/hud.tscn" id="5_ryrav"]
-[ext_resource type="PackedScene" uid="uid://cq2he73myu6h6" path="res://menu/menu.tscn" id="7_eow3j"]
+[ext_resource type="Script" uid="uid://c5kx4kxyb0i4x" path="res://core/game.gd" id="1_sjcnv"]
+[ext_resource type="PackedScene" uid="uid://c8nmsrtfrdp4r" path="res://display/world.tscn" id="2_cjuek"]
+[ext_resource type="PackedScene" uid="uid://cmkvlki35j233" path="res://display/hud.tscn" id="3_vhpdd"]
+[ext_resource type="PackedScene" uid="uid://cq2he73myu6h6" path="res://menu/menu.tscn" id="4_gjr3k"]
+[ext_resource type="PackedScene" uid="uid://dmoim5jbvili0" path="res://display/fader.tscn" id="5_4cdhi"]
 
 [node name="Game" type="Node2D" unique_id=2113071536]
-script = ExtResource("1_fc0e3")
+script = ExtResource("1_sjcnv")
 
-[node name="World" parent="." unique_id=773217894 instance=ExtResource("2_fc0e3")]
+[node name="World" parent="." unique_id=773217894 instance=ExtResource("2_cjuek")]
 unique_name_in_owner = true
 position = Vector2(128, 120)
 
-[node name="HUD" parent="." unique_id=1263400480 instance=ExtResource("5_ryrav")]
+[node name="HUD" parent="." unique_id=1263400480 instance=ExtResource("3_vhpdd")]
 
-[node name="Menu" parent="." unique_id=410386570 instance=ExtResource("7_eow3j")]
+[node name="Menu" parent="." unique_id=410386570 instance=ExtResource("4_gjr3k")]
 
 [node name="FaderContainer" type="CanvasLayer" parent="." unique_id=604687299]
 layer = 10
 
-[node name="Fader" parent="FaderContainer" unique_id=686092733 instance=ExtResource("5_7jktm")]
+[node name="Fader" parent="FaderContainer" unique_id=686092733 instance=ExtResource("5_4cdhi")]

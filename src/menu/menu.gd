@@ -7,6 +7,8 @@ extends CanvasLayer
 @onready var menu_move_audio: AudioStreamPlayer = $Audio/MenuMove
 @onready var menu_out_audio: AudioStreamPlayer = $Audio/MenuOut
 
+var credits_source: String
+
 const main_y_offsets: Array[float] = [
 	141.0, # Start
 	163.0, # Options
@@ -14,9 +16,10 @@ const main_y_offsets: Array[float] = [
 ]
 
 const options_y_offsets: Array[float] = [
-	 97.0, # Music Volume
-	119.0, # Effects Volume
-	141.0, # Language
+	 75.0, # Music Volume
+	 97.0, # Effects Volume
+	119.0, # Language
+	141.0, # Difficulty
 	163.0, # Back
 ]
 
@@ -31,6 +34,16 @@ const credits_y_offsets: Array[float] = [
 	185.0, # Back
 ]
 
+const DEFAULT_DIFFICULTY = 'Normal'
+const difficulty_levels := [ 'Normal', 'Hard' ] # TODO: add easy and nightmare
+var difficulty_colors: Dictionary[String, Color] = {
+	'Easy': Color.from_rgba8(113, 243, 65),
+	'Normal': Color.from_rgba8(255, 255, 255),
+	'Hard': Color.from_rgba8(162, 113, 255),
+	'Nightmare': Color.from_rgba8(178, 16, 48),
+}
+var current_difficulty := DEFAULT_DIFFICULTY
+
 var current_menu := 'main' # TODO: use an enum
 var selected_index := 0
 var selection_tween: Tween
@@ -43,10 +56,8 @@ func _ready() -> void:
 	$OptionsPage.visible = false
 	$LanguagePage.visible = false
 	$CreditsPage.visible = false
-	credits.text = FileAccess.open('res://menu/credits.txt', FileAccess.READ).get_as_text() as String
-	await get_tree().process_frame
-	credits.size.y = credits.get_content_height()
-	credits.custom_minimum_size.y = credits.get_content_height()
+	_load_difficulty()
+	credits_source = FileAccess.open('res://menu/credits.txt', FileAccess.READ).get_as_text() as String
 	resume()
 
 func resume() -> void:
@@ -74,7 +85,8 @@ func _input(event: InputEvent) -> void:
 					0: pass # TODO
 					1: pass # TODO
 					2: _show_languages()
-					3: _hide_options()
+					3: _select_next_difficulty()
+					4: _hide_options()
 			'language':
 				_hide_languages()
 			'credits':
@@ -168,9 +180,55 @@ func _hide_languages() -> void:
 
 func _select_locale(locale: String) -> void:
 	TranslationServer.set_locale(locale)
+	Settings.set_setting('game', 'locale', locale)
+	_update_difficulty()
 	# TODO: play a success audio sound
 
+func _select_next_difficulty() -> void:
+	var previous_difficulty = Settings.get_setting('game', 'difficulty', DEFAULT_DIFFICULTY)
+	var previous_index = difficulty_levels.find(previous_difficulty)
+	assert(previous_index >= 0)
+	var new_index = (previous_index + 1) % difficulty_levels.size()
+	current_difficulty = difficulty_levels[new_index]
+	Settings.set_setting('game', 'difficulty', current_difficulty)
+	_update_difficulty()
+
+func _load_difficulty() -> void:
+	current_difficulty = Settings.get_setting('game', 'difficulty', DEFAULT_DIFFICULTY)
+	_update_difficulty()
+
+func _update_difficulty() -> void:
+	var index = difficulty_levels.find(current_difficulty)
+	assert(index >= 0)
+	%DifficultyValue.text = tr(current_difficulty, 'difficulty level')
+	%DifficultyValue.modulate = difficulty_colors[current_difficulty]
+
+func _prepare_credits() -> void:
+	credits.text = _translate(credits_source)
+	await get_tree().process_frame
+	credits.size.y = credits.get_content_height()
+	credits.custom_minimum_size.y = credits.size.y
+
+func _translate(text: String) -> String:
+	var regex := RegEx.create_from_string('^(\\[.+?\\])?(.+?)(\\[.+?\\])?$')
+	
+	var lines := text.split('\n')
+	var translated_lines: Array[String]
+	for line in lines:
+		var m := regex.search(line)
+		if m:
+			var translated_line := ''
+			for i in range(1, m.get_group_count() + 1):
+				var s = m.get_string(i)
+				translated_line += tr(s)
+			translated_lines.append(translated_line)
+		else:
+			translated_lines.append(line)
+	return '\n'.join(translated_lines)
+
 func _show_credits() -> void:
+	await _prepare_credits()
+	
 	current_menu = 'credits'
 	$MainPage.visible = false
 	$CreditsPage.visible = true

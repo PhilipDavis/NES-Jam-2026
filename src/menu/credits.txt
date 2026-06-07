@@ -10,6 +10,10 @@ NES Jam 2026
 
 [color=#386d00]*****[/color]
 
+[color=#b2b2b2]Concept[/color]
+Philip Davis
+Roone Mägi
+
 [color=#b2b2b2]Programming[/color]
 Philip Davis
 
@@ -43,15 +47,11 @@ Nintendo
 
 [color=#386d00]*****[/color]
 
-No animals were
-harmed in the
-making of this
-game.
+No animals were harmed in the making of this game.
 
 [color=#386d00]*****[/color]
 
 
-Thank you
-for playing!
+Thank you for playing!
 
  

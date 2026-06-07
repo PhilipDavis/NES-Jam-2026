@@ -64,3 +64,63 @@ msgstr "Hüppa seinalt"
 
 msgid "Press B to Jump"
 msgstr "Vajuta B hüppamiseks"
+
+#
+# Credits
+#
+
+msgid "Concept"
+msgstr "Kontseptsioon"
+
+msgid "Programming"
+msgstr "Programmeerimine"
+
+msgid "Artwork"
+msgstr "Graafika"
+
+msgid "Music"
+msgstr "Muusika"
+
+msgid "Level Design"
+msgstr "Tasemekujundus"
+
+msgid "Sound Effects"
+msgstr "Heliefektid"
+
+msgid "Fonts"
+msgstr "Fondid"
+
+msgid "Playtesters"
+msgstr "Mängutestijad"
+
+msgid "Special Thanks"
+msgstr "Erilised tänud"
+
+msgid "No animals were harmed in the making of this game."
+msgstr "Selle mängu loomise käigus ei saanud ükski loom viga."
+
+msgid "Thank you for playing!"
+msgstr "Aitäh mängimast!"
+
+#
+# Difficulty
+#
+
+msgid "Difficulty:"
+msgstr "Raskustase:"
+
+msgctxt "difficulty level"
+msgid "Easy"
+msgstr "Lihtne"
+
+msgctxt "difficulty level"
+msgid "Normal"
+msgstr "Tavaline"
+
+msgctxt "difficulty level"
+msgid "Hard"
+msgstr "Raske"
+
+msgctxt "difficulty level"
+msgid "Nightmare"
+msgstr "Õudus"

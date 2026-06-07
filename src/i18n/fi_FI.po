@@ -64,3 +64,63 @@ msgstr "Ponnista seinästä"
 
 msgid "Press B to Jump"
 msgstr "Paina B hyppääksesi"
+
+#
+# Credits
+#
+
+msgid "Concept"
+msgstr "Konsepti"
+
+msgid "Programming"
+msgstr "Ohjelmointi"
+
+msgid "Artwork"
+msgstr "Taide"
+
+msgid "Music"
+msgstr "Musiikki"
+
+msgid "Level Design"
+msgstr "Tason suunnittelu"
+
+msgid "Sound Effects"
+msgstr "Ääniefektit"
+
+msgid "Fonts"
+msgstr "Fontit"
+
+msgid "Playtesters"
+msgstr "Pelintestaajat"
+
+msgid "Special Thanks"
+msgstr "Erityiskiitokset"
+
+msgid "No animals were harmed in the making of this game."
+msgstr "Tämän pelin tekemisen aikana ei vahingoitettu eläimiä."
+
+msgid "Thank you for playing!"
+msgstr "Kiitos pelaamisesta!"
+
+#
+# Difficulty
+#
+
+msgid "Difficulty:"
+msgstr "Vaikeustaso:"
+
+msgctxt "difficulty level"
+msgid "Easy"
+msgstr "Helppo"
+
+msgctxt "difficulty level"
+msgid "Normal"
+msgstr "Normaali"
+
+msgctxt "difficulty level"
+msgid "Hard"
+msgstr "Vaikea"
+
+msgctxt "difficulty level"
+msgid "Nightmare"
+msgstr "Painajainen"
