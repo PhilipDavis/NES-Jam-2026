@@ -5,19 +5,40 @@
 [ext_resource type="PackedScene" uid="uid://cmkvlki35j233" path="res://display/hud.tscn" id="3_vhpdd"]
 [ext_resource type="PackedScene" uid="uid://cq2he73myu6h6" path="res://menu/menu.tscn" id="4_gjr3k"]
 [ext_resource type="PackedScene" uid="uid://dmoim5jbvili0" path="res://display/fader.tscn" id="5_4cdhi"]
+[ext_resource type="PackedScene" uid="uid://c0sau3m6klna4" path="res://menu/pause_menu.tscn" id="6_cjuek"]
+
+[sub_resource type="Gradient" id="Gradient_cjuek"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ak7xk"]
+gradient = SubResource("Gradient_cjuek")
 
 [node name="Game" type="Node2D" unique_id=2113071536]
+process_mode = 1
 script = ExtResource("1_sjcnv")
+
+[node name="Black" type="Node2D" parent="." unique_id=1887041700]
+
+[node name="Sprite2D" type="Sprite2D" parent="Black" unique_id=1923568236]
+position = Vector2(128, 120)
+texture = SubResource("GradientTexture2D_ak7xk")
+region_enabled = true
+region_rect = Rect2(0, 0, 256, 240)
 
 [node name="World" parent="." unique_id=773217894 instance=ExtResource("2_cjuek")]
 unique_name_in_owner = true
+top_level = true
+z_index = 2
 position = Vector2(128, 120)
 
 [node name="HUD" parent="." unique_id=1263400480 instance=ExtResource("3_vhpdd")]
 
 [node name="Menu" parent="." unique_id=410386570 instance=ExtResource("4_gjr3k")]
+layer = 3
 
 [node name="FaderContainer" type="CanvasLayer" parent="." unique_id=604687299]
 layer = 10
 
 [node name="Fader" parent="FaderContainer" unique_id=686092733 instance=ExtResource("5_4cdhi")]
+
+[node name="PauseMenu" parent="." unique_id=1819312958 instance=ExtResource("6_cjuek")]

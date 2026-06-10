@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://c0sau3m6klna4"]
+
+[ext_resource type="Script" uid="uid://b7wl51ovboqxg" path="res://menu/pause.gd" id="1_oavyi"]
+[ext_resource type="Texture2D" uid="uid://fhjc4omqj3g0" path="res://display/fades.png" id="2_j3ibt"]
+[ext_resource type="Texture2D" uid="uid://f72ayhu464nq" path="res://menu/dialog-border.png" id="3_n4x21"]
+[ext_resource type="Theme" uid="uid://d3xccly8i81cd" path="res://display/theme.tres" id="4_85exe"]
+[ext_resource type="Texture2D" uid="uid://d0ugjsck8tn2x" path="res://menu/Frog-Head.png" id="5_nueu6"]
+[ext_resource type="AudioStream" uid="uid://cprb75o1b7dc7" path="res://menu/audio/menu_in.wav" id="6_g47nb"]
+[ext_resource type="AudioStream" uid="uid://c0xxdftnfc4c0" path="res://menu/audio/menu_out.wav" id="7_0776l"]
+[ext_resource type="AudioStream" uid="uid://dpbo2hayvfcox" path="res://menu/audio/menu_move.wav" id="8_eo5y5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ak7xk"]
+atlas = ExtResource("2_j3ibt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nwqt"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(16, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iesyu"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(32, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iuxab"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(48, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmxns"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(64, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vbpa"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(80, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aycgx"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(96, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpqio"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(112, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbjm4"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(0, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svuvw"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(16, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juveg"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(32, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6yed"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(48, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4hbh"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(64, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fswf"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(80, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc54p"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(96, 0, 16, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_043lm"]
+atlas = ExtResource("5_nueu6")
+region = Rect2(112, 0, 16, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bpu47"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nwqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iesyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuxab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmxns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vbpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aycgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpqio")
+}],
+"loop": 1,
+"name": &"Blink",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 50.0,
+"texture": SubResource("AtlasTexture_pbjm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svuvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juveg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6yed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4hbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fswf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc54p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_043lm")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 20.0
+}]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1819312958]
+process_mode = 2
+script = ExtResource("1_oavyi")
+
+[node name="PausePage" type="Control" parent="." unique_id=1696582787]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="PausePage" unique_id=438644711]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ak7xk")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Framing" type="Control" parent="PausePage" unique_id=665855266]
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 100.0
+offset_right = 192.0
+offset_bottom = 154.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PausePage/Framing" unique_id=797455788]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_n4x21")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PausePage/Framing" unique_id=1351314811]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 0
+
+[node name="PauseMenu" type="VBoxContainer" parent="PausePage/Framing/MarginContainer" unique_id=929608669]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="ResumeButton" type="Button" parent="PausePage/Framing/MarginContainer/PauseMenu" unique_id=1946644832]
+layout_mode = 2
+translation_context = &"pause menu"
+focus_mode = 0
+theme = ExtResource("4_85exe")
+theme_override_constants/h_separation = 0
+action_mode = 0
+text = "Resume"
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="PausePage/Framing/MarginContainer/PauseMenu" unique_id=1730993364]
+layout_mode = 2
+translation_context = &"pause menu"
+focus_mode = 0
+theme = ExtResource("4_85exe")
+action_mode = 0
+text = "Quit"
+alignment = 0
+
+[node name="FrogHead" type="AnimatedSprite2D" parent="PausePage/Framing" unique_id=601170267]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(22, 16)
+sprite_frames = SubResource("SpriteFrames_bpu47")
+animation = &"Idle"
+
+[node name="Audio" type="Node" parent="." unique_id=886864894]
+
+[node name="MenuIn" type="AudioStreamPlayer" parent="Audio" unique_id=1241345765]
+stream = ExtResource("6_g47nb")
+
+[node name="MenuOut" type="AudioStreamPlayer" parent="Audio" unique_id=1638257950]
+stream = ExtResource("7_0776l")
+
+[node name="MenuMove" type="AudioStreamPlayer" parent="Audio" unique_id=460244477]
+stream = ExtResource("8_eo5y5")
+max_polyphony = 2
+
+[connection signal="animation_looped" from="PausePage/Framing/FrogHead" to="." method="_on_frog_head_animation_looped"]

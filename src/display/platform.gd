@@ -1,5 +1,5 @@
 @tool
-extends StaticBody2D
+extends AnimatableBody2D
 class_name Platform
 
 const min_horizontal_cells := 2
@@ -31,8 +31,12 @@ enum Type {
 		_update()
 
 # For moving platforms
+@export var moving_enabled := false
 @export var min_position := Vector2i.ZERO
 @export var max_position := Vector2i.ZERO
+@export var moving_direction := 1.0
+@export var moving_amount := 0.0 # 0.0 means platform is at min_position; 1.0 means platform is at max_position
+@export var MOVING_SPEED := 32.0
 
 @onready var collision_shape := $CollisionShape2D
 @onready var tiles := $TileMapLayer
@@ -101,14 +105,39 @@ func hide_platform() -> void:
 	visible = false
 	collision_shape.disabled = true
 
+func _physics_process(delta: float) -> void:
+	if not moving_enabled:
+		return
+	
+	# Calculate how far in pixels the platform moves between min and max
+	var range_in_pixels := (min_position * 8).distance_to(max_position * 8)
+	if range_in_pixels < 1.0:
+		return
+	
+	# Calculate the rate of change in "amount" per second
+	var delta_in_pixels := MOVING_SPEED * delta
+	var delta_in_amount := delta_in_pixels / range_in_pixels
+	
+	# Calculate how far along the path we are.
+	# Positive move_direction means we're moving towards max_position
+	# and negative means we're moving towards min_position
+	moving_amount = clampf(moving_amount + delta_in_amount * moving_direction, 0.0, 1.0)
+	
+	position = lerp(min_position * 8.0, max_position * 8.0, moving_amount).round() - Vector2(128.0 - 16.0, 112.0 - 8.0)
+	
+	if moving_amount == 1.0:
+		moving_direction = -1.0
+	elif moving_amount == 0.0:
+		moving_direction = 1.0
+
 func _update() -> void:
 	if not is_node_ready():
 		return
 	
-	_update_position()
+	_update_shape()
 	_update_appearance()
 
-func _update_position() -> void:
+func _update_shape() -> void:
 	# Set the collision shape size
 	var rect := collision_shape.shape as RectangleShape2D
 	rect.size.x = width_in_cells * 8

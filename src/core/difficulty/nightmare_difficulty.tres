@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Difficulty" format=3 uid="uid://do10onqmjjhht"]
+
+[ext_resource type="Script" uid="uid://bip71kxeh5ka2" path="res://core/difficulty/difficulty.gd" id="1_sufve"]
+
+[resource]
+script = ExtResource("1_sufve")
+starting_lives = 1
+aggressive_spider = true
+fearless_rats = true
+rat_chase_speed = 224.0
+metadata/_custom_type_script = "uid://bip71kxeh5ka2"

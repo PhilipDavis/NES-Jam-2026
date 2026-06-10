@@ -45,11 +45,12 @@ func _ready() -> void:
 	player_below_right_check.force_raycast_update()
 	
 	# Only aggressively attack the player in hard mode
-	var is_hard_mode := Settings.get_setting('game', 'difficulty', 'easy') as String == 'hard'
-	player_above_left_check.enabled = is_hard_mode
-	player_above_right_check.enabled = is_hard_mode
-	player_below_left_check.enabled = is_hard_mode
-	player_below_right_check.enabled = is_hard_mode
+	player_above_left_check.enabled = Settings.difficulty.aggressive_spider
+	player_above_right_check.enabled = Settings.difficulty.aggressive_spider
+	player_below_left_check.enabled = Settings.difficulty.aggressive_spider
+	player_below_right_check.enabled = Settings.difficulty.aggressive_spider
+	
+	health_remaining = Settings.difficulty.spider_health
 	
 	add_to_group('enemies')
 	Events.enemy_damaged.connect(_on_enemy_damaged)

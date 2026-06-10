@@ -5,7 +5,7 @@
 
 [color=#386d00]*****[/color]
 
-[color=#51a200]Frog Prince[/color]
+[color=#51a200]The[/color] [color=#9241f3]Cursed[/color] [color=#51a200]Prince[/color]
 NES Jam 2026
 
 [color=#386d00]*****[/color]
@@ -19,6 +19,7 @@ Philip Davis
 
 [color=#b2b2b2]Artwork[/color]
 Roone Mägi
+Philip Davis
 
 [color=#b2b2b2]Music[/color]
 Amanda Mägi
@@ -33,6 +34,7 @@ Philip Davis
 [color=#b2b2b2]Fonts[/color]
 yukipixels
 erytau
+ColorSwitchFan25
 
 [color=#b2b2b2]Playtesters[/color]
 TODO

@@ -15,13 +15,11 @@ class_name Rat
 
 const PATROL_SPEED := 64.0
 const SURPRISE_JUMP_SPEED := -64.0
-const CHASE_SPEED := 192.0
 const DIE_SPEED := 128.0
 const GROUND_ACCEL := 512.0
 const GROUND_DECEL := 1024.0
 const AIR_ACCEL := 256.0
 const AIR_DECEL := 64.0
-const VISION_RANGE := 128.0 # Half the screen width
 
 # Can remove the enemy when it's guaranteed to be off-screen
 const REMOVE_AT_Y_THRESHOLD := 320
@@ -92,7 +90,7 @@ func _update_movement(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0.0, GROUND_DECEL * delta)
 		
 		BehaviorState.Chase:
-			velocity.x = move_toward(velocity.x, facing_direction * CHASE_SPEED, GROUND_ACCEL * delta)
+			velocity.x = move_toward(velocity.x, facing_direction * Settings.difficulty.rat_chase_speed, GROUND_ACCEL * delta)
 	
 	move_and_slide()
 
@@ -123,10 +121,14 @@ func _update_state(delta: float) -> void:
 				resume_direction = -facing_direction
 				paused_time = 0.0
 			elif _can_see_player():
-				behavior_state = BehaviorState.Surprised
-				surprised_time = 0.0
-				velocity.y = SURPRISE_JUMP_SPEED
-				_play_animation('Surprised')
+				if Settings.difficulty.fearless_rats:
+					behavior_state = BehaviorState.Chase
+					_play_animation('Chase')
+				else:
+					behavior_state = BehaviorState.Surprised
+					surprised_time = 0.0
+					velocity.y = SURPRISE_JUMP_SPEED
+					_play_animation('Surprised')
 		
 		BehaviorState.Paused:
 			if paused_time >= PAUSE_TIME:

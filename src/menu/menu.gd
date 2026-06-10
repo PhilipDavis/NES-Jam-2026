@@ -131,11 +131,18 @@ func _on_frog_head_animation_looped() -> void:
 	if frog_head.animation == 'Blink':
 		frog_head.play('Idle')
 
+func start_demo() -> void:
+	SimulatedPlayer.state = SimulatedPlayer.State.Dormant
+	Events.start_requested.emit(true)
+
 func _start_game() -> void:
 	menu_in_audio.play()
 	menu_theme_audio.stop()
-	# TODO: stop demo playthrough (if we implement it)
-	Events.start_requested.emit()
+	
+	if OS.is_debug_build():
+		SimulatedPlayer.state = SimulatedPlayer.State.Recording
+	
+	Events.start_requested.emit(false)
 
 func _show_options() -> void:
 	current_menu = 'options'

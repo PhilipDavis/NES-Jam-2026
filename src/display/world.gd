@@ -9,13 +9,10 @@ var is_loaded_by_index: Dictionary[int, bool] = {}
 var next_y_offset := 0.0
 
 func _ready() -> void:
-	_load_screen_metadata()
-	await _preload_screen(0)
 	Events.player_entered_screen.connect(_on_player_entered_screen)
+	_load_screen_metadata()
 
-func reset() -> void:
-	$Player.reset()
-	
+func tear_down() -> void:
 	# Discard all the loaded screens
 	for screen in screen_container.get_children():
 		screen_container.remove_child(screen)
@@ -25,6 +22,10 @@ func reset() -> void:
 	next_y_offset = 0.0
 	screen_map.clear()
 	is_loaded_by_index.clear()
+
+func reset(input_strategy: InputStrategy) -> void:
+	$Player.reset(input_strategy)
+	tear_down()
 	await _preload_screen(0)
 
 func _on_player_entered_screen(index: int) -> void:

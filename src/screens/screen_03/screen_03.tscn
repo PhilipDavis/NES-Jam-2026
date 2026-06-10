@@ -34,35 +34,39 @@ shape = SubResource("RectangleShape2D_iotsf")
 
 [node name="Platform1" parent="Section1" unique_id=1396442759 instance=ExtResource("3_mu76m")]
 position = Vector2(-64, 112)
-type = 0
 width_in_cells = 16
 cell_position = Vector2i(6, 27)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="MiniPlatform1" parent="Section1" unique_id=628432977 instance=ExtResource("3_mu76m")]
 position = Vector2(64, 104)
-type = 0
 width_in_cells = 2
 cell_position = Vector2i(22, 26)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="MiniPlatform2" parent="Section1" unique_id=845461069 instance=ExtResource("3_mu76m")]
 position = Vector2(80, 96)
-type = 0
 width_in_cells = 2
 cell_position = Vector2i(24, 25)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="MiniPlatform3" parent="Section1" unique_id=1206677581 instance=ExtResource("3_mu76m")]
 position = Vector2(96, 88)
-type = 0
 width_in_cells = 2
 cell_position = Vector2i(26, 24)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="Spider1" parent="Section1" unique_id=1398069199 instance=ExtResource("4_cg2e0")]
 position = Vector2(18, 72)
@@ -72,42 +76,48 @@ position = Vector2(-112, 112)
 type = 1
 width_in_cells = 6
 cell_position = Vector2i(0, 27)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="Section2" type="Node2D" parent="." unique_id=2034209545]
 
 [node name="Platform2" parent="Section2" unique_id=2125410848 instance=ExtResource("3_mu76m")]
 position = Vector2(-64, 64)
-type = 0
 width_in_cells = 14
 cell_position = Vector2i(6, 21)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="MiniPlatform1" parent="Section2" unique_id=1470557480 instance=ExtResource("3_mu76m")]
 position = Vector2(-80, 56)
-type = 0
 width_in_cells = 2
 cell_position = Vector2i(4, 20)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="MiniPlatform2" parent="Section2" unique_id=99094804 instance=ExtResource("3_mu76m")]
 position = Vector2(-96, 48)
-type = 0
 width_in_cells = 2
 cell_position = Vector2i(2, 19)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="MiniPlatform3" parent="Section2" unique_id=361311930 instance=ExtResource("3_mu76m")]
 position = Vector2(-112, 40)
-type = 0
 width_in_cells = 2
 cell_position = Vector2i(0, 18)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="Spider2" parent="Section2" unique_id=1124625088 instance=ExtResource("4_cg2e0")]
 position = Vector2(-32, 24)
@@ -116,35 +126,39 @@ position = Vector2(-32, 24)
 
 [node name="Platform3" parent="Section3" unique_id=343465927 instance=ExtResource("3_mu76m")]
 position = Vector2(-64, 16)
-type = 0
 width_in_cells = 16
 cell_position = Vector2i(6, 15)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="MiniPlatform1" parent="Section3" unique_id=831056484 instance=ExtResource("3_mu76m")]
 position = Vector2(64, 8)
-type = 0
 width_in_cells = 2
 cell_position = Vector2i(22, 14)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="MiniPlatform2" parent="Section3" unique_id=402430878 instance=ExtResource("3_mu76m")]
 position = Vector2(80, 0)
-type = 0
 width_in_cells = 2
 cell_position = Vector2i(24, 13)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="MiniPlatform3" parent="Section3" unique_id=46022851 instance=ExtResource("3_mu76m")]
 position = Vector2(96, -8)
-type = 0
 width_in_cells = 2
 cell_position = Vector2i(26, 12)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="Rat1" parent="Section3" unique_id=904843866 instance=ExtResource("5_mu76m")]
 position = Vector2(27, 7)
@@ -157,11 +171,12 @@ position = Vector2(18, 72)
 
 [node name="Platform4" parent="Section4" unique_id=363610786 instance=ExtResource("3_mu76m")]
 position = Vector2(-112, -32)
-type = 0
 width_in_cells = 20
 cell_position = Vector2i(0, 9)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="Spider3" parent="Section4" unique_id=642507462 instance=ExtResource("4_cg2e0")]
 position = Vector2(72, -72)
@@ -173,11 +188,12 @@ position = Vector2(-85, -41)
 
 [node name="Platform5" parent="Section5" unique_id=129322095 instance=ExtResource("3_mu76m")]
 position = Vector2(-48, -80)
-type = 0
 width_in_cells = 20
 cell_position = Vector2i(8, 3)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+moving_enabled = false
+moving_direction = 1.0
+moving_amount = 0.0
+MOVING_SPEED = 64.0
 
 [node name="Rat3" parent="Section5" unique_id=453868010 instance=ExtResource("5_mu76m")]
 position = Vector2(58, -90)

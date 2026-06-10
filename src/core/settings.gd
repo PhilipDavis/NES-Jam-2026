@@ -1,10 +1,12 @@
 extends Node
 
 var settings: Dictionary[String, Variant] = {}
+var difficulty: Difficulty
 
 const settings_filename = 'user://options.cfg'
 
 func _ready() -> void:
+	_load_difficulty('normal')
 	_read_settings()
 
 func _make_key(section: String, name: String) -> String:
@@ -21,6 +23,12 @@ func set_setting(section: String, name: String, value: Variant) -> void:
 		var key := _make_key(section, name)
 		settings[key] = value
 		_save_settings()
+		if key == 'game:difficulty':
+			_load_difficulty(value)
+
+func _load_difficulty(value: String) -> void:
+	difficulty = load('res://core/difficulty/%s_difficulty.tres' % value)
+	assert(difficulty)
 
 func _read_settings() -> void:
 	var config := ConfigFile.new()
@@ -34,6 +42,8 @@ func _read_settings() -> void:
 			var key := _make_key(section, name)
 			var value = config.get_value(section, name)
 			settings.set(key, value)
+			if key == 'game:difficulty':
+				_load_difficulty(value)
 
 func _save_settings() -> void:
 	var config := ConfigFile.new()

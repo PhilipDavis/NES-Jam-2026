@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Difficulty" format=3 uid="uid://dt0gcqmf4bsbh"]
+
+[ext_resource type="Script" uid="uid://bip71kxeh5ka2" path="res://core/difficulty/difficulty.gd" id="1_cdavu"]
+
+[resource]
+script = ExtResource("1_cdavu")
+starting_lives = 3
+aggressive_spider = true
+fearless_rats = true
+metadata/_custom_type_script = "uid://bip71kxeh5ka2"

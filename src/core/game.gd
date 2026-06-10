@@ -8,7 +8,6 @@ const SCREEN_HEIGHT := 224.0
 const WORLD_OFFSET := 120.0
 const CHUNK_SIZE := 16.0 # Move in 16-pixels chunks to force a more-retro look
 const TRANSITION_SPEED = 360.0 # ~2/3 of a second
-const STARTING_LIFE := 3
 
 var is_clock_running := false
 var game_time := 0.0
@@ -17,25 +16,29 @@ var current_health := 0
 var is_camera_moving := false
 var current_screen_index := -1
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$PauseMenu.visible = false
+
 	Events.start_requested.connect(_on_start_requested)
 	Events.player_entered_screen.connect(_on_player_entered_screen)
 	Events.player_damaged.connect(_on_player_damaged)
 	Events.player_death_finished.connect(_on_player_death_finished)
+	Events.game_paused.connect(_on_game_paused)
+	Events.game_resumed.connect(_on_game_resumed)
 	Events.game_ended.connect(_on_game_ended)
 	Events.tutorial_step_completed.connect(_on_tutorial_step_completed)
 	
 	# Darken the screen
 	$FaderContainer/Fader.start_dark()
 	
-	_show_menu()
+	_show_menu.call_deferred()
 
 func _show_menu() -> void:
+	$PauseMenu.reset()
 	world.visible = false
 	$HUD.visible = false
 	$Menu.visible = true
-	world.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+	$Menu.start_demo.call_deferred()
 
 	$Menu.set_process_input(true)
 	$Menu.resume()
@@ -43,38 +46,74 @@ func _show_menu() -> void:
 	# Reveal the menu
 	$FaderContainer/Fader.fade_in()
 
-func _on_start_requested() -> void:
-	# Darken the screen
-	await $FaderContainer/Fader.fade_out()
-
-	$Menu.set_process_input(false)
+func _on_start_requested(demo_mode: bool) -> void:
+	var input_strategy: InputStrategy
+	if demo_mode:
+		var history: Array[Dictionary] = []
+		for v in SimulatedPlayer.load_history():
+			history.append(v as Dictionary)
+		input_strategy = SimulatedInputStrategy.new(history)
+	else:
+		input_strategy = RealInputStrategy.new()
 	
-	# Swap out the menu for the World and HUD
-	$Menu.visible = false
-	$HUD.visible = true
-	world.visible = true
+	world.visible = false
+	if not demo_mode:
+		# Darken the screen
+		await $FaderContainer/Fader.fade_out()
+		$Menu.set_process_input(false)
+		world.position.y = 120
+	else:
+		world.position.y = 104 # Move higher up because there is no HUD and it makes the copyright easier to read
 	
 	# Setup the initial game state
+	await world.reset(input_strategy)
 	camera.global_position.y = WORLD_OFFSET
 	current_screen_index = -1
-	current_health = STARTING_LIFE
+	current_health = Settings.difficulty.starting_lives
 	Events.player_entered_screen.emit(0)
-	Events.player_health_changed.emit(STARTING_LIFE, false)
+	Events.player_health_changed.emit(current_health, false)
 	Events.time_changed.emit(0.0)
 	is_clock_running = true
+	world.visible = true
 	game_time = 0.0
 	
+	if not demo_mode:
+		# Swap out the menu for the World and HUD
+		$Menu.visible = false
+		$HUD.visible = true
+
 	# Start playing!
+	world.set_physics_process(true)
 	Events.game_started.emit()
-	world.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
+	
+	if demo_mode:
+		$FaderContainer.layer = 2 # Below the menu
+	
 	await $FaderContainer/Fader.fade_in()
+	
+	if demo_mode:
+		$FaderContainer.layer = 10 # Back where it belongs
+
+func _on_game_paused() -> void:
+	is_clock_running = false
+	get_tree().paused = true
+	$PauseMenu.reset()
+	$PauseMenu.visible = true
+
+func _on_game_resumed() -> void:
+	$PauseMenu.visible = false
+	get_tree().paused = false
+	is_clock_running = true
 
 func _on_game_ended() -> void:
 	is_clock_running = false
+	$PauseMenu.visible = false
+	get_tree().paused = false
+
 	# TODO: some kind of death animation / screen
 	
 	await $FaderContainer/Fader.fade_out()
-	world.reset()
+	world.tear_down()
 	_show_menu()
 
 func _physics_process(delta: float) -> void:
@@ -85,7 +124,8 @@ func _physics_process(delta: float) -> void:
 	if player.state == Player.MoveState.Defeated:
 		return
 	
-	var screen_index = floori(-(player.position.y - WORLD_OFFSET) / SCREEN_HEIGHT)
+	var player_offset := 16 # This improves the screen transition to reduce the amount of thrashing
+	var screen_index = floori(-(player.position.y + player_offset - WORLD_OFFSET) / SCREEN_HEIGHT)
 	if screen_index < 0:
 		return
 	if screen_index != current_screen_index:

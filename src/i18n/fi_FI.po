@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frog-prince-nes-jam-2026 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-03 00:00+0000\n"
-"PO-Revision-Date: 2026-06-03 00:00+0000\n"
+"PO-Revision-Date: 2026-06-08 00:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi_FI\n"
@@ -124,3 +124,15 @@ msgstr "Vaikea"
 msgctxt "difficulty level"
 msgid "Nightmare"
 msgstr "Painajainen"
+
+#
+# Pause Menu
+#
+
+msgctxt "pause menu"
+msgid "Resume"
+msgstr "Jatka"
+
+msgctxt "pause menu"
+msgid "Quit"
+msgstr "Poistu"

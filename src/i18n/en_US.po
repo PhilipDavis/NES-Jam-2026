@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frog-prince-nes-jam-2026 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-03 00:00+0000\n"
-"PO-Revision-Date: 2026-06-03 00:00+0000\n"
+"PO-Revision-Date: 2026-06-08 00:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -109,14 +109,30 @@ msgstr "Thank you for playing!"
 msgid "Difficulty:"
 msgstr "Difficulty:"
 
+msgctxt "difficulty level"
 msgid "Easy"
 msgstr "Easy"
 
+msgctxt "difficulty level"
 msgid "Normal"
 msgstr "Normal"
 
+msgctxt "difficulty level"
 msgid "Hard"
 msgstr "Hard"
 
+msgctxt "difficulty level"
 msgid "Nightmare"
 msgstr "Nightmare"
+
+#
+# Pause Menu
+#
+
+msgctxt "pause menu"
+msgid "Resume"
+msgstr "Resume"
+
+msgctxt "Quit"
+msgid "Quit"
+msgstr "Quit"

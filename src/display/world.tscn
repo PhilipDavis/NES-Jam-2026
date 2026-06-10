@@ -1,9 +1,15 @@
 [gd_scene format=3 uid="uid://c8nmsrtfrdp4r"]
 
+[ext_resource type="Shader" uid="uid://bowxcy25de63h" path="res://display/all_black.gdshader" id="1_5i6tk"]
 [ext_resource type="Script" uid="uid://xaow3uolh4vu" path="res://display/world.gd" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://dpu6cyurak4vj" path="res://player/player.tscn" id="3_036b0"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cjuek"]
+shader = ExtResource("1_5i6tk")
+
 [node name="World" type="Node2D" unique_id=171525234]
+texture_filter = 1
+material = SubResource("ShaderMaterial_cjuek")
 script = ExtResource("1_aqk2v")
 
 [node name="ScreenContainer" type="Node2D" parent="." unique_id=740511934]

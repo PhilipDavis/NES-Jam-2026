@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+@export var input_strategy: InputStrategy
+
 @onready var standard_collision := $StandardCollision
 @onready var extended_collision := $ExtendedCollision
 @onready var visuals: Node2D = $Visuals
@@ -87,22 +89,26 @@ const MAX_JUMP := 1.0
 # Commit state
 #
 var launch_direction := 0.0
-var consecutive_straight_up_wall_jumps := 0
 
 var is_game_on := false
 var is_immune := false
 var die_direction := 0.0
+var last_pause_time := 0
 
 func _ready() -> void:
 	Events.game_started.connect(_on_game_started)
 	Events.player_damaged.connect(_on_player_damaged)
 	Events.player_health_changed.connect(_on_player_health_changed)
+	Events.game_resumed.connect(func(): last_pause_time = Time.get_ticks_msec()) # Prevent rapid re-entry
 	Events.game_ended.connect(_on_game_ended)
 	add_to_group('player')
-	reset()
 
-func reset() -> void:
-	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+func reset(input: InputStrategy) -> void:
+	input_strategy = input
+	set_physics_process(false)
+	is_game_on = false
+	is_immune = false
+	die_direction = 0.0
 	collision_layer = 2 # Player
 	collision_mask = 1 | 8 # Background and Objects
 	hit_box.collision_layer = 2 # Player
@@ -114,8 +120,9 @@ func reset() -> void:
 	#position = Vector2i(100, -80 + 112) # KILL: position to fast-forward to end of tutorial screen
 
 func _on_game_started() -> void:
-	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
+	set_physics_process(true)
 	is_game_on = true
+	last_pause_time = Time.get_ticks_msec()
 	
 	_play_animation('Idle')
 	visible = true
@@ -173,6 +180,12 @@ func _physics_process(delta: float) -> void:
 	if not is_game_on:
 		return
 	
+	# Pause the game if Start is pressed (but don't accidentally
+	# read the initial Start button press as a pause intention)
+	if Time.get_ticks_msec() > last_pause_time + 1000 and input_strategy.is_action_just_pressed('start'):
+		Events.game_paused.emit()
+		return
+	
 	var input_dir := _handle_input()
 	_update_facing(input_dir)
 	_update_timers(delta, input_dir)
@@ -180,14 +193,16 @@ func _physics_process(delta: float) -> void:
 	_update_combat(delta)
 	_handle_movement(delta, input_dir)
 	_update_state(input_dir)
+	
+	input_strategy.advance_frame()
 
 func _handle_input() -> float:
 	if state == MoveState.Defeated:
 		return 0.0
 	
-	if Input.is_action_just_pressed("jump"):
+	if input_strategy.is_action_just_pressed("jump"):
 		jump_request_time = JUMP_REQUEST_WINDOW
-	return Input.get_axis("ui_left", "ui_right")
+	return input_strategy.get_axis("ui_left", "ui_right")
 
 func _update_facing(input_dir: float) -> void:
 	if input_dir != 0.0 and combat_state == CombatState.Idle:
@@ -229,7 +244,7 @@ func _resolve_jump() -> void:
 	if is_jumping or state == MoveState.Defeated:
 		return
 	
-	if is_on_floor() and Input.is_action_pressed("ui_down"):
+	if is_on_floor() and input_strategy.is_action_pressed("ui_down"):
 		_do_fall_through()
 		return
 	
@@ -346,7 +361,7 @@ func _handle_jump_release(delta: float) -> void:
 		jump_time += delta
 	
 	# Holding the jump button longer will produce a stronger jump
-	if Input.is_action_just_released("jump") and velocity.y < 0:
+	if input_strategy.is_action_just_released("jump") and velocity.y < 0:
 		var t := clampf(jump_time / MAX_HOLD_TIME, 0.0, 1.0)
 		velocity.y *= lerpf(MIN_JUMP, MAX_JUMP, t)
 		is_jumping = false
@@ -364,7 +379,6 @@ func _update_state(input_dir: float) -> void:
 		else:
 			_play_animation('Idle')
 		state = MoveState.Ground
-		consecutive_straight_up_wall_jumps = 0
 	elif is_on_wall():
 		state = MoveState.Wall
 	else:
@@ -412,7 +426,7 @@ func _handle_combat_input(_input_dir: float) -> void:
 	if state == MoveState.Defeated:
 		return
 	
-	if Input.is_action_just_pressed("attack"):
+	if input_strategy.is_action_just_pressed("attack"):
 		if combat_state == CombatState.Idle:
 			combat_state = CombatState.Attacking
 			attack_time = 0.0

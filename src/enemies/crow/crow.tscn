@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://brf52yfsuaubx"]
+
+[ext_resource type="Script" uid="uid://yyn8cmf34247" path="res://enemies/crow/crow.gd" id="1_2n5th"]
+[ext_resource type="Texture2D" uid="uid://7hie3hxs506o" path="res://enemies/crow/Frog_Prince_Crow.png" id="2_7nwo0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ak7xk"]
+radius = 5.0
+height = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2n5th"]
+atlas = ExtResource("2_7nwo0")
+region = Rect2(24, 72, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scqmv"]
+atlas = ExtResource("2_7nwo0")
+region = Rect2(0, 72, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjpnl"]
+atlas = ExtResource("2_7nwo0")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwrg0"]
+atlas = ExtResource("2_7nwo0")
+region = Rect2(24, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmhru"]
+atlas = ExtResource("2_7nwo0")
+region = Rect2(24, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu44h"]
+atlas = ExtResource("2_7nwo0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqltq"]
+atlas = ExtResource("2_7nwo0")
+region = Rect2(24, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cebw7"]
+atlas = ExtResource("2_7nwo0")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr3q3"]
+atlas = ExtResource("2_7nwo0")
+region = Rect2(0, 24, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu56s"]
+atlas = ExtResource("2_7nwo0")
+region = Rect2(24, 24, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jekvj"]
+atlas = ExtResource("2_7nwo0")
+region = Rect2(48, 24, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_crfae"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2n5th")
+}],
+"loop": 1,
+"name": &"AttackDiagonal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scqmv")
+}],
+"loop": 1,
+"name": &"AttackDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjpnl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwrg0")
+}],
+"loop": 1,
+"name": &"Flying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmhru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu44h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqltq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cebw7")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr3q3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu56s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jekvj")
+}],
+"loop": 1,
+"name": &"TakeFlight",
+"speed": 6.0
+}]
+
+[node name="Crow" type="CharacterBody2D" unique_id=1619413688]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_2n5th")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2042284892]
+shape = SubResource("CapsuleShape2D_ak7xk")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=176364116]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=137914213]
+sprite_frames = SubResource("SpriteFrames_crfae")
+animation = &"Flying"
+frame_progress = 0.92658293

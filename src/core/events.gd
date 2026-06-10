@@ -1,8 +1,10 @@
 extends Node
 
 signal locale_changed()
-signal start_requested()
+signal start_requested(demo_mode: bool)
 signal game_started()
+signal game_paused()
+signal game_resumed()
 signal game_ended()
 signal tutorial_step_completed(step: String)
 signal player_jumped(wall_jump: bool)
