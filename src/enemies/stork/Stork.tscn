@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dcvsuc38pxm0e"]
+
+[ext_resource type="Script" uid="uid://b3rawtmgyj2k7" path="res://enemies/stork/stork.gd" id="1_sdfbb"]
+[ext_resource type="Texture2D" uid="uid://dogb22hplrx6i" path="res://enemies/stork/Boss_Stork_Scream.webp" id="2_tncg3"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_1oxsa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m26yr"]
+atlas = ExtResource("2_tncg3")
+region = Rect2(0, 0, 224, 176)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3mpm"]
+atlas = ExtResource("2_tncg3")
+region = Rect2(240, 0, 224, 176)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ak7xk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m26yr")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3mpm")
+}],
+"loop": 1,
+"name": &"Scream",
+"speed": 5.0
+}]
+
+[node name="Stork" type="CharacterBody2D" unique_id=1334942343]
+script = ExtResource("1_sdfbb")
+metadata/_custom_type_script = "uid://crl0er6c7i5m3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1628838489]
+shape = SubResource("ConvexPolygonShape2D_1oxsa")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=961550019]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=1635186848]
+position = Vector2(0, -72)
+sprite_frames = SubResource("SpriteFrames_ak7xk")
+animation = &"Idle"
+
+[node name="HitBox" type="Area2D" parent="Visuals" unique_id=1754159022]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=894132814]
