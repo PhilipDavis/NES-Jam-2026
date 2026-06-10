@@ -1,0 +1,138 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: frog-prince-nes-jam-2026 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-07 00:00+0000\n"
+"PO-Revision-Date: 2026-06-08 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+
+#
+# Main Menu
+#
+
+msgid "Start"
+msgstr "Comenzar"
+
+msgid "Options"
+msgstr "Opciones"
+
+msgid "Credits"
+msgstr "Créditos"
+
+#
+# Options Menu
+#
+
+msgid "Music Volume"
+msgstr "Volumen de música"
+
+msgid "Effects Volume"
+msgstr "Volumen de efectos"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Back"
+msgstr "Atrás"
+
+#
+# HUD
+#
+
+msgid "Health"
+msgstr "Salud"
+
+msgid "Time"
+msgstr "Tiempo"
+
+#
+# Tutorial
+#
+
+msgid "Press A to Attack"
+msgstr "Presiona A para atacar"
+
+msgid "Jump off the wall"
+msgstr "Salta desde la pared"
+
+msgid "Press B to Jump"
+msgstr "Presiona B para saltar"
+
+#
+# Credits
+#
+
+msgid "Concept"
+msgstr "Concepto"
+
+msgid "Programming"
+msgstr "Programación"
+
+msgid "Artwork"
+msgstr "Arte"
+
+msgid "Music"
+msgstr "Música"
+
+msgid "Level Design"
+msgstr "Diseño de niveles"
+
+msgid "Sound Effects"
+msgstr "Efectos de sonido"
+
+msgid "Fonts"
+msgstr "Tipografías"
+
+msgid "Playtesters"
+msgstr "Probadores"
+
+msgid "Special Thanks"
+msgstr "Agradecimientos especiales"
+
+msgid "No animals were harmed in the making of this game."
+msgstr "No se dañó ningún animal durante la creación de este juego."
+
+msgid "Thank you for playing!"
+msgstr "¡Gracias por jugar!"
+
+#
+# Difficulty
+#
+
+msgid "Difficulty:"
+msgstr "Dificultad:"
+
+msgctxt "difficulty level"
+msgid "Easy"
+msgstr "Fácil"
+
+msgctxt "difficulty level"
+msgid "Normal"
+msgstr "Normal"
+
+msgctxt "difficulty level"
+msgid "Hard"
+msgstr "Difícil"
+
+msgctxt "difficulty level"
+msgid "Nightmare"
+msgstr "Pesadilla"
+
+#
+# Pause Menu
+#
+
+msgctxt "pause menu"
+msgid "Resume"
+msgstr "Continuar"
+
+msgctxt "pause menu"
+msgid "Quit"
+msgstr "Salir"

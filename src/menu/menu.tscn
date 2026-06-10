@@ -308,6 +308,14 @@ action_mode = 0
 text = "Eesti"
 alignment = 0
 
+[node name="SpanishButton" type="Button" parent="LanguagePage/MarginContainer/LanguageMenu" unique_id=526514874]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_mae5d")
+action_mode = 0
+text = "Español"
+alignment = 0
+
 [node name="ItalianButton" type="Button" parent="LanguagePage/MarginContainer/LanguageMenu" unique_id=438167800]
 layout_mode = 2
 focus_mode = 0

@@ -24,8 +24,9 @@ const options_y_offsets: Array[float] = [
 ]
 
 const language_y_offsets: Array[float] = [
-	 97.0, # English
-	119.0, # Estonian
+	 75.0, # English
+	 97.0, # Estonian
+	119.0, # Spanish
 	141.0, # Finnish
 	163.0, # Italian
 ]
@@ -160,16 +161,18 @@ func _show_languages() -> void:
 	frog_head.play('Blink')
 	match TranslationServer.get_locale():
 		'et_EE': _select(1, true)
-		'it_IT': _select(2, true)
-		'fi_FI': _select(3, true)
+		'es_ES': _select(2, true)
+		'it_IT': _select(3, true)
+		'fi_FI': _select(4, true)
 		_: _select(0, true)
 
 func _hide_languages() -> void:
 	match selected_index:
 		0: _select_locale('en_US')
 		1: _select_locale('et_EE')
-		2: _select_locale('it_IT')
-		3: _select_locale('fi_FI')
+		2: _select_locale('es_ES')
+		3: _select_locale('it_IT')
+		4: _select_locale('fi_FI')
 	
 	current_menu = 'options'
 	$OptionsPage.visible = true
