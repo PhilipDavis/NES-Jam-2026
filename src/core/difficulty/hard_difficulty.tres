@@ -5,6 +5,10 @@
 [resource]
 script = ExtResource("1_cdavu")
 starting_lives = 3
+max_lives = 4
 aggressive_spider = true
 fearless_rats = true
+rat_chase_speed = 196.0
+crow_attack_speed = 1280.0
+crow_recycle_time = 3.0
 metadata/_custom_type_script = "uid://bip71kxeh5ka2"

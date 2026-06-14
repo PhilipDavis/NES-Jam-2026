@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8pdbwoj2q6sd"
-path="res://.godot/imported/Frog_Prince_Basement_Tileset.webp-8ade3832be084e016778a4d96d2ad8f1.ctex"
+uid="uid://5o0coob1ixmt"
+path="res://.godot/imported/spider-web.png-07ab1f37ec55893e71de0eb97d2ed95e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://display/Frog_Prince_Basement_Tileset.webp"
-dest_files=["res://.godot/imported/Frog_Prince_Basement_Tileset.webp-8ade3832be084e016778a4d96d2ad8f1.ctex"]
+source_file="res://environment/spider-web.png"
+dest_files=["res://.godot/imported/spider-web.png-07ab1f37ec55893e71de0eb97d2ed95e.ctex"]
 
 [params]
 

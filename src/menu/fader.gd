@@ -28,6 +28,6 @@ func _fade(out: bool) -> void:
 		await get_tree().create_timer(FADE_DURATION / 4).timeout
 		texture.region.position.x += delta
 	await get_tree().create_timer(FADE_DURATION / 4).timeout
-	visible = false
 	
 	Events.fade_completed.emit()
+	visible = false

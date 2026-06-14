@@ -10,7 +10,9 @@ func _ready() -> void:
 func _on_game_started() -> void:
 	if Settings.get_setting('tutorial', 'ground-jump', false):
 		Events.tutorial_step_completed.emit('ground-jump')
-		get_parent().remove_child(self)
+		var parent := get_parent()
+		if parent:
+			parent.remove_child(self)
 		queue_free()
 		return
 	

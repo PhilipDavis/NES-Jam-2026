@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://c0tvw7xktuox0"]
 
-[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://display/Frog_Prince_Tower_Dungeon_Walls.webp" id="1_2rgtq"]
-[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://display/platform.tscn" id="2_lmo3f"]
-[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://display/tile_set.tres" id="3_bw3s2"]
+[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://environment/Frog_Prince_Tower_Dungeon_Walls.webp" id="1_2rgtq"]
+[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://environment/platform/platform.tscn" id="2_lmo3f"]
+[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://environment/platform/platform_tileset.tres" id="3_bw3s2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mfdv2"]
 size = Vector2(16, 224)

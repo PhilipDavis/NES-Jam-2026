@@ -5,7 +5,10 @@
 [resource]
 script = ExtResource("1_sufve")
 starting_lives = 1
+max_lives = 3
 aggressive_spider = true
 fearless_rats = true
-rat_chase_speed = 224.0
+rat_chase_speed = 256.0
+crow_attack_speed = 1536.0
+crow_recycle_time = 2.0
 metadata/_custom_type_script = "uid://bip71kxeh5ka2"

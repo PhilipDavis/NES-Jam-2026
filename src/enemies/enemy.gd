@@ -10,6 +10,13 @@ const FLICKER_STEP := 100
 # Note: this @onready does nothing because the screen (with enemies) loads before the player
 @onready var player := get_tree().get_first_node_in_group('player') as Player
 
+@export var attack_damage := 1
+@export var facing_direction := 1:
+	set(value):
+		facing_direction = signf(value)
+		if is_node_ready():
+			visuals.scale.x = facing_direction
+
 var die_direction := 0.0
 var is_flickering := false
 

@@ -36,7 +36,7 @@ const credits_y_offsets: Array[float] = [
 ]
 
 const DEFAULT_DIFFICULTY = 'Normal'
-const difficulty_levels := [ 'Normal', 'Hard' ] # TODO: add easy and nightmare
+const difficulty_levels := [ 'Easy', 'Normal', 'Hard', 'Nightmare' ]
 var difficulty_colors: Dictionary[String, Color] = {
 	'Easy': Color.from_rgba8(113, 243, 65),
 	'Normal': Color.from_rgba8(255, 255, 255),
@@ -52,11 +52,14 @@ var selection_tween: Tween
 const CREDITS_SPEED := 0.5
 var credits_tween: Tween
 
+var cheat_code_observer: CheatCodeObserver
+
 func _ready() -> void:
 	$MainPage.visible = true
 	$OptionsPage.visible = false
 	$LanguagePage.visible = false
 	$CreditsPage.visible = false
+	cheat_code_observer = CheatCodeObserver.new()
 	_load_difficulty()
 	credits_source = FileAccess.open('res://menu/credits.txt', FileAccess.READ).get_as_text() as String
 	resume()
@@ -67,14 +70,23 @@ func resume() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_up"):
+		cheat_code_observer.notify('ui_up')
 		menu_move_audio.play()
 		_select(selected_index - 1)
 	
 	elif event.is_action_pressed("ui_down"):
+		cheat_code_observer.notify('ui_down')
 		menu_move_audio.play()
 		_select(selected_index + 1)
 	
+	elif event.is_action_pressed("ui_left"):
+		cheat_code_observer.notify('ui_left')
+	
+	elif event.is_action_pressed("ui_right"):
+		cheat_code_observer.notify('ui_right')
+	
 	elif event.is_action_pressed("start"):
+		cheat_code_observer.notify('start')
 		match current_menu:
 			'main':
 				match selected_index:
@@ -94,6 +106,7 @@ func _input(event: InputEvent) -> void:
 				_hide_credits()
 	
 	elif event.is_action_pressed('select'):
+		cheat_code_observer.notify('select')
 		match current_menu:
 			'options':
 				_hide_options()

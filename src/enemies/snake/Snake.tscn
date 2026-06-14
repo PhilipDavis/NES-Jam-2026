@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://butc5gcjnc7pi"]
+
+[ext_resource type="Script" uid="uid://bxuslvwpwnnvu" path="res://enemies/snake/snake.gd" id="1_iw3x5"]
+
+[node name="Snake" type="CharacterBody2D" unique_id=20622827]
+script = ExtResource("1_iw3x5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1331904600]
+
+[node name="Visuals" type="Node2D" parent="." unique_id=1327244601]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=904957888]
+
+[node name="HitBox" type="Area2D" parent="Visuals" unique_id=401855009]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=967880176]

@@ -1,0 +1,84 @@
+[gd_scene format=4 uid="uid://butisspwgkoi0"]
+
+[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://environment/Frog_Prince_Tower_Dungeon_Walls.webp" id="1_sf8lh"]
+[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://environment/platform/platform.tscn" id="2_f8iya"]
+[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://environment/platform/platform_tileset.tres" id="3_goapv"]
+[ext_resource type="PackedScene" uid="uid://brf52yfsuaubx" path="res://enemies/crow/crow.tscn" id="4_f8iya"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfdv2"]
+size = Vector2(16, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iotsf"]
+size = Vector2(16, 224)
+
+[node name="Screen_04" type="Node2D" unique_id=1782149466]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=332717096]
+position = Vector2(0, 8)
+texture = ExtResource("1_sf8lh")
+region_enabled = true
+region_rect = Rect2(0, 16, 256, 224)
+
+[node name="Boundary" type="StaticBody2D" parent="." unique_id=2085931094]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundary" unique_id=1237264303]
+position = Vector2(-120, 0)
+shape = SubResource("RectangleShape2D_mfdv2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundary" unique_id=1650399693]
+position = Vector2(120, 0)
+shape = SubResource("RectangleShape2D_iotsf")
+
+[node name="MovingPlatform1" parent="." unique_id=1396442759 instance=ExtResource("2_f8iya")]
+position = Vector2(-80, 67)
+type = 1
+width_in_cells = 6
+cell_position = Vector2i(4, 26)
+moving_enabled = true
+min_position = Vector2i(4, 17)
+max_position = Vector2i(4, 22)
+moving_amount = 0.8666666666666656
+
+[node name="MovingPlatform2" parent="." unique_id=2055955004 instance=ExtResource("2_f8iya")]
+position = Vector2(-16, 7)
+type = 1
+width_in_cells = 6
+cell_position = Vector2i(4, 26)
+moving_enabled = true
+min_position = Vector2i(12, 8)
+max_position = Vector2i(12, 20)
+moving_direction = -1.0
+moving_amount = 0.4888888888888907
+
+[node name="MovingPlatform3" parent="." unique_id=1652203111 instance=ExtResource("2_f8iya")]
+position = Vector2(48, -66)
+type = 1
+width_in_cells = 6
+cell_position = Vector2i(4, 26)
+moving_enabled = true
+min_position = Vector2i(20, 0)
+max_position = Vector2i(20, 12)
+moving_amount = 0.39444444444444404
+
+[node name="BottomPlatform" parent="." unique_id=1689452309 instance=ExtResource("2_f8iya")]
+position = Vector2(-112, 104)
+type = 1
+width_in_cells = 6
+cell_position = Vector2i(0, 26)
+min_position = Vector2i(2, 26)
+max_position = Vector2i(2, 26)
+moving_direction = -1.0
+MOVING_SPEED = 64.0
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=917953544]
+tile_map_data = PackedByteArray("AADy/w4AAQAEAAIAAADz/w4AAQAFAAIAAAD0/w4AAQAGAAIAAAD1/w4AAQAHAAIAAAD2/w4AAQAIAAIAAAD3/w4AAQAFAAIAAAD4/w4AAQAGAAIAAAD5/w4AAQAHAAIAAAD6/w4AAQAIAAIAAAD7/w4AAQAFAAIAAAD8/w4AAQAGAAIAAAD9/w4AAQAHAAIAAAD+/w4AAQAIAAIAAAD//w4AAQAFAAIAAAAAAA4AAQAGAAIAAAABAA4AAQAHAAIAAAACAA4AAQAIAAIAAAADAA4AAQAFAAIAAAAEAA4AAQAGAAIAAAAFAA4AAQAHAAIAAAAGAA4AAQAIAAIAAAAHAA4AAQAFAAIAAAAIAA4AAQAGAAIAAAAJAA4AAQAHAAIAAAAKAA4AAQAIAAIAAAANAA4AAQAKAAIAAAAMAA4AAQAHAAIAAAALAA4AAQAFAAIAAAA=")
+tile_set = ExtResource("3_goapv")
+
+[node name="StonePlatform" parent="." unique_id=1646418231 instance=ExtResource("2_f8iya")]
+position = Vector2(-112, -56)
+width_in_cells = 4
+cell_position = Vector2i(0, 6)
+
+[node name="Crow" parent="." unique_id=1619413688 instance=ExtResource("4_f8iya")]
+position = Vector2(-94, -64)

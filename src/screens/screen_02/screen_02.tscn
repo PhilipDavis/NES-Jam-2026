@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://dt37qanypwn8k"]
 
 [ext_resource type="Script" uid="uid://dgn4h4trs7wvm" path="res://screens/screen_02/screen_02.gd" id="1_01m6e"]
-[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://display/platform.tscn" id="1_i15ip"]
-[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://display/Frog_Prince_Tower_Dungeon_Walls.webp" id="1_trl7i"]
-[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://display/tile_set.tres" id="3_01m6e"]
+[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://environment/platform/platform.tscn" id="1_i15ip"]
+[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://environment/Frog_Prince_Tower_Dungeon_Walls.webp" id="1_trl7i"]
+[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://environment/platform/platform_tileset.tres" id="3_01m6e"]
 [ext_resource type="PackedScene" uid="uid://crour35kot2o4" path="res://enemies/rat/rat.tscn" id="5_j1krh"]
+[ext_resource type="PackedScene" uid="uid://cvtl67v6wnxa0" path="res://environment/spike_trap/SpikeTrap.tscn" id="6_nfvvr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mfdv2"]
 size = Vector2(16, 224)
@@ -34,149 +35,120 @@ shape = SubResource("RectangleShape2D_mfdv2")
 position = Vector2(120, 0)
 shape = SubResource("RectangleShape2D_iotsf")
 
-[node name="FloorPlatform" parent="." unique_id=1396442759 instance=ExtResource("1_i15ip")]
-position = Vector2(-112, 112)
-type = 0
-width_in_cells = 28
-cell_position = Vector2i(0, 27)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
-
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=917953544]
 tile_set = ExtResource("3_01m6e")
 
-[node name="EntryArea" type="Area2D" parent="." unique_id=2338376]
+[node name="Lower" type="Node2D" parent="." unique_id=758383972]
+
+[node name="EntryArea" type="Area2D" parent="Lower" unique_id=2338376]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EntryArea" unique_id=1831621443]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lower/EntryArea" unique_id=1831621443]
 position = Vector2(0, 114)
 shape = SubResource("WorldBoundaryShape2D_crfae")
 
-[node name="LeftPlatform1" parent="." unique_id=923905408 instance=ExtResource("1_i15ip")]
+[node name="FloorPlatform" parent="Lower" unique_id=1396442759 instance=ExtResource("1_i15ip")]
+position = Vector2(-112, 112)
+width_in_cells = 28
+cell_position = Vector2i(0, 27)
+
+[node name="LeftPlatform1" parent="Lower" unique_id=923905408 instance=ExtResource("1_i15ip")]
 position = Vector2(-112, 80)
 type = 1
 width_in_cells = 10
 cell_position = Vector2i(0, 23)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="RightPlatform1" parent="." unique_id=1085300446 instance=ExtResource("1_i15ip")]
+[node name="RightPlatform1" parent="Lower" unique_id=1085300446 instance=ExtResource("1_i15ip")]
 position = Vector2(32, 80)
 type = 1
 width_in_cells = 10
 cell_position = Vector2i(18, 23)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="MiddlePlatform1" parent="." unique_id=201477680 instance=ExtResource("1_i15ip")]
+[node name="MiddlePlatform1" parent="Lower" unique_id=201477680 instance=ExtResource("1_i15ip")]
 position = Vector2(-40, 48)
-type = 0
 width_in_cells = 10
 cell_position = Vector2i(9, 19)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="LeftRat1" parent="." unique_id=1398069199 instance=ExtResource("5_j1krh")]
+[node name="LeftRat1" parent="Lower" unique_id=1398069199 instance=ExtResource("5_j1krh")]
 position = Vector2(64, 68)
 facing_direction = -1
 
-[node name="RightRat1" parent="." unique_id=1663331719 instance=ExtResource("5_j1krh")]
+[node name="RightRat1" parent="Lower" unique_id=1663331719 instance=ExtResource("5_j1krh")]
 position = Vector2(-64, 68)
 facing_direction = -1
 
-[node name="LeftPlatform2" parent="." unique_id=1368854836 instance=ExtResource("1_i15ip")]
+[node name="Mid" type="Node2D" parent="." unique_id=1309522242]
+
+[node name="LeftPlatform2" parent="Mid" unique_id=1368854836 instance=ExtResource("1_i15ip")]
 position = Vector2(-112, 16)
 type = 1
 width_in_cells = 10
 cell_position = Vector2i(0, 15)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="RightPlatform2" parent="." unique_id=456107550 instance=ExtResource("1_i15ip")]
+[node name="RightPlatform2" parent="Mid" unique_id=456107550 instance=ExtResource("1_i15ip")]
 position = Vector2(32, 16)
 type = 1
 width_in_cells = 10
 cell_position = Vector2i(18, 15)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="MiddlePlatform2" parent="." unique_id=138583467 instance=ExtResource("1_i15ip")]
+[node name="MiddlePlatform2" parent="Mid" unique_id=138583467 instance=ExtResource("1_i15ip")]
 position = Vector2(-40, -24)
-type = 0
 width_in_cells = 10
 cell_position = Vector2i(9, 10)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="LeftRat2" parent="." unique_id=2035646861 instance=ExtResource("5_j1krh")]
+[node name="LeftRat2" parent="Mid" unique_id=2035646861 instance=ExtResource("5_j1krh")]
 position = Vector2(64, 5)
+facing_direction = -1
 
-[node name="RightRat2" parent="." unique_id=743582831 instance=ExtResource("5_j1krh")]
+[node name="RightRat2" parent="Mid" unique_id=743582831 instance=ExtResource("5_j1krh")]
 position = Vector2(-64, 5)
 facing_direction = -1
 
-[node name="RightPlatform3" parent="." unique_id=1225600768 instance=ExtResource("1_i15ip")]
+[node name="SpikeTrap" parent="Mid" unique_id=1776868847 instance=ExtResource("6_nfvvr")]
+position = Vector2(0, 48)
+
+[node name="Upper" type="Node2D" parent="." unique_id=958332891]
+
+[node name="RightPlatform3" parent="Upper" unique_id=1225600768 instance=ExtResource("1_i15ip")]
 position = Vector2(32, -64)
-type = 0
 width_in_cells = 4
 cell_position = Vector2i(18, 5)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="RightPlatform4" parent="." unique_id=1505097403 instance=ExtResource("1_i15ip")]
+[node name="RightPlatform4" parent="Upper" unique_id=1505097403 instance=ExtResource("1_i15ip")]
 position = Vector2(64, -72)
-type = 0
 width_in_cells = 4
 cell_position = Vector2i(22, 4)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="RightPlatform5" parent="." unique_id=207470325 instance=ExtResource("1_i15ip")]
+[node name="RightPlatform5" parent="Upper" unique_id=207470325 instance=ExtResource("1_i15ip")]
 position = Vector2(96, -80)
-type = 0
 width_in_cells = 2
 cell_position = Vector2i(26, 3)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="LeftPlatform3" parent="." unique_id=2106083793 instance=ExtResource("1_i15ip")]
+[node name="LeftPlatform3" parent="Upper" unique_id=2106083793 instance=ExtResource("1_i15ip")]
 position = Vector2(-112, -80)
-type = 0
 width_in_cells = 2
 cell_position = Vector2i(0, 3)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="LeftPlatform5" parent="." unique_id=2058554930 instance=ExtResource("1_i15ip")]
+[node name="LeftPlatform5" parent="Upper" unique_id=2058554930 instance=ExtResource("1_i15ip")]
 position = Vector2(-96, -72)
-type = 0
 width_in_cells = 4
 cell_position = Vector2i(2, 4)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="LeftPlatform6" parent="." unique_id=1496334118 instance=ExtResource("1_i15ip")]
+[node name="LeftPlatform6" parent="Upper" unique_id=1496334118 instance=ExtResource("1_i15ip")]
 position = Vector2(-64, -64)
-type = 0
 width_in_cells = 4
 cell_position = Vector2i(6, 5)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="LeftWoodPlatform3" parent="." unique_id=521916798 instance=ExtResource("1_i15ip")]
+[node name="LeftWoodPlatform3" parent="Upper" unique_id=521916798 instance=ExtResource("1_i15ip")]
 position = Vector2(-112, -96)
 type = 1
 width_in_cells = 6
 cell_position = Vector2i(0, 1)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
-[node name="RightWoodPlatform4" parent="." unique_id=568697355 instance=ExtResource("1_i15ip")]
-position = Vector2(64, -104)
+[node name="RightWoodPlatform4" parent="Upper" unique_id=568697355 instance=ExtResource("1_i15ip")]
+position = Vector2(64, -96)
 type = 1
 width_in_cells = 6
-cell_position = Vector2i(22, 0)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
+cell_position = Vector2i(22, 1)
 
-[connection signal="body_entered" from="EntryArea" to="." method="_on_floor_body_entered"]
+[connection signal="body_entered" from="Lower/EntryArea" to="." method="_on_floor_body_entered"]

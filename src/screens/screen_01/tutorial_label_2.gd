@@ -18,7 +18,9 @@ func _on_game_started() -> void:
 	if Settings.get_setting('tutorial', 'wall-jump', false):
 		is_done = true
 		Events.tutorial_step_completed.emit('wall-jump')
-		get_parent().remove_child(self)
+		var parent := get_parent()
+		if parent:
+			parent.remove_child(self)
 		queue_free()
 		return
 

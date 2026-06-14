@@ -112,9 +112,17 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3q64"]
+size = Vector2(15, 15)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2n5th"]
+radius = 5.0
+height = 16.0
+
 [node name="Crow" type="CharacterBody2D" unique_id=1619413688]
 collision_layer = 4
 collision_mask = 0
+motion_mode = 1
 script = ExtResource("1_2n5th")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2042284892]
@@ -124,5 +132,23 @@ shape = SubResource("CapsuleShape2D_ak7xk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=137914213]
 sprite_frames = SubResource("SpriteFrames_crfae")
-animation = &"Flying"
-frame_progress = 0.92658293
+animation = &"AttackDiagonal"
+frame_progress = 0.17706057
+
+[node name="HitBox" type="Area2D" parent="Visuals" unique_id=264192694]
+collision_layer = 4
+collision_mask = 2
+
+[node name="DiagonalAttackCollider" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=1531176113]
+unique_name_in_owner = true
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_m3q64")
+disabled = true
+
+[node name="DownAttackCollider" type="CollisionShape2D" parent="Visuals/HitBox" unique_id=2134166941]
+unique_name_in_owner = true
+shape = SubResource("CapsuleShape2D_2n5th")
+disabled = true
+
+[connection signal="animation_looped" from="Visuals/AnimatedSprite2D" to="." method="_on_animation_looped"]
+[connection signal="body_entered" from="Visuals/HitBox" to="." method="_on_hit_box_body_entered"]

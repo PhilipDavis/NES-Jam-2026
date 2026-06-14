@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://djh8td0djjyu4"]
+
+[ext_resource type="Texture2D" uid="uid://cbylnll6oo8ti" path="res://environment/window/window.png" id="1_ao5a2"]
+
+[node name="Window" type="Node2D" unique_id=1033464122]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=59317230]
+position = Vector2(2, -14)
+texture = ExtResource("1_ao5a2")

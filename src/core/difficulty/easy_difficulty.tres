@@ -5,6 +5,9 @@
 [resource]
 script = ExtResource("1_fn3gm")
 starting_lives = 5
+max_lives = 6
 spider_health = 1
 rat_chase_speed = 128.0
+crow_attack_speed = 512.0
+crow_recycle_time = 5.0
 metadata/_custom_type_script = "uid://bip71kxeh5ka2"

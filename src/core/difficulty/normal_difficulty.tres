@@ -5,4 +5,8 @@
 [resource]
 script = ExtResource("1_qb5s8")
 starting_lives = 3
+max_lives = 5
+rat_chase_speed = 196.0
+crow_attack_speed = 1024.0
+crow_recycle_time = 3.0
 metadata/_custom_type_script = "uid://bip71kxeh5ka2"

@@ -1,0 +1,142 @@
+[gd_scene format=4 uid="uid://crdst1vfu2lyx"]
+
+[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://environment/Frog_Prince_Tower_Dungeon_Walls.webp" id="1_ox0yb"]
+[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://environment/platform/platform.tscn" id="2_1ct3f"]
+[ext_resource type="TileSet" uid="uid://dfsasytgayv2d" path="res://environment/environment_tileset.tres" id="2_a1xwi"]
+[ext_resource type="PackedScene" uid="uid://crour35kot2o4" path="res://enemies/rat/rat.tscn" id="4_ynrxh"]
+[ext_resource type="PackedScene" uid="uid://cvtl67v6wnxa0" path="res://environment/spike_trap/SpikeTrap.tscn" id="5_a1xwi"]
+[ext_resource type="PackedScene" uid="uid://c1h8tgffr47tk" path="res://enemies/spider/spider.tscn" id="5_dfw7f"]
+[ext_resource type="PackedScene" uid="uid://bs6xgth2sh03x" path="res://enemies/fly/Fly.tscn" id="6_dfw7f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfdv2"]
+size = Vector2(16, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iotsf"]
+size = Vector2(16, 224)
+
+[node name="ScreenAureolin01" type="Node2D" unique_id=1782149466]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=332717096]
+position = Vector2(0, 8)
+texture = ExtResource("1_ox0yb")
+region_enabled = true
+region_rect = Rect2(0, 16, 256, 224)
+
+[node name="Boundary" type="StaticBody2D" parent="." unique_id=2085931094]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundary" unique_id=1237264303]
+position = Vector2(-120, 0)
+shape = SubResource("RectangleShape2D_mfdv2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundary" unique_id=1650399693]
+position = Vector2(120, 0)
+shape = SubResource("RectangleShape2D_iotsf")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=917953544]
+tile_map_data = PackedByteArray("AADy//T/AQAEAAQAAADy//X/AQAEAAUAAADy//b/AQAEAAYAAADy//f/AQAEAAcAAADz//T/AQAFAAQAAADz//X/AQAFAAUAAAD0//T/AQAGAAQAAAD1//T/AQAHAAQAAAD6//T/AQABAAQAAAD7//X/AQACAAUAAAD8//b/AQADAAYAAAD7//T/AQACAAQAAAD8//T/AQADAAQAAAD8//X/AQADAAUAAAD5//T/AQAAAAQAAAANAPv/AQACAAUAAADy/wQAAQAEAAQAAADy/wUAAQAEAAUAAADy/wYAAQAEAAYAAADy/wcAAQAEAAcAAADz/wQAAQAFAAQAAADz/wUAAQAFAAUAAAD0/wQAAQAGAAQAAAD1/wQAAQAHAAQAAAAJAAQAAAABAAwAABAJAAUAAAABAA0AABA=")
+tile_set = ExtResource("2_a1xwi")
+
+[node name="Lower" type="Node2D" parent="." unique_id=1828029698]
+
+[node name="WoodPlatform1" parent="Lower" unique_id=1396442759 instance=ExtResource("2_1ct3f")]
+position = Vector2(-104, 112)
+type = 1
+width_in_cells = 10
+cell_position = Vector2i(1, 27)
+
+[node name="WoodPlatform2" parent="Lower" unique_id=2055955004 instance=ExtResource("2_1ct3f")]
+position = Vector2(24, 112)
+type = 1
+width_in_cells = 10
+cell_position = Vector2i(17, 27)
+
+[node name="StonePlatform0" parent="Lower" unique_id=1101525360 instance=ExtResource("2_1ct3f")]
+position = Vector2(-16, 112)
+width_in_cells = 4
+cell_position = Vector2i(12, 27)
+
+[node name="StonePlatform1" parent="Lower" unique_id=267217620 instance=ExtResource("2_1ct3f")]
+position = Vector2(-112, 72)
+width_in_cells = 4
+cell_position = Vector2i(0, 22)
+
+[node name="StonePlatform2" parent="Lower" unique_id=1061735721 instance=ExtResource("2_1ct3f")]
+position = Vector2(-32, 72)
+width_in_cells = 18
+cell_position = Vector2i(10, 22)
+
+[node name="Rat" parent="Lower" unique_id=1398069199 instance=ExtResource("4_ynrxh")]
+position = Vector2(-69, 103)
+
+[node name="SpikeTrap" parent="Lower" unique_id=1776868847 instance=ExtResource("5_a1xwi")]
+position = Vector2(-95, 73)
+
+[node name="Mid" type="Node2D" parent="." unique_id=729331086]
+
+[node name="StonePlatform3" parent="Mid" unique_id=1602336852 instance=ExtResource("2_1ct3f")]
+position = Vector2(-112, 24)
+width_in_cells = 4
+cell_position = Vector2i(0, 16)
+
+[node name="StonePlatform4" parent="Mid" unique_id=2110773936 instance=ExtResource("2_1ct3f")]
+position = Vector2(-32, 24)
+width_in_cells = 10
+cell_position = Vector2i(10, 16)
+
+[node name="StonePlatform5" parent="Mid" unique_id=921223762 instance=ExtResource("2_1ct3f")]
+position = Vector2(96, 24)
+width_in_cells = 2
+cell_position = Vector2i(26, 16)
+
+[node name="WoodPlatform3" parent="Mid" unique_id=803024747 instance=ExtResource("2_1ct3f")]
+position = Vector2(56, 24)
+type = 1
+width_in_cells = 4
+cell_position = Vector2i(21, 16)
+
+[node name="Upper" type="Node2D" parent="." unique_id=359870108]
+
+[node name="WoodPlatform4" parent="Upper" unique_id=610167530 instance=ExtResource("2_1ct3f")]
+position = Vector2(-80, -24)
+type = 1
+width_in_cells = 6
+cell_position = Vector2i(4, 10)
+
+[node name="StonePlatform6" parent="Upper" unique_id=1600454891 instance=ExtResource("2_1ct3f")]
+position = Vector2(-16, -48)
+width_in_cells = 16
+cell_position = Vector2i(12, 7)
+
+[node name="StonePlatform7" parent="Upper" unique_id=58350843 instance=ExtResource("2_1ct3f")]
+position = Vector2(-24, -80)
+width_in_cells = 4
+cell_position = Vector2i(11, 3)
+
+[node name="StonePlatform8" parent="Upper" unique_id=1941511020 instance=ExtResource("2_1ct3f")]
+width_in_cells = 10
+
+[node name="StonePlatform9" parent="Upper" unique_id=2039410169 instance=ExtResource("2_1ct3f")]
+position = Vector2(32, -104)
+width_in_cells = 10
+cell_position = Vector2i(18, 0)
+
+[node name="StonePlatform10" parent="Upper" unique_id=1783710260 instance=ExtResource("2_1ct3f")]
+position = Vector2(-40, -96)
+width_in_cells = 2
+cell_position = Vector2i(9, 1)
+
+[node name="StonePlatform11" parent="Upper" unique_id=133982000 instance=ExtResource("2_1ct3f")]
+position = Vector2(-32, -88)
+width_in_cells = 2
+cell_position = Vector2i(10, 2)
+
+[node name="Spider" parent="Upper" unique_id=683293218 instance=ExtResource("5_dfw7f")]
+position = Vector2(-60, -96)
+
+[node name="Fly" parent="Upper" unique_id=2023194139 instance=ExtResource("6_dfw7f")]
+position = Vector2(90, -79)
+wander_distance = 16
+
+[node name="SpikeTrap" parent="Upper" unique_id=2091079376 instance=ExtResource("5_a1xwi")]
+position = Vector2(56, -48)

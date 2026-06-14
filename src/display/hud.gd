@@ -26,7 +26,10 @@ func _on_player_health_changed(health: int, was_lost: bool) -> void:
 		var visible = life.visible
 		
 		# Blink and increase rapidly until it disappears
-		if visible and i >= health:
+		# (but only when was_lost is true... other times
+		# we may reduce health e.g. when switching from
+		# Easy difficulty to Nightmare difficulty)
+		if visible and i >= health and was_lost:
 			var tween = create_tween()
 			var delay := 0.18
 			while delay >= 0.08:

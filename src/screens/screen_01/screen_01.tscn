@@ -1,13 +1,13 @@
 [gd_scene format=4 uid="uid://bcrr0nvjlg2qo"]
 
-[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://display/platform.tscn" id="1_w7wyk"]
+[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://environment/platform/platform.tscn" id="1_w7wyk"]
 [ext_resource type="Theme" uid="uid://d3xccly8i81cd" path="res://display/theme.tres" id="2_00nf7"]
 [ext_resource type="Script" uid="uid://boj4v2jw3nnfw" path="res://screens/screen_01/tutorial_label_3.gd" id="3_3ufey"]
 [ext_resource type="Script" uid="uid://d1sfwto5y5v1e" path="res://screens/screen_01/platform_2.gd" id="4_n075s"]
 [ext_resource type="Script" uid="uid://lo7y6exl8us1" path="res://screens/screen_01/tutorial_label_2.gd" id="5_pxxrn"]
 [ext_resource type="Script" uid="uid://ctleeiftv77ex" path="res://screens/screen_01/tutorial_label_1.gd" id="6_intcw"]
-[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://display/tile_set.tres" id="8_3ufey"]
-[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://display/Frog_Prince_Tower_Dungeon_Walls.webp" id="8_n075s"]
+[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://environment/platform/platform_tileset.tres" id="8_3ufey"]
+[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://environment/Frog_Prince_Tower_Dungeon_Walls.webp" id="8_n075s"]
 [ext_resource type="PackedScene" uid="uid://crour35kot2o4" path="res://enemies/rat/rat.tscn" id="10_vou4n"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vef74"]
@@ -147,24 +147,18 @@ position = Vector2(-112, 0)
 type = 1
 width_in_cells = 6
 cell_position = Vector2i(0, 13)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
 [node name="LadderPlatform1" parent="." unique_id=1259616272 instance=ExtResource("1_w7wyk")]
 position = Vector2(80, -72)
 type = 1
 width_in_cells = 4
 cell_position = Vector2i(24, 4)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
 [node name="LadderPlatform2" parent="." unique_id=626993057 instance=ExtResource("1_w7wyk")]
 position = Vector2(80, -96)
 type = 1
 width_in_cells = 4
 cell_position = Vector2i(24, 1)
-min_position = Vector2i(0, 0)
-max_position = Vector2i(0, 0)
 
 [node name="Foreground" type="TileMapLayer" parent="." unique_id=592448791]
 tile_map_data = PackedByteArray("AAAMAA0AAAADAAIAAAAMAA4AAAADAAMAAAANAA0AAAABAAIAAAANAA4AAAABAAMAAADy/w0AAAABAAIAAADy/w4AAAABAAMAAADz/w0AAAACAAIAAADz/w4AAAACAAMAAAD0/w0AAAADAAIAAAD0/w4AAAADAAMAAAD1/w0AAAABAAIAAAD1/w4AAAABAAMAAAD2/w0AAAACAAIAAAD2/w4AAAACAAMAAAD3/w0AAAADAAIAAAD3/w4AAAADAAMAAAD4/w0AAAABAAIAAAD4/w4AAAABAAMAAAD5/w0AAAACAAIAAAD5/w4AAAACAAMAAAD6/w0AAAADAAIAAAD6/w4AAAADAAMAAAD7/w0AAAABAAIAAAD7/w4AAAABAAMAAAD8/w0AAAACAAIAAAD8/w4AAAACAAMAAAD9/w0AAAADAAIAAAD9/w4AAAADAAMAAAD+/w0AAAABAAIAAAD+/w4AAAABAAMAAAD//w0AAAACAAIAAAD//w4AAAACAAMAAAAAAA0AAAADAAIAAAAAAA4AAAADAAMAAAABAA0AAAABAAIAAAABAA4AAAABAAMAAAACAA0AAAACAAIAAAACAA4AAAACAAMAAAADAA0AAAADAAIAAAADAA4AAAADAAMAAAAEAA0AAAABAAIAAAAEAA4AAAABAAMAAAAFAA0AAAACAAIAAAAFAA4AAAACAAMAAAAGAA0AAAADAAIAAAAGAA4AAAADAAMAAAAHAA0AAAABAAIAAAAHAA4AAAABAAMAAAAIAA0AAAACAAIAAAAIAA4AAAACAAMAAAAJAA0AAAADAAIAAAAJAA4AAAADAAMAAAAKAA0AAAABAAIAAAAKAA4AAAABAAMAAAALAA0AAAACAAIAAAALAA4AAAACAAMAAAD7/wMAAAAAAAcAAAD8/wMAAAABAAcAAAD9/wMAAAACAAcAAAD+/wMAAAACAAcAAAAEAAkAAAACAAgAABAFAAkAAAAEAAcAAAAGAAkAAAAEAAcAAAAHAAkAAAAEAAcAAAAIAAkAAAAFAAcAAAAJAAkAAAAFAAcAAAD9//v/AAAJAAQAAAD+//v/AAAKAAQAAAD///v/AAABAAUAAAAAAPv/AAACAAUAAAABAPv/AAADAAUAAAACAPv/AAAEAAUAAAADAPv/AAAFAAUAAAAEAPv/AAAGAAUAAAAFAPv/AAAHAAUAAAAGAPv/AAAIAAUAAAAHAPv/AAAHAAUAAAAIAPv/AAAIAAUAAAAJAPv/AAAJAAUAAAAKAPv/AAAKAAUAAAALAPv/AAALAAUAAAAMAPv/AAAMAAUAAAANAPv/AAANAAUAAAAKAAkAAAAGAAcAAAAOAA0AAAACAAIAAAAOAA4AAAACAAMAAAAPAA0AAAADAAIAAAAPAA4AAAADAAMAAADy/wwAAAAAAAkAAADz/wwAAAABAAkAAAD0/wwAAAACAAkAAAD2/wwAAAABAAkAAAD3/wwAAAACAAkAAAD5/wwAAAABAAkAAAD6/wwAAAACAAkAAAD8/wwAAAABAAkAAAD9/wwAAAACAAkAAAAMAAwAAAABAAkAAAANAAwAAAAGAAkAAAALAAwAAAAFAAkAAAAIAAwAAAAFAAkAAAAFAAwAAAAFAAkAAAACAAwAAAAFAAkAAAAAAAwAAAADAAkAAAAKAAwAAAABAAkAAAAJAAwAAAABAAkAAAAHAAwAAAABAAkAAAAGAAwAAAABAAkAAAAEAAwAAAABAAkAAAADAAwAAAABAAkAAAABAAwAAAABAAkAAAD//wwAAAABAAkAAAD+/wwAAAABAAkAAAD7/wwAAAABAAkAAAD1/wwAAAABAAkAAAD4/wwAAAABAAkAAAD8//v/AAAAAAYAAAD1/wEAAAAPAAQAAAD1/wIAAAAPAAUAAAALAPj/AAAPAAQAAAALAPn/AAAPAAUAAAD9/wQAAAAPAAQAAAD9/wUAAAAPAAUAAAADAAMAAAAEAAcAAAAEAAMAAAAFAAcAAAAFAAMAAAAGAAcAAAD//wMAAAACAAcAAAAAAAMAAAADAAcAAAABAAMAAAAEAAcAAAACAAMAAAAEAAcAAAAKAPf/AAACAAgAABALAPf/AAAEAAcAAAA=")

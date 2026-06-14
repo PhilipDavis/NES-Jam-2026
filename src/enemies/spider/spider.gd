@@ -1,8 +1,6 @@
 extends Enemy
 class_name Spider
 
-@export var attack_damage := 1
-
 @onready var player_above_left_check: RayCast2D = $PlayerAboveLeftCheck
 @onready var player_above_right_check: RayCast2D = $PlayerAboveRightCheck
 @onready var player_below_left_check: RayCast2D = $PlayerBelowLeftCheck

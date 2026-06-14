@@ -1,6 +1,7 @@
 extends Node
 
 signal locale_changed()
+signal cheat_code_entered(cheat_code_name: String)
 signal start_requested(demo_mode: bool)
 signal game_started()
 signal game_paused()
@@ -11,6 +12,7 @@ signal player_jumped(wall_jump: bool)
 signal player_landed()
 signal player_attacked()
 signal player_damaged(damage: int, attack_direction: float)
+signal player_caught_fly(fly: Fly)
 signal player_health_changed(health: int, was_lost: bool)
 signal player_entered_screen(index: int)
 signal player_death_finished()

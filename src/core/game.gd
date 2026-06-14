@@ -22,6 +22,7 @@ func _ready() -> void:
 	Events.start_requested.connect(_on_start_requested)
 	Events.player_entered_screen.connect(_on_player_entered_screen)
 	Events.player_damaged.connect(_on_player_damaged)
+	Events.player_caught_fly.connect(_on_player_caught_fly)
 	Events.player_death_finished.connect(_on_player_death_finished)
 	Events.game_paused.connect(_on_game_paused)
 	Events.game_resumed.connect(_on_game_resumed)
@@ -60,10 +61,11 @@ func _on_start_requested(demo_mode: bool) -> void:
 	if not demo_mode:
 		# Darken the screen
 		await $FaderContainer/Fader.fade_out()
+		$FaderContainer/Fader.start_dark()
 		$Menu.set_process_input(false)
-		world.position.y = 120
-	else:
-		world.position.y = 104 # Move higher up because there is no HUD and it makes the copyright easier to read
+		#world.position.y = 120
+	#else:
+		#world.position.y = 104 # Move higher up because there is no HUD and it makes the copyright easier to read
 	
 	# Setup the initial game state
 	await world.reset(input_strategy)
@@ -159,6 +161,15 @@ func _on_player_damaged(damage: int, attack_direction: float) -> void:
 	else:
 		current_health -= damage
 		Events.player_health_changed.emit(current_health, true)
+
+func _on_player_caught_fly(fly: Fly) -> void:
+	var new_health = min(current_health + 1, Settings.difficulty.max_lives)
+	if new_health > current_health:
+		current_health = new_health
+		Events.player_health_changed.emit(current_health, false)
+	
+	# TODO: make an eating sound
+	fly.queue_free()
 
 func _on_player_death_finished() -> void:
 	# TODO: fade out or something... You Died text, etc..

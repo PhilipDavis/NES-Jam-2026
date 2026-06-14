@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dm6uigm5l3a7h"]
 
-[ext_resource type="Script" uid="uid://dn1t5i7r7m078" path="res://display/platform.gd" id="1_mi635"]
-[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://display/tile_set.tres" id="2_qdknf"]
+[ext_resource type="Script" uid="uid://dn1t5i7r7m078" path="res://environment/platform/platform.gd" id="1_mi635"]
+[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://environment/platform/platform_tileset.tres" id="2_qdknf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qdknf"]
 resource_local_to_scene = true

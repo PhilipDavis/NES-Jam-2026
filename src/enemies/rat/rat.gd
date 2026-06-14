@@ -2,13 +2,6 @@
 extends Enemy
 class_name Rat
 
-@export var attack_damage := 1
-@export var facing_direction := 1:
-	set(value):
-		facing_direction = signf(value)
-		if is_node_ready():
-			visuals.scale.x = facing_direction
-
 @onready var ground_check: RayCast2D = $Visuals/GroundCheck
 @onready var wall_check: RayCast2D = $Visuals/WallCheck
 @onready var player_check: RayCast2D = $Visuals/PlayerCheck

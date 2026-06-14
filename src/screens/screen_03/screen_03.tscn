@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://dtog1ox8srgj6"]
+[gd_scene format=4 uid="uid://dtog1ox8srgj6"]
 
-[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://display/Frog_Prince_Tower_Dungeon_Walls.webp" id="2_cg2e0"]
-[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://display/platform.tscn" id="3_mu76m"]
+[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://environment/Frog_Prince_Tower_Dungeon_Walls.webp" id="2_cg2e0"]
+[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://environment/platform/platform.tscn" id="3_mu76m"]
 [ext_resource type="PackedScene" uid="uid://c1h8tgffr47tk" path="res://enemies/spider/spider.tscn" id="4_cg2e0"]
-[ext_resource type="TileSet" uid="uid://bmuewrkmp4g6e" path="res://display/tile_set.tres" id="4_omgdw"]
+[ext_resource type="TileSet" uid="uid://dfsasytgayv2d" path="res://environment/environment_tileset.tres" id="5_cg2e0"]
 [ext_resource type="PackedScene" uid="uid://crour35kot2o4" path="res://enemies/rat/rat.tscn" id="5_mu76m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mfdv2"]
@@ -36,36 +36,24 @@ shape = SubResource("RectangleShape2D_iotsf")
 position = Vector2(-64, 112)
 width_in_cells = 16
 cell_position = Vector2i(6, 27)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="MiniPlatform1" parent="Section1" unique_id=628432977 instance=ExtResource("3_mu76m")]
 position = Vector2(64, 104)
 width_in_cells = 2
 cell_position = Vector2i(22, 26)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="MiniPlatform2" parent="Section1" unique_id=845461069 instance=ExtResource("3_mu76m")]
 position = Vector2(80, 96)
 width_in_cells = 2
 cell_position = Vector2i(24, 25)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="MiniPlatform3" parent="Section1" unique_id=1206677581 instance=ExtResource("3_mu76m")]
 position = Vector2(96, 88)
 width_in_cells = 2
 cell_position = Vector2i(26, 24)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="Spider1" parent="Section1" unique_id=1398069199 instance=ExtResource("4_cg2e0")]
@@ -76,9 +64,6 @@ position = Vector2(-112, 112)
 type = 1
 width_in_cells = 6
 cell_position = Vector2i(0, 27)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="Section2" type="Node2D" parent="." unique_id=2034209545]
@@ -87,36 +72,24 @@ MOVING_SPEED = 64.0
 position = Vector2(-64, 64)
 width_in_cells = 14
 cell_position = Vector2i(6, 21)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="MiniPlatform1" parent="Section2" unique_id=1470557480 instance=ExtResource("3_mu76m")]
 position = Vector2(-80, 56)
 width_in_cells = 2
 cell_position = Vector2i(4, 20)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="MiniPlatform2" parent="Section2" unique_id=99094804 instance=ExtResource("3_mu76m")]
 position = Vector2(-96, 48)
 width_in_cells = 2
 cell_position = Vector2i(2, 19)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="MiniPlatform3" parent="Section2" unique_id=361311930 instance=ExtResource("3_mu76m")]
 position = Vector2(-112, 40)
 width_in_cells = 2
 cell_position = Vector2i(0, 18)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="Spider2" parent="Section2" unique_id=1124625088 instance=ExtResource("4_cg2e0")]
@@ -128,36 +101,24 @@ position = Vector2(-32, 24)
 position = Vector2(-64, 16)
 width_in_cells = 16
 cell_position = Vector2i(6, 15)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="MiniPlatform1" parent="Section3" unique_id=831056484 instance=ExtResource("3_mu76m")]
 position = Vector2(64, 8)
 width_in_cells = 2
 cell_position = Vector2i(22, 14)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="MiniPlatform2" parent="Section3" unique_id=402430878 instance=ExtResource("3_mu76m")]
 position = Vector2(80, 0)
 width_in_cells = 2
 cell_position = Vector2i(24, 13)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="MiniPlatform3" parent="Section3" unique_id=46022851 instance=ExtResource("3_mu76m")]
 position = Vector2(96, -8)
 width_in_cells = 2
 cell_position = Vector2i(26, 12)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="Rat1" parent="Section3" unique_id=904843866 instance=ExtResource("5_mu76m")]
@@ -173,9 +134,6 @@ position = Vector2(18, 72)
 position = Vector2(-112, -32)
 width_in_cells = 20
 cell_position = Vector2i(0, 9)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="Spider3" parent="Section4" unique_id=642507462 instance=ExtResource("4_cg2e0")]
@@ -190,13 +148,11 @@ position = Vector2(-85, -41)
 position = Vector2(-48, -80)
 width_in_cells = 20
 cell_position = Vector2i(8, 3)
-moving_enabled = false
-moving_direction = 1.0
-moving_amount = 0.0
 MOVING_SPEED = 64.0
 
 [node name="Rat3" parent="Section5" unique_id=453868010 instance=ExtResource("5_mu76m")]
 position = Vector2(58, -90)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=917953544]
-tile_set = ExtResource("4_omgdw")
+tile_map_data = PackedByteArray("AAAKAPf/AQAAAAQAAAALAPf/AQABAAQAAAAMAPf/AQACAAQAAAAMAPj/AQACAAUAAAANAPf/AQADAAQAAAANAPj/AQADAAUAAAANAPn/AQADAAYAAAANAPr/AQADAAcAAADy//3/AQAEAAQAAADy//7/AQAEAAUAAADy////AQAEAAYAAADy/wAAAQAEAAcAAADz//3/AQAFAAQAAADz//7/AQAFAAUAAAD0//3/AQAGAAQAAAD1//3/AQAHAAQAAAD4/wcAAQAFAAIAAAD2/wYAAQAFAAIAAAD0/wUAAQAFAAIAAAAHAA0AAQACAAIAAAAJAAwAAQACAAIAAAALAAsAAQACAAIAAAANAAoAAQACAAIAAAAHAAEAAQACAAIAAAAJAAAAAQACAAIAAAALAP//AQACAAIAAAANAP7/AQACAAIAAADy/wYAAQAFAAUAAADy//v/AQAFAAIAAAA=")
+tile_set = ExtResource("5_cg2e0")

@@ -1,0 +1,157 @@
+[gd_scene format=4 uid="uid://bli8elrlyb831"]
+
+[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://environment/Frog_Prince_Tower_Dungeon_Walls.webp" id="1_hj6gh"]
+[ext_resource type="TileSet" uid="uid://dfsasytgayv2d" path="res://environment/environment_tileset.tres" id="2_3dw32"]
+[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://environment/platform/platform.tscn" id="2_ltnrp"]
+[ext_resource type="PackedScene" uid="uid://crour35kot2o4" path="res://enemies/rat/rat.tscn" id="4_ltnrp"]
+[ext_resource type="PackedScene" uid="uid://bs6xgth2sh03x" path="res://enemies/fly/Fly.tscn" id="5_6ymtw"]
+[ext_resource type="PackedScene" uid="uid://c1h8tgffr47tk" path="res://enemies/spider/spider.tscn" id="6_6ymtw"]
+[ext_resource type="PackedScene" uid="uid://cvtl67v6wnxa0" path="res://environment/spike_trap/SpikeTrap.tscn" id="7_oml66"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfdv2"]
+size = Vector2(16, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iotsf"]
+size = Vector2(16, 224)
+
+[node name="Screen_Aureolin_02" type="Node2D" unique_id=1782149466]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=332717096]
+position = Vector2(0, 8)
+texture = ExtResource("1_hj6gh")
+region_enabled = true
+region_rect = Rect2(0, 16, 256, 224)
+
+[node name="Boundary" type="StaticBody2D" parent="." unique_id=2085931094]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundary" unique_id=1237264303]
+position = Vector2(-120, 0)
+shape = SubResource("RectangleShape2D_mfdv2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundary" unique_id=1650399693]
+position = Vector2(120, 0)
+shape = SubResource("RectangleShape2D_iotsf")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=917953544]
+tile_map_data = PackedByteArray("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")
+tile_set = ExtResource("2_3dw32")
+
+[node name="Lower" type="Node2D" parent="." unique_id=307237972]
+
+[node name="StonePlatform1" parent="Lower" unique_id=1396442759 instance=ExtResource("2_ltnrp")]
+position = Vector2(-112, 112)
+width_in_cells = 10
+cell_position = Vector2i(0, 27)
+
+[node name="StonePlatform2" parent="Lower" unique_id=2055955004 instance=ExtResource("2_ltnrp")]
+position = Vector2(32, 112)
+width_in_cells = 10
+cell_position = Vector2i(18, 27)
+
+[node name="StonePlatform3" parent="Lower" unique_id=1972810681 instance=ExtResource("2_ltnrp")]
+position = Vector2(-80, 72)
+width_in_cells = 10
+cell_position = Vector2i(4, 22)
+
+[node name="StonePlatform4" parent="Lower" unique_id=2005344646 instance=ExtResource("2_ltnrp")]
+position = Vector2(72, 72)
+type = 1
+width_in_cells = 4
+cell_position = Vector2i(23, 22)
+
+[node name="StonePlatform7" parent="Lower" unique_id=66889857 instance=ExtResource("2_ltnrp")]
+position = Vector2(72, 32)
+type = 1
+width_in_cells = 4
+cell_position = Vector2i(23, 17)
+
+[node name="StonePlatform5" parent="Lower" unique_id=1764703806 instance=ExtResource("2_ltnrp")]
+position = Vector2(-112, 56)
+width_in_cells = 2
+cell_position = Vector2i(0, 20)
+
+[node name="StonePlatform6" parent="Lower" unique_id=397339327 instance=ExtResource("2_ltnrp")]
+position = Vector2(-96, 64)
+width_in_cells = 2
+cell_position = Vector2i(2, 21)
+
+[node name="WoodPlatform" parent="Lower" unique_id=558066465 instance=ExtResource("2_ltnrp")]
+position = Vector2(-24, 112)
+type = 1
+width_in_cells = 6
+cell_position = Vector2i(11, 27)
+
+[node name="WoodPlatform2" parent="Lower" unique_id=1140707854 instance=ExtResource("2_ltnrp")]
+position = Vector2(0, 72)
+type = 1
+width_in_cells = 6
+cell_position = Vector2i(14, 22)
+
+[node name="Rat" parent="Lower" unique_id=1398069199 instance=ExtResource("4_ltnrp")]
+position = Vector2(-56, 64)
+
+[node name="Fly" parent="Lower" unique_id=2023194139 instance=ExtResource("5_6ymtw")]
+position = Vector2(88, 100)
+wander_distance = 8
+
+[node name="Mid" type="Node2D" parent="." unique_id=680046315]
+
+[node name="StonePlatform" parent="Mid" unique_id=1569815403 instance=ExtResource("2_ltnrp")]
+position = Vector2(-16, 0)
+width_in_cells = 16
+cell_position = Vector2i(12, 13)
+
+[node name="WoodPlatform" parent="Mid" unique_id=1954802432 instance=ExtResource("2_ltnrp")]
+position = Vector2(-48, 0)
+type = 1
+width_in_cells = 4
+cell_position = Vector2i(8, 13)
+
+[node name="WoodPlatform2" parent="Mid" unique_id=1753161037 instance=ExtResource("2_ltnrp")]
+position = Vector2(-104, 16)
+type = 1
+width_in_cells = 4
+cell_position = Vector2i(1, 15)
+moving_enabled = true
+min_position = Vector2i(1, 13)
+max_position = Vector2i(1, 16)
+moving_amount = 0.6833333333333333
+MOVING_SPEED = 12.0
+
+[node name="Spider" parent="Mid" unique_id=1769495882 instance=ExtResource("6_6ymtw")]
+position = Vector2(-8, 8)
+
+[node name="SpikeTrap" parent="Mid" unique_id=1776868847 instance=ExtResource("7_oml66")]
+
+[node name="Upper" type="Node2D" parent="." unique_id=456483621]
+
+[node name="Rat" parent="Upper" unique_id=1326634257 instance=ExtResource("4_ltnrp")]
+position = Vector2(89, -8)
+
+[node name="WoodPlatform" parent="Upper" unique_id=1643620695 instance=ExtResource("2_ltnrp")]
+position = Vector2(72, -32)
+type = 1
+width_in_cells = 4
+cell_position = Vector2i(23, 9)
+
+[node name="WoodPlatform3" parent="Upper" unique_id=1172886886 instance=ExtResource("2_ltnrp")]
+position = Vector2(-16, -48)
+type = 1
+width_in_cells = 4
+cell_position = Vector2i(12, 7)
+
+[node name="WoodPlatform4" parent="Upper" unique_id=400056145 instance=ExtResource("2_ltnrp")]
+position = Vector2(-48, -72)
+type = 1
+width_in_cells = 2
+cell_position = Vector2i(8, 4)
+
+[node name="WoodPlatform2" parent="Upper" unique_id=370852077 instance=ExtResource("2_ltnrp")]
+position = Vector2(72, -72)
+type = 1
+width_in_cells = 2
+cell_position = Vector2i(23, 4)
+
+[node name="Spider" parent="Upper" unique_id=929077412 instance=ExtResource("6_6ymtw")]
+position = Vector2(-64, -96)
