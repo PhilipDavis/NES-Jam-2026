@@ -91,6 +91,7 @@ const MAX_JUMP := 1.0
 var launch_direction := 0.0
 
 var is_game_on := false
+var is_dialog_open := false
 var is_immune := false
 var die_direction := 0.0
 var last_pause_time := 0
@@ -101,6 +102,8 @@ func _ready() -> void:
 	Events.player_health_changed.connect(_on_player_health_changed)
 	Events.game_resumed.connect(func(): last_pause_time = Time.get_ticks_msec()) # Prevent rapid re-entry
 	Events.game_ended.connect(_on_game_ended)
+	Events.dialog_opened.connect(func(): is_dialog_open = true)
+	Events.dialog_closed.connect(func(): is_dialog_open = false)
 	add_to_group('player')
 
 func reset(input: InputStrategy) -> void:

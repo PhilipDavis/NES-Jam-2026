@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmoim5jbvili0"]
 
 [ext_resource type="Script" uid="uid://cpq7ybllg774n" path="res://menu/fader.gd" id="1_t2gxf"]
-[ext_resource type="Texture2D" uid="uid://fhjc4omqj3g0" path="res://display/fades.png" id="2_cbh1o"]
+[ext_resource type="Texture2D" uid="uid://fhjc4omqj3g0" path="res://display/fader/fades.png" id="2_cbh1o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wm66n"]
 atlas = ExtResource("2_cbh1o")

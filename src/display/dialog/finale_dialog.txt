@@ -1,0 +1,8 @@
+prince: My Princess!
+princess: My Prince!
+prince: We shall never be apart again
+event: kiss
+stork: *Maniacal laughter*
+prince: Oh no...
+event: transform
+narrator: Horrible night for a curse

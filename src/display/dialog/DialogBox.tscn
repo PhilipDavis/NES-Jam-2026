@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://dumxhvj3gxil4"]
+
+[ext_resource type="Script" uid="uid://mqxln7mljcx" path="res://display/dialog/dialog_box.gd" id="1_34f45"]
+[ext_resource type="Texture2D" uid="uid://f72ayhu464nq" path="res://menu/dialog-border.png" id="1_f8f7q"]
+[ext_resource type="Theme" uid="uid://d3xccly8i81cd" path="res://display/theme.tres" id="2_34f45"]
+[ext_resource type="FontFile" uid="uid://480upapctiyo" path="res://fonts/Pixuf.ttf" id="3_c2tjq"]
+
+[node name="DialogBox" type="Control" unique_id=1691236181]
+custom_minimum_size = Vector2(192, 96)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_34f45")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=429868946]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_f8f7q")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=2078156642]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=890504329]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=1730016010]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftPortraitWrapper" type="Control" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1913667640]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="LeftPortrait" type="AnimatedSprite2D" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/LeftPortraitWrapper" unique_id=747068395]
+unique_name_in_owner = true
+position = Vector2(0, -8)
+scale = Vector2(2, 2)
+animation = &""
+centered = false
+
+[node name="DialogText" type="RichTextLabel" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1940054336]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_34f45")
+bbcode_enabled = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+
+[node name="RightPortraitWrapper" type="Control" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=391133451]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(36, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="RightPortrait" type="AnimatedSprite2D" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/RightPortraitWrapper" unique_id=15160102]
+unique_name_in_owner = true
+centered = false
+
+[node name="ContinueMessage" type="RichTextLabel" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=583199566]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+theme = ExtResource("2_34f45")
+theme_override_fonts/normal_font = ExtResource("3_c2tjq")
+theme_override_font_sizes/normal_font_size = 8
+text = "Press A to continue"
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 2

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frog-prince-nes-jam-2026 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-03 00:00+0000\n"
-"PO-Revision-Date: 2026-06-08 00:00+0000\n"
+"PO-Revision-Date: 2026-06-14 00:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fi_FI\n"
@@ -136,3 +136,56 @@ msgstr "Jatka"
 msgctxt "pause menu"
 msgid "Quit"
 msgstr "Poistu"
+
+#
+# Meta Dialog
+#
+
+msgctxt "dialog"
+msgid "Press A to continue"
+msgstr "Paina A jatkaaksesi"
+
+#
+# Intro Dialog
+#
+
+msgctxt "dialog"
+msgid "I have captured the Princess and placed a curse upon you."
+msgstr "Olen kaapannut prinsessan ja langettanut kirouksen yllesi."
+
+msgctxt "dialog"
+msgid "You will never see her again!"
+msgstr "Et näe häntä enää koskaan!"
+
+msgctxt "dialog"
+msgid "*Croak* *croak* *croak*!!!"
+msgstr "*Kurnk* *kurnk* *kurnk*!!!"
+
+msgctxt "dialog"
+msgid "You must race to the top of the tower to save the Princess"
+msgstr "Sinun on kiiruhdettava tornin huipulle pelastaaksesi prinsessan"
+
+#
+# Finale Dialog
+#
+
+msgctxt "dialog"
+msgid "My Princess!"
+msgstr "Prinsessani!"
+
+msgctxt "dialog"
+msgid "My Prince!"
+msgstr "Prinssini!"
+
+msgctxt "dialog"
+msgid "We shall never be apart again"
+msgstr "Emme ole enää koskaan erossa toisistamme"
+
+msgctxt "dialog"
+msgid "*Maniacal laughter*"
+msgstr "*Mielipuolista naurua*"
+
+msgctxt "dialog"
+msgid "Oh no! the curse..."
+msgstr "Voi ei! kirous..."
+

@@ -20,7 +20,8 @@ var game_options: GameOptions
 
 func _ready() -> void:
 	$PauseMenu.visible = false
-
+	%Dialog.visible = false
+	
 	Events.start_requested.connect(_on_start_requested)
 	Events.player_entered_screen.connect(_on_player_entered_screen)
 	Events.player_damaged.connect(_on_player_damaged)
@@ -50,7 +51,9 @@ func _show_menu() -> void:
 	$FaderContainer/Fader.fade_in()
 
 func _on_start_requested(go: GameOptions) -> void:
+	$Menu.set_process_input(false)
 	game_options = go
+	is_clock_running = false
 	
 	var input_strategy: InputStrategy
 	if game_options.demo_mode:
@@ -65,9 +68,10 @@ func _on_start_requested(go: GameOptions) -> void:
 	world.set_process(false)
 	if not game_options.demo_mode:
 		# Darken the screen
-		await $FaderContainer/Fader.fade_out()
+		$FaderContainer/Fader.fade_out()
+		await Events.fade_completed
+		$HUD.visible = false
 		$FaderContainer/Fader.start_dark()
-		$Menu.set_process_input(false)
 	
 	# Setup the initial game state
 	await world.reset(input_strategy, initial_screen_index)
@@ -78,25 +82,35 @@ func _on_start_requested(go: GameOptions) -> void:
 	Events.player_entered_screen.emit(initial_screen_index)
 	Events.player_health_changed.emit(current_health, false)
 	Events.time_changed.emit(0.0)
-	is_clock_running = true
 	world.visible = true
 	game_time = 0.0
 	
-	if not game_options.demo_mode:
-		# Swap out the menu for the World and HUD
-		$Menu.visible = false
-		$HUD.visible = true
-	
 	if game_options.demo_mode:
 		$FaderContainer.layer = 2 # Below the menu
+	else:
+		$Menu.hide()
 	
-	await $FaderContainer/Fader.fade_in()
+	$FaderContainer/Fader.fade_in()
+	await Events.fade_completed
 	
-	# Start playing!
-	Events.game_started.emit()
+	# TODO: Play the Intro dialog if the player hasn't seen it yet
+	if not game_options.demo_mode:
+		# if not Settings.get_setting('dialog', 'seen_intro'):
+		player.set_process_input(false)
+		await %Dialog.perform_dialog('intro')
+		Settings.set_setting('dialog', 'seen_intro', true)
+		player.set_process_input(true)
 	
 	if game_options.demo_mode:
 		$FaderContainer.layer = 10 # Back where it belongs
+		$Menu.set_process_input(true) # Resume input from menu
+	else:
+		# Show the HUD now that the Intro is over
+		$HUD.visible = true
+	
+	# Start playing!
+	Events.game_started.emit()
+	is_clock_running = true
 
 func _on_game_paused() -> void:
 	is_clock_running = false

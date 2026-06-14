@@ -1,0 +1,86 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dr2qwqe6tvwgj"]
+
+[ext_resource type="Texture2D" uid="uid://dt1u7f6fj8boi" path="res://enemies/stork/Stork_Head.png" id="1_eum4w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k6s8"]
+atlas = ExtResource("1_eum4w")
+region = Rect2(55, 1, 34, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkuoa"]
+atlas = ExtResource("1_eum4w")
+region = Rect2(103, 1, 34, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt1oe"]
+atlas = ExtResource("1_eum4w")
+region = Rect2(7, 1, 34, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eum4w"]
+atlas = ExtResource("1_eum4w")
+region = Rect2(55, 1, 34, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h74cb"]
+atlas = ExtResource("1_eum4w")
+region = Rect2(7, 1, 34, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyv8m"]
+atlas = ExtResource("1_eum4w")
+region = Rect2(55, 1, 34, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l3am"]
+atlas = ExtResource("1_eum4w")
+region = Rect2(7, 1, 34, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pphj"]
+atlas = ExtResource("1_eum4w")
+region = Rect2(55, 1, 34, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cssm"]
+atlas = ExtResource("1_eum4w")
+region = Rect2(7, 1, 34, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ped4o"]
+atlas = ExtResource("1_eum4w")
+region = Rect2(103, 1, 34, 60)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 39.0,
+"texture": SubResource("AtlasTexture_6k6s8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkuoa")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_lt1oe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eum4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h74cb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyv8m")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_0l3am")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pphj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cssm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ped4o")
+}],
+"loop": 1,
+"name": &"Speaking",
+"speed": 10.0
+}]

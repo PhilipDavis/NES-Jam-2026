@@ -4,7 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://c8nmsrtfrdp4r" path="res://display/world.tscn" id="2_cjuek"]
 [ext_resource type="PackedScene" uid="uid://cmkvlki35j233" path="res://display/hud.tscn" id="3_vhpdd"]
 [ext_resource type="PackedScene" uid="uid://cq2he73myu6h6" path="res://menu/menu.tscn" id="4_gjr3k"]
-[ext_resource type="PackedScene" uid="uid://dmoim5jbvili0" path="res://display/fader.tscn" id="5_4cdhi"]
+[ext_resource type="Script" uid="uid://coys60v208nju" path="res://core/dialog.gd" id="4_vhpdd"]
+[ext_resource type="PackedScene" uid="uid://dmoim5jbvili0" path="res://display/fader/fader.tscn" id="5_4cdhi"]
+[ext_resource type="SpriteFrames" uid="uid://bsx127h0xomx" path="res://player/prince_sprite_frames.tres" id="5_bpu47"]
+[ext_resource type="SpriteFrames" uid="uid://dr2qwqe6tvwgj" path="res://enemies/stork/stork_head.tres" id="5_fgh25"]
+[ext_resource type="PackedScene" uid="uid://dumxhvj3gxil4" path="res://display/dialog/DialogBox.tscn" id="5_gjr3k"]
 [ext_resource type="PackedScene" uid="uid://c0sau3m6klna4" path="res://menu/pause_menu.tscn" id="6_cjuek"]
 
 [sub_resource type="Gradient" id="Gradient_cjuek"]
@@ -32,6 +36,26 @@ z_index = 2
 position = Vector2(128, 120)
 
 [node name="HUD" parent="." unique_id=1263400480 instance=ExtResource("3_vhpdd")]
+
+[node name="Dialog" type="CanvasLayer" parent="." unique_id=454104661]
+unique_name_in_owner = true
+layer = 2
+visible = false
+script = ExtResource("4_vhpdd")
+prince_sprite_frames = ExtResource("5_bpu47")
+stork_sprite_frames = ExtResource("5_fgh25")
+
+[node name="DialogContainer" type="Control" parent="Dialog" unique_id=1662389380]
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogBox" parent="Dialog/DialogContainer" unique_id=1691236181 instance=ExtResource("5_gjr3k")]
+layout_mode = 1
 
 [node name="Menu" parent="." unique_id=410386570 instance=ExtResource("4_gjr3k")]
 layer = 3

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: frog-prince-nes-jam-2026 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-03 00:00+0000\n"
-"PO-Revision-Date: 2026-06-08 00:00+0000\n"
+"PO-Revision-Date: 2026-06-14 00:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -133,6 +133,58 @@ msgctxt "pause menu"
 msgid "Resume"
 msgstr "Resume"
 
-msgctxt "Quit"
+msgctxt "pause menu"
 msgid "Quit"
 msgstr "Quit"
+
+#
+# Meta Dialog
+#
+
+msgctxt "dialog"
+msgid "Press A to continue"
+msgstr "Press A to continue"
+
+#
+# Intro Dialog
+#
+
+msgctxt "dialog"
+msgid "I have captured the Princess and placed a curse upon you."
+msgstr "I have captured the Princess and placed a curse upon you."
+
+msgctxt "dialog"
+msgid "You will never see her again!"
+msgstr "You will never see her again!"
+
+msgctxt "dialog"
+msgid "*Croak* *croak* *croak*!!!"
+msgstr "*Croak* *croak* *croak*!!!"
+
+msgctxt "dialog"
+msgid "You must race to the top of the tower to save the Princess"
+msgstr "You must race to the top of the tower to save the Princess"
+
+#
+# Finale Dialog
+#
+
+msgctxt "dialog"
+msgid "My Princess!"
+msgstr "My Princess!"
+
+msgctxt "dialog"
+msgid "My Prince!"
+msgstr "My Prince!"
+
+msgctxt "dialog"
+msgid "We shall never be apart again"
+msgstr "We shall never be apart again"
+
+msgctxt "dialog"
+msgid "*Maniacal laughter*"
+msgstr "*Maniacal laughter*"
+
+msgctxt "dialog"
+msgid "Oh no! the curse..."
+msgstr "Oh no! the curse..."

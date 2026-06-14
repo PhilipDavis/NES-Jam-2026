@@ -13,6 +13,7 @@ func start_dark() -> void:
 
 func fade_in() -> void:
 	await _fade(false)
+	hide()
 
 func fade_out() -> void:
 	await _fade(true)
@@ -30,4 +31,3 @@ func _fade(out: bool) -> void:
 	await get_tree().create_timer(FADE_DURATION / 4).timeout
 	
 	Events.fade_completed.emit()
-	visible = false
