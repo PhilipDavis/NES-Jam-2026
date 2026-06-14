@@ -7,10 +7,19 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cjuek"]
 shader = ExtResource("1_5i6tk")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ak7xk"]
+
 [node name="World" type="Node2D" unique_id=171525234]
+process_mode = 1
 texture_filter = 1
 material = SubResource("ShaderMaterial_cjuek")
 script = ExtResource("1_aqk2v")
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=908806928]
+position = Vector2(0, 112)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=56867648]
+shape = SubResource("WorldBoundaryShape2D_ak7xk")
 
 [node name="ScreenContainer" type="Node2D" parent="." unique_id=740511934]
 

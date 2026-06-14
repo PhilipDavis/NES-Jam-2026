@@ -1,28 +1,32 @@
 extends Node
 class_name CheatCodeObserver
 
-const cheat_codes: Dictionary[String, Array] = {
-	'invicibility': [ 'select', 'A', 'A', 'A', 'select', 'ui_up', 'ui_up', 'ui_up', 'start' ],
-	'warp_to_boss_level': [ 'select', 'A', 'B', 'A', 'B', 'select', 'ui_up', 'ui_up', 'ui_up', 'start' ],
+enum CheatCode {
+	Invincibility,
+	WarpToBossLevel,
+}
+
+const cheat_codes: Dictionary[CheatCode, Array] = {
+	CheatCode.Invincibility: [ 'select', 'A', 'B', 'B', 'A', 'select' ],
+	CheatCode.WarpToBossLevel: [ 'select', 'A', 'B', 'A', 'B', 'select', 'ui_up', 'ui_up', 'ui_up', 'start' ],
 }
 
 var action_queue: Array[String] = []
-var longest_cheat_code: int
+var longest_cheat_code_sequence: int
 
-func _ready() -> void:
-	var max_length := 0
+func _init() -> void:
 	for sequence in cheat_codes.values():
-		max_length = max(max_length, sequence.size())
+		longest_cheat_code_sequence = max(longest_cheat_code_sequence, sequence.size())
 
 func notify(action: String) -> void:
 	action_queue.push_back(action)
-	if action_queue.size() > longest_cheat_code:
+	if action_queue.size() > longest_cheat_code_sequence:
 		action_queue.pop_front()
 	
 	# Iterate through the cheat codes, comparing the current
 	# action queue to the cheat code sequences. 
-	for cheat_code_name in cheat_codes.keys():
-		var sequence := cheat_codes[cheat_code_name]
+	for cheat_code in cheat_codes.keys():
+		var sequence := cheat_codes[cheat_code]
 		if sequence.size() > action_queue.size():
 			continue
 		# Only consider the tail end of the action queue
@@ -33,7 +37,6 @@ func notify(action: String) -> void:
 				found = false
 				break
 		if found:
-			print('Cheat code %s' % cheat_code_name)
 			action_queue.clear()
-			Events.cheat_code_entered.emit(cheat_code_name)
+			Events.cheat_code_entered.emit(cheat_code)
 			return

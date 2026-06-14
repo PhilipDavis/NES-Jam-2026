@@ -53,12 +53,14 @@ const CREDITS_SPEED := 0.5
 var credits_tween: Tween
 
 var cheat_code_observer: CheatCodeObserver
+var game_options: GameOptions
 
 func _ready() -> void:
 	$MainPage.visible = true
 	$OptionsPage.visible = false
 	$LanguagePage.visible = false
 	$CreditsPage.visible = false
+	Events.cheat_code_entered.connect(_on_cheat_code_entered)
 	cheat_code_observer = CheatCodeObserver.new()
 	_load_difficulty()
 	credits_source = FileAccess.open('res://menu/credits.txt', FileAccess.READ).get_as_text() as String
@@ -67,6 +69,17 @@ func _ready() -> void:
 func resume() -> void:
 	menu_theme_audio.play()
 	frog_head.play('Idle')
+	game_options = GameOptions.new()
+
+func _on_cheat_code_entered(cheat_code: CheatCodeObserver.CheatCode) -> void:
+	match cheat_code:
+		CheatCodeObserver.CheatCode.Invincibility:
+			game_options.invincible = true
+			print('Player will be invincible')
+		
+		CheatCodeObserver.CheatCode.WarpToBossLevel:
+			game_options.starting_level = 'screen_final' # TODO: verify this is accurate
+			print('Player will start on final screen')
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_up"):
@@ -84,6 +97,12 @@ func _input(event: InputEvent) -> void:
 	
 	elif event.is_action_pressed("ui_right"):
 		cheat_code_observer.notify('ui_right')
+	
+	elif event.is_action_pressed('attack'):
+		cheat_code_observer.notify('A')
+	
+	elif event.is_action_pressed('jump'):
+		cheat_code_observer.notify('B')
 	
 	elif event.is_action_pressed("start"):
 		cheat_code_observer.notify('start')
@@ -146,7 +165,9 @@ func _on_frog_head_animation_looped() -> void:
 
 func start_demo() -> void:
 	SimulatedPlayer.state = SimulatedPlayer.State.Dormant
-	Events.start_requested.emit(true)
+	var demo_game_options = GameOptions.new()
+	demo_game_options.demo_mode = true
+	Events.start_requested.emit(demo_game_options)
 
 func _start_game() -> void:
 	menu_in_audio.play()
@@ -155,7 +176,7 @@ func _start_game() -> void:
 	if OS.is_debug_build():
 		SimulatedPlayer.state = SimulatedPlayer.State.Recording
 	
-	Events.start_requested.emit(false)
+	Events.start_requested.emit(game_options)
 
 func _show_options() -> void:
 	current_menu = 'options'

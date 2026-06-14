@@ -1,16 +1,21 @@
 extends Node2D
 
 @onready var screen_container: Node2D = $ScreenContainer
+@onready var player: Player = $Player
 
 var screen_list: Array[String] = []
 var screen_map: Dictionary[String, PackedScene] = {}
 var screen_name_by_index: Dictionary[int, String] = {}
+var screen_index_by_name: Dictionary[String, int] = {}
 var is_loaded_by_index: Dictionary[int, bool] = {}
 var next_y_offset := 0.0
 
 func _ready() -> void:
 	Events.player_entered_screen.connect(_on_player_entered_screen)
 	_load_screen_metadata()
+
+func get_screen_index(screen_name: String) -> int:
+	return screen_index_by_name.get(screen_name, 0)
 
 func tear_down() -> void:
 	# Discard all the loaded screens
@@ -23,10 +28,10 @@ func tear_down() -> void:
 	screen_map.clear()
 	is_loaded_by_index.clear()
 
-func reset(input_strategy: InputStrategy) -> void:
-	$Player.reset(input_strategy)
+func reset(input_strategy: InputStrategy, starting_index: int) -> void:
 	tear_down()
-	await _preload_screen(0)
+	await _preload_screen(starting_index)
+	player.reset(input_strategy)
 
 func _on_player_entered_screen(index: int) -> void:
 	# When player enters a screen, load that screen and preload the following screen
@@ -65,7 +70,6 @@ func _load_screen(index: int) -> void:
 	# Bail out if we've already loaded it
 	if is_loaded_by_index.has(index):
 		return
-	is_loaded_by_index[index] = true
 	
 	if not screen_name_by_index.has(index):
 		# No more screens!
@@ -74,10 +78,23 @@ func _load_screen(index: int) -> void:
 	
 	# Instantiate the screen and at it to the top of the growing tower
 	var screen_name := screen_name_by_index[index]
-	var scene := screen_map[screen_name]
+	var scene := screen_map.get(screen_name) as PackedScene
+	
+	# HACK: There is a bug with screen loading (when not starting at the
+	# beginning screen) and I don't have time to fix it... So just force-
+	# load the screen if it hasn't been loaded yet.
+	if not scene:
+		await _preload_screen(index)
+		scene = screen_map.get(screen_name) as PackedScene
+	
 	var screen := scene.instantiate() as Node2D
 	screen.global_position.y = next_y_offset
 	$ScreenContainer.add_child(screen)
+	
+	# Update the next offset for the next screen
+	var background := screen.get_node('Background')
+	assert(background.has_method('get_rect'))
+	next_y_offset -= background.get_rect().size.y
 	
 	# Notify that the screen has loaded.
 	# Enemies will listen for this to know when to activate.
@@ -85,12 +102,8 @@ func _load_screen(index: int) -> void:
 	# because the enemies are marked as @tool and they were
 	# moving prematurely.
 	# TODO: must be a way to fix/improve this and remove this hack
+	is_loaded_by_index[index] = true
 	Events.screen_ready.emit(screen)
-	
-	# Update the next offset for the next screen
-	var background := screen.get_node('Background')
-	assert(background.has_method('get_rect'))
-	next_y_offset -= background.get_rect().size.y
 
 func _load_screen_metadata() -> void:
 	var file := FileAccess.open('res://screens/screen_layout.txt', FileAccess.READ)
@@ -114,4 +127,5 @@ func _load_screen_metadata() -> void:
 		
 		screen_list.append(screen_name)
 		screen_name_by_index[index] = screen_name
+		screen_index_by_name[screen_name] = index
 		index += 1

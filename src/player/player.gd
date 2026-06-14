@@ -105,6 +105,7 @@ func _ready() -> void:
 
 func reset(input: InputStrategy) -> void:
 	input_strategy = input
+	set_process(false)
 	set_physics_process(false)
 	is_game_on = false
 	is_immune = false
@@ -116,10 +117,11 @@ func reset(input: InputStrategy) -> void:
 	visible = false
 	velocity = Vector2.ZERO
 	visuals.global_rotation_degrees = 0
-	position = Vector2i(0, 80 + 112)
+	position = Vector2i(0, 72 + 112)
 	#position = Vector2i(100, -80 + 112) # KILL: position to fast-forward to end of tutorial screen
 
 func _on_game_started() -> void:
+	set_process(true)
 	set_physics_process(true)
 	is_game_on = true
 	last_pause_time = Time.get_ticks_msec()

@@ -1,8 +1,8 @@
 extends Node
 
 signal locale_changed()
-signal cheat_code_entered(cheat_code_name: String)
-signal start_requested(demo_mode: bool)
+signal cheat_code_entered(cheat_code: CheatCodeObserver.CheatCode)
+signal start_requested(game_options: GameOptions)
 signal game_started()
 signal game_paused()
 signal game_resumed()

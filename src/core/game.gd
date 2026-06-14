@@ -14,7 +14,9 @@ var game_time := 0.0
 var current_health := 0
 
 var is_camera_moving := false
+var initial_screen_index := 0
 var current_screen_index := -1
+var game_options: GameOptions
 
 func _ready() -> void:
 	$PauseMenu.visible = false
@@ -47,9 +49,11 @@ func _show_menu() -> void:
 	# Reveal the menu
 	$FaderContainer/Fader.fade_in()
 
-func _on_start_requested(demo_mode: bool) -> void:
+func _on_start_requested(go: GameOptions) -> void:
+	game_options = go
+	
 	var input_strategy: InputStrategy
-	if demo_mode:
+	if game_options.demo_mode:
 		var history: Array[Dictionary] = []
 		for v in SimulatedPlayer.load_history():
 			history.append(v as Dictionary)
@@ -58,42 +62,40 @@ func _on_start_requested(demo_mode: bool) -> void:
 		input_strategy = RealInputStrategy.new()
 	
 	world.visible = false
-	if not demo_mode:
+	world.set_process(false)
+	if not game_options.demo_mode:
 		# Darken the screen
 		await $FaderContainer/Fader.fade_out()
 		$FaderContainer/Fader.start_dark()
 		$Menu.set_process_input(false)
-		#world.position.y = 120
-	#else:
-		#world.position.y = 104 # Move higher up because there is no HUD and it makes the copyright easier to read
 	
 	# Setup the initial game state
-	await world.reset(input_strategy)
+	await world.reset(input_strategy, initial_screen_index)
+	initial_screen_index = world.get_screen_index(game_options.starting_level)
 	camera.global_position.y = WORLD_OFFSET
 	current_screen_index = -1
 	current_health = Settings.difficulty.starting_lives
-	Events.player_entered_screen.emit(0)
+	Events.player_entered_screen.emit(initial_screen_index)
 	Events.player_health_changed.emit(current_health, false)
 	Events.time_changed.emit(0.0)
 	is_clock_running = true
 	world.visible = true
 	game_time = 0.0
 	
-	if not demo_mode:
+	if not game_options.demo_mode:
 		# Swap out the menu for the World and HUD
 		$Menu.visible = false
 		$HUD.visible = true
-
-	# Start playing!
-	world.set_physics_process(true)
-	Events.game_started.emit()
 	
-	if demo_mode:
+	if game_options.demo_mode:
 		$FaderContainer.layer = 2 # Below the menu
 	
 	await $FaderContainer/Fader.fade_in()
 	
-	if demo_mode:
+	# Start playing!
+	Events.game_started.emit()
+	
+	if game_options.demo_mode:
 		$FaderContainer.layer = 10 # Back where it belongs
 
 func _on_game_paused() -> void:
@@ -127,8 +129,8 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	var player_offset := 16 # This improves the screen transition to reduce the amount of thrashing
-	var screen_index = floori(-(player.position.y + player_offset - WORLD_OFFSET) / SCREEN_HEIGHT)
-	if screen_index < 0:
+	var screen_index = floori(-(player.position.y + player_offset - WORLD_OFFSET) / SCREEN_HEIGHT) + initial_screen_index
+	if screen_index < initial_screen_index:
 		return
 	if screen_index != current_screen_index:
 		Events.player_entered_screen.emit(screen_index)
@@ -154,13 +156,12 @@ func _on_player_damaged(damage: int, attack_direction: float) -> void:
 	if player.is_immune:
 		return
 	
-	# Don't take damage in the tutorial screen
-	if current_screen_index == 0:
-		# But mimic health lost to cause the immune animation
-		Events.player_health_changed.emit(current_health, true)
-	else:
+	# Don't take damage in the tutorial screen and
+	# don't take damage if the player is invincible
+	if current_screen_index > 0 and not game_options.invincible:
 		current_health -= damage
-		Events.player_health_changed.emit(current_health, true)
+	
+	Events.player_health_changed.emit(current_health, true)
 
 func _on_player_caught_fly(fly: Fly) -> void:
 	var new_health = min(current_health + 1, Settings.difficulty.max_lives)
