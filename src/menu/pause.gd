@@ -35,7 +35,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed('start'):
 		match selected_index:
 			0: Events.game_resumed.emit()
-			1: Events.game_ended.emit()
+			1: Events.game_ended.emit(false)
 
 func _select(index: int, skip_animation: bool = false) -> void:
 	selected_index = (index + pause_y_offsets.size()) % pause_y_offsets.size()

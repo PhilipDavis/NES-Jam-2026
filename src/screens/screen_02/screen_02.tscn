@@ -142,13 +142,13 @@ cell_position = Vector2i(6, 5)
 [node name="LeftWoodPlatform3" parent="Upper" unique_id=521916798 instance=ExtResource("1_i15ip")]
 position = Vector2(-112, -96)
 type = 1
-width_in_cells = 6
+width_in_cells = 2
 cell_position = Vector2i(0, 1)
 
 [node name="RightWoodPlatform4" parent="Upper" unique_id=568697355 instance=ExtResource("1_i15ip")]
-position = Vector2(64, -96)
+position = Vector2(96, -96)
 type = 1
-width_in_cells = 6
-cell_position = Vector2i(22, 1)
+width_in_cells = 2
+cell_position = Vector2i(26, 1)
 
 [connection signal="body_entered" from="Lower/EntryArea" to="." method="_on_floor_body_entered"]

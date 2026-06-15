@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://bel0skty2ocsa"]
+
+[ext_resource type="Script" uid="uid://bdbko4nhxk56u" path="res://environment/princess/princess.gd" id="1_jpdwt"]
+[ext_resource type="SpriteFrames" uid="uid://b1njfinydaouc" path="res://environment/princess/princess_sprite_frames.tres" id="2_jkonx"]
+[ext_resource type="Texture2D" uid="uid://bxyvupd0sodwj" path="res://environment/princess/Frog_Prince_Heart.webp" id="3_jkonx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_crfae"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0wt1"]
+atlas = ExtResource("3_jkonx")
+region = Rect2(0, 0, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi5xj"]
+atlas = ExtResource("3_jkonx")
+region = Rect2(24, 0, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mfn2"]
+atlas = ExtResource("3_jkonx")
+region = Rect2(48, 0, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3htuc"]
+atlas = ExtResource("3_jkonx")
+region = Rect2(72, 0, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0nec"]
+atlas = ExtResource("3_jkonx")
+region = Rect2(96, 0, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oald"]
+atlas = ExtResource("3_jkonx")
+region = Rect2(120, 0, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nb20"]
+atlas = ExtResource("3_jkonx")
+region = Rect2(144, 0, 16, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwxny"]
+atlas = ExtResource("3_jkonx")
+region = Rect2(168, 0, 16, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_crfae"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0wt1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gi5xj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mfn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3htuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0nec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oald")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nb20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwxny")
+}],
+"loop": 0,
+"name": &"Love",
+"speed": 4.0
+}]
+
+[node name="Princess" type="CharacterBody2D" unique_id=1366250855]
+script = ExtResource("1_jpdwt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1576458434]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_crfae")
+
+[node name="Visuals" type="Node2D" parent="." unique_id=2100401074]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=582346675]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("2_jkonx")
+animation = &"Idle"
+
+[node name="Heart" type="AnimatedSprite2D" parent="Visuals" unique_id=245756741]
+z_index = 1
+position = Vector2(8, -22)
+sprite_frames = SubResource("SpriteFrames_crfae")
+animation = &"Love"
+flip_h = true

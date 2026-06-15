@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var floor_platform := $FloorPlatform
+@onready var floor_platform := $Lower/FloorPlatform
+@onready var entry_area := $Lower/EntryArea
 
 func _on_floor_body_entered(body: Node2D) -> void:
 	if not body.is_in_group('player'):
@@ -9,7 +10,7 @@ func _on_floor_body_entered(body: Node2D) -> void:
 	_solidify_floor.call_deferred(player)
 
 func _solidify_floor(player: Player) -> void:
-	$EntryArea.monitoring = false
+	entry_area.monitoring = false
 	
 	# Prevent the player from being able to drop
 	# back down into the tutorial level

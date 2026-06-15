@@ -188,3 +188,13 @@ msgstr "*Maniacal laughter*"
 msgctxt "dialog"
 msgid "Oh no! the curse..."
 msgstr "Oh no! the curse..."
+
+#
+# High Score
+#
+
+msgid "You Finished In"
+msgstr "You Finished In"
+
+msgid "Your Personal Best"
+msgstr "Your Personal Best"

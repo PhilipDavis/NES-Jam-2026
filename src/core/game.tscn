@@ -10,6 +10,10 @@
 [ext_resource type="SpriteFrames" uid="uid://dr2qwqe6tvwgj" path="res://enemies/stork/stork_head.tres" id="5_fgh25"]
 [ext_resource type="PackedScene" uid="uid://dumxhvj3gxil4" path="res://display/dialog/DialogBox.tscn" id="5_gjr3k"]
 [ext_resource type="PackedScene" uid="uid://c0sau3m6klna4" path="res://menu/pause_menu.tscn" id="6_cjuek"]
+[ext_resource type="SpriteFrames" uid="uid://b1njfinydaouc" path="res://environment/princess/princess_sprite_frames.tres" id="6_r8boq"]
+[ext_resource type="Script" uid="uid://owu6hx7ma6yf" path="res://core/music.gd" id="11_bpu47"]
+[ext_resource type="AudioStream" uid="uid://5hjkvrt2ln20" path="res://music/Standard.ogg" id="12_8bifg"]
+[ext_resource type="AudioStream" uid="uid://wkqtnx6ovm0v" path="res://music/Boss.ogg" id="13_r8boq"]
 
 [sub_resource type="Gradient" id="Gradient_cjuek"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -43,6 +47,7 @@ layer = 2
 visible = false
 script = ExtResource("4_vhpdd")
 prince_sprite_frames = ExtResource("5_bpu47")
+princess_sprite_frames = ExtResource("6_r8boq")
 stork_sprite_frames = ExtResource("5_fgh25")
 
 [node name="DialogContainer" type="Control" parent="Dialog" unique_id=1662389380]
@@ -57,12 +62,29 @@ grow_vertical = 2
 [node name="DialogBox" parent="Dialog/DialogContainer" unique_id=1691236181 instance=ExtResource("5_gjr3k")]
 layout_mode = 1
 
+[node name="DemoFaderContainer" type="CanvasLayer" parent="." unique_id=1688853538]
+layer = 4
+
+[node name="Fader" parent="DemoFaderContainer" unique_id=686092733 instance=ExtResource("5_4cdhi")]
+
 [node name="Menu" parent="." unique_id=410386570 instance=ExtResource("4_gjr3k")]
-layer = 3
+layer = 5
 
 [node name="FaderContainer" type="CanvasLayer" parent="." unique_id=604687299]
 layer = 10
 
-[node name="Fader" parent="FaderContainer" unique_id=686092733 instance=ExtResource("5_4cdhi")]
+[node name="Fader" parent="FaderContainer" unique_id=1403392358 instance=ExtResource("5_4cdhi")]
 
 [node name="PauseMenu" parent="." unique_id=1819312958 instance=ExtResource("6_cjuek")]
+
+[node name="Music" type="Node" parent="." unique_id=645960654]
+process_mode = 3
+script = ExtResource("11_bpu47")
+
+[node name="Standard" type="AudioStreamPlayer" parent="Music" unique_id=1687583740]
+stream = ExtResource("12_8bifg")
+parameters/looping = true
+
+[node name="Boss" type="AudioStreamPlayer" parent="Music" unique_id=760930007]
+stream = ExtResource("13_r8boq")
+parameters/looping = true

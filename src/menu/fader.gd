@@ -21,7 +21,6 @@ func fade_out() -> void:
 func _fade(out: bool) -> void:
 	var texture := $TextureRect.texture as AtlasTexture
 	texture.region.position.x = 0 if out else 48
-	var target = 48 - texture.region.position.x
 	var delta = 16 if out else -16
 	
 	visible = true

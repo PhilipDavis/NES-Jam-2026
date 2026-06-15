@@ -60,16 +60,20 @@ func _ready() -> void:
 	$OptionsPage.visible = false
 	$LanguagePage.visible = false
 	$CreditsPage.visible = false
+	$MainPage/NESJam.play('default')
 	Events.cheat_code_entered.connect(_on_cheat_code_entered)
 	cheat_code_observer = CheatCodeObserver.new()
 	_load_difficulty()
 	credits_source = FileAccess.open('res://menu/credits.txt', FileAccess.READ).get_as_text() as String
 	resume()
 
-func resume() -> void:
+func resume(show_credits: bool = false) -> void:
 	menu_theme_audio.play()
 	frog_head.play('Idle')
 	game_options = GameOptions.new()
+	
+	if show_credits:
+		_show_credits()
 
 func _on_cheat_code_entered(cheat_code: CheatCodeObserver.CheatCode) -> void:
 	match cheat_code:
@@ -78,7 +82,7 @@ func _on_cheat_code_entered(cheat_code: CheatCodeObserver.CheatCode) -> void:
 			print('Player will be invincible')
 		
 		CheatCodeObserver.CheatCode.WarpToBossLevel:
-			game_options.starting_level = 'screen_final' # TODO: verify this is accurate
+			game_options.starting_level = 'screen_final'
 			print('Player will start on final screen')
 
 func _input(event: InputEvent) -> void:
@@ -252,6 +256,7 @@ func _prepare_credits() -> void:
 	await get_tree().process_frame
 	credits.size.y = credits.get_content_height()
 	credits.custom_minimum_size.y = credits.size.y
+	credits.position.y = 0
 
 func _translate(text: String) -> String:
 	var regex := RegEx.create_from_string('^(\\[.+?\\])?(.+?)(\\[.+?\\])?$')
@@ -281,13 +286,17 @@ func _show_credits() -> void:
 	_select(0)
 	
 	# Scroll 16 pixels at a time to emulate a retro look
+	credits_tween = create_tween() # HACK: clean this up...
 	const chunk_size := 16.0
-	var iterations := ceilf(credits.get_content_height() / chunk_size)
-	credits_tween = create_tween()
-	for i in range(iterations):
-		credits_tween.tween_property(credits, 'position:y', -i * chunk_size, 0.0)
-		credits_tween.tween_interval(CREDITS_SPEED)
-	credits_tween.tween_callback(_hide_credits.bind())
+	while credits.position.y + credits.get_content_height() > 0:
+		credits.position.y -= chunk_size
+		if not credits_tween:
+			return
+		await get_tree().create_timer(CREDITS_SPEED).timeout
+	
+	if not credits_tween:
+		return
+	_hide_credits()
 
 func _hide_credits() -> void:
 	current_menu = 'main'
@@ -295,6 +304,7 @@ func _hide_credits() -> void:
 	$CreditsPage.visible = false
 	menu_out_audio.play()
 	frog_head.play('Blink')
-	if credits_tween.is_running():
+	if credits_tween and credits_tween.is_running():
 		credits_tween.stop()
+	credits_tween = null
 	_select(2) # Credits

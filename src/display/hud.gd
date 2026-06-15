@@ -16,20 +16,18 @@ func _ready() -> void:
 		life.visible = false
 
 func _on_time_changed(total_seconds: int) -> void:
-	var seconds := total_seconds % 60
-	var minutes := mini((total_seconds - seconds) / 60, 999)
-	time_value.text = "%d:%02d" % [ minutes, seconds ]
+	time_value.text = Utils.format_time(total_seconds)
 
 func _on_player_health_changed(health: int, was_lost: bool) -> void:
 	for i in range(hearts_container.get_child_count()):
 		var life := hearts_container.get_child(i)
-		var visible = life.visible
+		var was_visible = life.visible
 		
 		# Blink and increase rapidly until it disappears
 		# (but only when was_lost is true... other times
 		# we may reduce health e.g. when switching from
 		# Easy difficulty to Nightmare difficulty)
-		if visible and i >= health and was_lost:
+		if was_visible and i >= health and was_lost:
 			var tween = create_tween()
 			var delay := 0.18
 			while delay >= 0.08:

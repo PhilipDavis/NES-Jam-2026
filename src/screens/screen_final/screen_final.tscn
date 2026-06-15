@@ -1,0 +1,49 @@
+[gd_scene format=4 uid="uid://3w4700hxom0x"]
+
+[ext_resource type="Script" uid="uid://dw4u7vqmohtfh" path="res://screens/screen_final/screen_final.gd" id="1_edrr0"]
+[ext_resource type="Texture2D" uid="uid://cw0756jqsi6dv" path="res://environment/Frog_Prince_Tower_Dungeon_Walls.webp" id="1_svpck"]
+[ext_resource type="PackedScene" uid="uid://dm6uigm5l3a7h" path="res://environment/platform/platform.tscn" id="2_cb0r8"]
+[ext_resource type="TileSet" uid="uid://dfsasytgayv2d" path="res://environment/environment_tileset.tres" id="3_svpck"]
+[ext_resource type="PackedScene" uid="uid://b7djsif56f1an" path="res://environment/cage/Cage.tscn" id="4_cb0r8"]
+[ext_resource type="PackedScene" uid="uid://bel0skty2ocsa" path="res://environment/princess/Princess.tscn" id="4_tvrvf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfdv2"]
+size = Vector2(16, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iotsf"]
+size = Vector2(16, 224)
+
+[node name="ScreenFinal" type="Node2D" unique_id=1782149466]
+script = ExtResource("1_edrr0")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=332717096]
+position = Vector2(0, 8)
+texture = ExtResource("1_svpck")
+region_enabled = true
+region_rect = Rect2(0, 16, 256, 224)
+
+[node name="Boundary" type="StaticBody2D" parent="." unique_id=2085931094]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundary" unique_id=1237264303]
+position = Vector2(-120, 0)
+shape = SubResource("RectangleShape2D_mfdv2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Boundary" unique_id=1650399693]
+position = Vector2(120, 0)
+shape = SubResource("RectangleShape2D_iotsf")
+
+[node name="Platform" parent="." unique_id=1396442759 instance=ExtResource("2_cb0r8")]
+position = Vector2(-112, 112)
+width_in_cells = 28
+cell_position = Vector2i(0, 27)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=917953544]
+tile_map_data = PackedByteArray("AADy//P/AAAAAAkAACDy//T/AAAAAAgAACDz//P/AAABAAkAACDz//T/AAABAAgAACD0//P/AAACAAkAACD0//T/AAACAAgAACD1//P/AAAAAAkAACD1//T/AAAAAAgAACD2//P/AAABAAkAACD2//T/AAABAAgAACD3//P/AAACAAkAACD3//T/AAACAAgAACD4//P/AAAAAAkAACD4//T/AAAAAAgAACD5//P/AAABAAkAACD5//T/AAABAAgAACD6//P/AAACAAkAACD6//T/AAACAAgAACD7//P/AAAAAAkAACD7//T/AAAAAAgAACD8//P/AAABAAkAACD8//T/AAABAAgAACD9//P/AAACAAkAACD9//T/AAACAAgAACD+//P/AAAAAAkAACD+//T/AAAAAAgAACD///P/AAABAAkAACD///T/AAABAAgAACAAAPP/AAACAAkAACAAAPT/AAACAAgAACABAPP/AAAAAAkAACABAPT/AAAAAAgAACACAPP/AAABAAkAACACAPT/AAABAAgAACADAPP/AAACAAkAACADAPT/AAACAAgAACAEAPP/AAAAAAkAACAEAPT/AAAAAAgAACAFAPP/AAABAAkAACAFAPT/AAABAAgAACAGAPP/AAACAAkAACAGAPT/AAACAAgAACAHAPP/AAAAAAkAACAHAPT/AAAAAAgAACAIAPP/AAABAAkAACAIAPT/AAABAAgAACAJAPP/AAACAAkAACAJAPT/AAACAAgAACAKAPP/AAAAAAkAACAKAPT/AAAAAAgAACALAPP/AAABAAkAACALAPT/AAABAAgAACAMAPP/AAACAAkAACAMAPT/AAACAAgAACANAPP/AAABAAkAADANAPT/AAABAAgAADA=")
+tile_set = ExtResource("3_svpck")
+
+[node name="Princess" parent="." unique_id=375001567 instance=ExtResource("4_tvrvf")]
+position = Vector2(-80, 108)
+
+[node name="Cage" parent="." unique_id=842101881 instance=ExtResource("4_cb0r8")]
+position = Vector2(-80, 110)

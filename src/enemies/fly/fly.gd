@@ -20,17 +20,17 @@ func _physics_process(delta: float) -> void:
 	_update_movement(delta)
 	_update_state(delta)
 
-func _update_movement(delta: float) -> void:
+func _update_movement(_delta: float) -> void:
 	velocity.x = move_toward(velocity.x, facing_direction * SPEED, ACCEL)
 	# TODO: introduce some jitter to the path...
 	move_and_slide()
 
-func _update_state(delta: float) -> void:
+func _update_state(_delta: float) -> void:
 	if position.distance_to(starting_position) >= wander_distance and signf(position.x - starting_position.x) == facing_direction:
 		facing_direction *= -1
 		# TODO: set some y velocity?...
 
-func _on_enemy_damaged(enemy: Enemy, amount: int, direction: float) -> void:
+func _on_enemy_damaged(enemy: Enemy, _amount: int, _direction: float) -> void:
 	if enemy != self:
 		return
 	

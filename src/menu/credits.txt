@@ -3,6 +3,7 @@
 
 
 
+
 [color=#386d00]*****[/color]
 
 [color=#51a200]The[/color] [color=#9241f3]Cursed[/color] [color=#51a200]Prince[/color]
@@ -17,16 +18,20 @@ Roone Mägi
 [color=#b2b2b2]Programming[/color]
 Philip Davis
 
-[color=#b2b2b2]Artwork[/color]
+[color=#b2b2b2]Lead Artist[/color]
 Roone Mägi
+
+[color=#b2b2b2]Additional Art[/color]
 Philip Davis
+Yorllin
 
 [color=#b2b2b2]Music[/color]
 Amanda Mägi
 Roone Mägi
 
 [color=#b2b2b2]Level Design[/color]
-TODO
+Roone Mägi
+Philip Davis
 
 [color=#b2b2b2]Sound Effects[/color]
 Philip Davis
@@ -37,7 +42,9 @@ erytau
 ColorSwitchFan25
 
 [color=#b2b2b2]Playtesters[/color]
-TODO
+Morgan Davis
+Carter Davis
+Chase Davis
 
 [color=#b2b2b2]Special Thanks[/color]
 Godot
@@ -55,5 +62,3 @@ No animals were harmed in the making of this game.
 
 
 Thank you for playing!
-
- 

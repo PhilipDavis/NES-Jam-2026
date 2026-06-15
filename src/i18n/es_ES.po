@@ -75,8 +75,11 @@ msgstr "Concepto"
 msgid "Programming"
 msgstr "Programación"
 
-msgid "Artwork"
-msgstr "Arte"
+msgid "Lead Artist"
+msgstr "Artista principal"
+
+msgid "Additional Art"
+msgstr "Arte adicional"
 
 msgid "Music"
 msgstr "Música"
@@ -188,3 +191,17 @@ msgstr "*Risa maníaca*"
 msgctxt "dialog"
 msgid "Oh no! the curse..."
 msgstr "¡Oh no! la maldición..."
+
+msgctxt "dialog"
+msgid "Horrible night to have a curse"
+msgstr "Horrible noche para tener una maldición"
+
+#
+# High Score
+#
+
+msgid "You Finished In"
+msgstr "Has terminado en"
+
+msgid "Your Personal Best"
+msgstr "Tu mejor marca personal"

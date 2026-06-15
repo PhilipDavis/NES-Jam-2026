@@ -74,7 +74,7 @@ func _update_movement(delta: float) -> void:
 	
 	move_and_slide()
 
-func _update_state(delta: float) -> void:
+func _update_state(_delta: float) -> void:
 	match state:
 		BehaviourState.Idle:
 			if idle_time > IDLE_TIME:

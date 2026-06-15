@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://b7djsif56f1an"]
+
+[ext_resource type="Script" uid="uid://dqwdev558tcv" path="res://environment/cage/cage.gd" id="1_501ye"]
+[ext_resource type="Texture2D" uid="uid://b5jxou3yghbh0" path="res://environment/cage/Frog_Prince_Cage.webp" id="2_6s2cj"]
+[ext_resource type="Texture2D" uid="uid://bgiajwq0ct3tw" path="res://environment/cage/Frog_Prince_Cage_Door.webp" id="3_h2oc6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q4ip"]
+atlas = ExtResource("3_h2oc6")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xxt2"]
+atlas = ExtResource("3_h2oc6")
+region = Rect2(32, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mkv0"]
+atlas = ExtResource("3_h2oc6")
+region = Rect2(64, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gj0mu"]
+atlas = ExtResource("3_h2oc6")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5vtp"]
+atlas = ExtResource("3_h2oc6")
+region = Rect2(128, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_crfae"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_2q4ip")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_6xxt2")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_3mkv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gj0mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5vtp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gj0mu")
+}],
+"loop": 0,
+"name": &"Opening",
+"speed": 18.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crfae"]
+size = Vector2(32, 5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ak7xk"]
+radius = 18.0
+height = 42.0
+
+[node name="Cage" type="StaticBody2D" unique_id=842101881]
+collision_layer = 8
+collision_mask = 31
+collision_priority = 2.0
+script = ExtResource("1_501ye")
+
+[node name="CageSprite" type="Sprite2D" parent="." unique_id=1542347007]
+texture = ExtResource("2_6s2cj")
+offset = Vector2(0, -20)
+flip_h = true
+
+[node name="Door" type="Node2D" parent="." unique_id=251589837]
+visible = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Door" unique_id=2077439815]
+position = Vector2(27, -12)
+sprite_frames = SubResource("SpriteFrames_crfae")
+animation = &"Opening"
+
+[node name="Base" type="StaticBody2D" parent="." unique_id=1281647188]
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Base" unique_id=435430173]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_crfae")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=169120038]
+position = Vector2(0, -17)
+shape = SubResource("CapsuleShape2D_ak7xk")
+
+[connection signal="animation_finished" from="Door/AnimatedSprite2D" to="." method="_on_door_animation_finished"]

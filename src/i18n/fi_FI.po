@@ -75,8 +75,11 @@ msgstr "Konsepti"
 msgid "Programming"
 msgstr "Ohjelmointi"
 
-msgid "Artwork"
-msgstr "Taide"
+msgid "Lead Artist"
+msgstr "Päätaiteilija"
+
+msgid "Additional Art"
+msgstr "Lisätaide"
 
 msgid "Music"
 msgstr "Musiikki"
@@ -189,3 +192,16 @@ msgctxt "dialog"
 msgid "Oh no! the curse..."
 msgstr "Voi ei! kirous..."
 
+msgctxt "dialog"
+msgid "Horrible night to have a curse"
+msgstr "Kauhea yö olla kirouksen vallassa"
+
+#
+# High Score
+#
+
+msgid "You Finished In"
+msgstr "Maaliin aika"
+
+msgid "Your Personal Best"
+msgstr "Oma ennätyksesi"

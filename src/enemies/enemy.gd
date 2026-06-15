@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Enemy
 
-const FLICKER_DURATION := 400
-const FLICKER_STEP := 100
+const FLICKER_DURATION := 400.0
+const FLICKER_STEP := 100.0
 
 @onready var visuals: Node2D = $Visuals
 @onready var sprite: AnimatedSprite2D = $Visuals/AnimatedSprite2D

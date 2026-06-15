@@ -2,14 +2,18 @@ extends CharacterBody2D
 class_name Player
 
 @export var input_strategy: InputStrategy
+@export var fly_scene: PackedScene
 
 @onready var standard_collision := $StandardCollision
 @onready var extended_collision := $ExtendedCollision
 @onready var visuals: Node2D = $Visuals
 @onready var sprite: AnimatedSprite2D = $Visuals/AnimatedSprite2D
+@onready var curse_effect: AnimatedSprite2D = $Visuals/CurseEffect
 @onready var tongue: Tongue = %Tongue
 @onready var hit_box: Area2D = %Tongue/HitBox
 @onready var on_screen_notifier := $VisibleOnScreenNotifier2D
+
+var fly: Fly
 
 const SPEED = 128.0
 const KNOCKBACK_SPEED := 128.0
@@ -92,6 +96,7 @@ var launch_direction := 0.0
 
 var is_game_on := false
 var is_dialog_open := false
+var is_end_sequence := false
 var is_immune := false
 var die_direction := 0.0
 var last_pause_time := 0
@@ -102,16 +107,23 @@ func _ready() -> void:
 	Events.player_health_changed.connect(_on_player_health_changed)
 	Events.game_resumed.connect(func(): last_pause_time = Time.get_ticks_msec()) # Prevent rapid re-entry
 	Events.game_ended.connect(_on_game_ended)
-	Events.dialog_opened.connect(func(): is_dialog_open = true)
-	Events.dialog_closed.connect(func(): is_dialog_open = false)
+	Events.dialog_opened.connect(_on_dialog_opened)
+	Events.dialog_closed.connect(_on_dialog_closed)
+	Events.princess_saved.connect(func(): is_end_sequence = true)
+	curse_effect.hide()
 	add_to_group('player')
 
 func reset(input: InputStrategy) -> void:
 	input_strategy = input
 	set_process(false)
 	set_physics_process(false)
+	if fly:
+		fly.queue_free()
+		fly = null
 	is_game_on = false
 	is_immune = false
+	is_end_sequence = false
+	visuals.scale.x = 1.0
 	die_direction = 0.0
 	collision_layer = 2 # Player
 	collision_mask = 1 | 8 # Background and Objects
@@ -120,8 +132,8 @@ func reset(input: InputStrategy) -> void:
 	visible = false
 	velocity = Vector2.ZERO
 	visuals.global_rotation_degrees = 0
-	position = Vector2i(0, 72 + 112)
-	#position = Vector2i(100, -80 + 112) # KILL: position to fast-forward to end of tutorial screen
+	position = Vector2i(0, 80 + 112)
+	_play_animation('Idle')
 
 func _on_game_started() -> void:
 	set_process(true)
@@ -168,16 +180,24 @@ func _flicker() -> void:
 		await get_tree().create_timer(FLICKER_STEP / 2000.0).timeout
 		sprite.visible = true
 
-func _on_game_ended() -> void:
+func _on_game_ended(show_credits: bool) -> void:
 	is_game_on = false
 	physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+
+func _on_dialog_opened() -> void:
+	is_dialog_open = true
+
+func _on_dialog_closed() -> void:
+	is_dialog_open = false
+	last_pause_time = Time.get_ticks_msec()
 
 func _play_animation(anim: String) -> void:
 	if sprite.animation == anim and sprite.is_playing():
 		return
+	assert(sprite.sprite_frames.has_animation(anim))
 	sprite.play(anim)
 	
-	var use_extended_hurt_box = anim == 'Attack' or anim == 'Idle'
+	var use_extended_hurt_box = anim == 'WallJump' or anim == 'GroundJump' or anim == 'Falling' or anim == 'Hop'
 	$StandardCollision.disabled = use_extended_hurt_box
 	$ExtendedCollision.disabled = not use_extended_hurt_box
 
@@ -188,10 +208,12 @@ func _physics_process(delta: float) -> void:
 	# Pause the game if Start is pressed (but don't accidentally
 	# read the initial Start button press as a pause intention)
 	if Time.get_ticks_msec() > last_pause_time + 1000 and input_strategy.is_action_just_pressed('start'):
+		if is_dialog_open:
+			return
 		Events.game_paused.emit()
 		return
 	
-	var input_dir := _handle_input()
+	var input_dir := 0.0 if is_dialog_open else _handle_input()
 	_update_facing(input_dir)
 	_update_timers(delta, input_dir)
 	_handle_combat_input(input_dir)
@@ -355,7 +377,7 @@ func _apply_horizontal_movement(delta: float, input_dir: float) -> void:
 				if abs(velocity.x) < 2.0:
 					velocity.x = 0.0
 	
-	assert(abs(velocity.x) <= SPEED)
+	#assert(abs(velocity.x) <= SPEED)
 	velocity.x = clampf(velocity.x, -SPEED, SPEED) # Just in case
 
 func _handle_jump_release(delta: float) -> void:
@@ -378,12 +400,16 @@ func _update_state(input_dir: float) -> void:
 			_play_animation('Idle')
 			velocity.x /= 2.0 # Immediately cut velocity in half to greatly slow down
 			is_jumping = false
+			state = MoveState.Ground
 			Events.player_landed.emit()
+			return
+		
+		if is_end_sequence:
+			return
 		elif input_dir:
 			_play_animation('Hop')
 		else:
 			_play_animation('Idle')
-		state = MoveState.Ground
 	elif is_on_wall():
 		state = MoveState.Wall
 	else:
@@ -428,7 +454,7 @@ func _update_combat(delta: float) -> void:
 		_end_attack()
 
 func _handle_combat_input(_input_dir: float) -> void:
-	if state == MoveState.Defeated:
+	if state == MoveState.Defeated or is_dialog_open:
 		return
 	
 	if input_strategy.is_action_just_pressed("attack"):
@@ -451,3 +477,29 @@ func _end_attack() -> void:
 	combat_state = CombatState.Idle
 	attack_time = 0.0
 	tongue.change_size(0.0)
+
+func curse() -> void:
+	_play_animation('GroundJump')
+	velocity = Vector2(KNOCKBACK_SPEED, -KNOCKBACK_SPEED)
+	is_jumping = true
+	state = MoveState.Air
+	
+	await Events.player_landed
+
+	_play_animation('Transform')
+	curse_effect.play('Transform')
+	curse_effect.show()
+
+func _on_curse_effect_animation_finished() -> void:
+	if curse_effect.animation == 'Transform':
+		curse_effect.play('Transformed')
+		fly = fly_scene.instantiate() as Fly
+		add_child(fly)
+		fly.wander_distance = 4
+		fly.facing_direction = -1
+		fly.global_position = global_position - Vector2(0.0, 12.0)
+		fly.show()
+		sprite.hide()
+	else:
+		curse_effect.hide()
+		Events.player_transformed.emit()

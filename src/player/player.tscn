@@ -2,19 +2,96 @@
 
 [ext_resource type="Script" uid="uid://oswdbjy56i0h" path="res://player/player.gd" id="1_4flbx"]
 [ext_resource type="SpriteFrames" uid="uid://bsx127h0xomx" path="res://player/prince_sprite_frames.tres" id="2_boad6"]
+[ext_resource type="PackedScene" uid="uid://bs6xgth2sh03x" path="res://enemies/fly/Fly.tscn" id="2_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://c0rob782xe26r" path="res://player/Frog_Prince_Change.webp" id="3_rgyib"]
 [ext_resource type="Script" uid="uid://5frvq04p88kf" path="res://player/tongue.gd" id="3_yw30f"]
 [ext_resource type="AudioStream" uid="uid://cn8ixopew0qul" path="res://player/audio/player-jump.wav" id="4_qjkh3"]
 [ext_resource type="AudioStream" uid="uid://bmabdopntmwm" path="res://player/audio/player-attack.wav" id="5_qjkh3"]
 [ext_resource type="AudioStream" uid="uid://8geqlpmggeom" path="res://player/audio/player-landing.wav" id="6_g6k8r"]
 [ext_resource type="AudioStream" uid="uid://ctgrpgoio0po3" path="res://player/audio/player_death.wav" id="7_boad6"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fc0e3"]
-radius = 9.0
-height = 18.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iesyu"]
+size = Vector2(16, 15)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6k8r"]
 radius = 7.0
 height = 22.803284
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg6s5"]
+atlas = ExtResource("3_rgyib")
+region = Rect2(0, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t03j"]
+atlas = ExtResource("3_rgyib")
+region = Rect2(40, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ieo8"]
+atlas = ExtResource("3_rgyib")
+region = Rect2(80, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebec5"]
+atlas = ExtResource("3_rgyib")
+region = Rect2(120, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yllr7"]
+atlas = ExtResource("3_rgyib")
+region = Rect2(160, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb6p2"]
+atlas = ExtResource("3_rgyib")
+region = Rect2(200, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wodsf"]
+atlas = ExtResource("3_rgyib")
+region = Rect2(240, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32hag"]
+atlas = ExtResource("3_rgyib")
+region = Rect2(280, 0, 32, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqiix"]
+atlas = ExtResource("3_rgyib")
+region = Rect2(320, 0, 32, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ak7xk"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_hg6s5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t03j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ieo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebec5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yllr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kb6p2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wodsf")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_32hag")
+}],
+"loop": 0,
+"name": &"Transform",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqiix")
+}],
+"loop": 0,
+"name": &"Transformed",
+"speed": 1.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_onrkg"]
 colors = PackedColorArray(1, 0.38039216, 0.69803923, 1, 1, 0.38039216, 0.69803923, 1)
@@ -29,27 +106,37 @@ size = Vector2(32, 2)
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_4flbx")
+fly_scene = ExtResource("2_hg6s5")
 
 [node name="StandardCollision" type="CollisionShape2D" parent="." unique_id=577595962]
-shape = SubResource("CapsuleShape2D_fc0e3")
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_iesyu")
 
 [node name="ExtendedCollision" type="CollisionShape2D" parent="." unique_id=1993193822]
-position = Vector2(4, 0)
+position = Vector2(3, -9)
 rotation = 1.0471976
 shape = SubResource("CapsuleShape2D_g6k8r")
 disabled = true
 
 [node name="Visuals" type="Node2D" parent="." unique_id=64222291]
+position = Vector2(0, -10)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals" unique_id=230930542]
+position = Vector2(0, 10)
 sprite_frames = ExtResource("2_boad6")
-animation = &"Speaking"
+animation = &"Kiss"
 centered = false
 offset = Vector2(-8, -16)
+
+[node name="CurseEffect" type="AnimatedSprite2D" parent="Visuals" unique_id=1512466497]
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_ak7xk")
+animation = &"Transformed"
 
 [node name="Tongue" type="Node2D" parent="Visuals" unique_id=2017065629]
 unique_name_in_owner = true
 z_index = 1
+position = Vector2(3, 2)
 script = ExtResource("3_yw30f")
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals/Tongue" unique_id=1657652318]
@@ -89,5 +176,8 @@ stream = ExtResource("7_boad6")
 volume_db = -3.0
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1834688172]
+position = Vector2(0, -10)
+rect = Rect2(-10, -7, 20, 17)
 
+[connection signal="animation_finished" from="Visuals/CurseEffect" to="." method="_on_curse_effect_animation_finished"]
 [connection signal="body_entered" from="Visuals/Tongue/HitBox" to="Visuals/Tongue" method="_on_hit_box_body_entered"]

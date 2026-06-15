@@ -24,3 +24,11 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group('enemies'):
 		var enemy := body as Enemy
 		Events.enemy_damaged.emit(enemy, 1, get_parent().scale.x)
+	elif body.is_in_group('objects'):
+		# Bail out if the frog is on the left side of the cage
+		if global_position.x < body.global_position.x:
+			return
+		# Bail out if the frog is too high
+		if global_position.y < body.global_position.y - 24:
+			return
+		Events.object_damaged.emit(body, get_parent().scale.x)

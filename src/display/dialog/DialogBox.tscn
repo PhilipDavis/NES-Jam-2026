@@ -61,7 +61,6 @@ size_flags_vertical = 0
 
 [node name="LeftPortrait" type="AnimatedSprite2D" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/LeftPortraitWrapper" unique_id=747068395]
 unique_name_in_owner = true
-position = Vector2(0, -8)
 scale = Vector2(2, 2)
 animation = &""
 centered = false
@@ -90,6 +89,7 @@ centered = false
 [node name="ContinueMessage" type="RichTextLabel" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=583199566]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
+translation_context = &"dialog"
 theme = ExtResource("2_34f45")
 theme_override_fonts/normal_font = ExtResource("3_c2tjq")
 theme_override_font_sizes/normal_font_size = 8

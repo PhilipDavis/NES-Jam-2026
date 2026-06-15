@@ -31,11 +31,11 @@ func _on_game_started() -> void:
 	is_game_on = true
 	current_frame = 0
 
-func _on_game_ended() -> void:
+func _on_game_ended(show_credits: bool) -> void:
 	is_game_on = false
 	_save_history()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not is_game_on or state == State.Dormant:
 		return
 	
@@ -68,7 +68,7 @@ func _save_history() -> void:
 	file.close()
 
 static func load_history() -> Array[Dictionary]:
-	var file := FileAccess.open('res://player/simulated/simulated_events.json', FileAccess.READ)
+	var file := FileAccess.open('res://player/simulated/simulated_player.json', FileAccess.READ)
 	if not file:
 		return []
 	var json := file.get_as_text()

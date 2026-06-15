@@ -16,7 +16,19 @@ func perform_dialog(dialog_name: String) -> void:
 	for line in lines:
 		await _process_line(line)
 	
-	await dialog_box.hide_dialog()
+	dialog_box.hide_dialog()
+	Events.dialog_closed.emit()
+
+func perform_custom_dialog(raw_text: Array[String]) -> void:
+	visible = true
+	Events.dialog_opened.emit()
+	set_process_input(true)
+	
+	var text: String = '\n'.join(raw_text.map(tr))
+	dialog_box.show_dialog(prince_sprite_frames, text, null)
+	await Events.dialog_continued
+	
+	dialog_box.hide_dialog()
 	Events.dialog_closed.emit()
 
 func _read_dialog_file(dialog_name: String) -> PackedStringArray:
@@ -41,10 +53,9 @@ func _process_line(line: String) -> void:
 	var parsed := _parse_line(line)
 	var text := parsed[1]
 	
-	var result: Dictionary[String, Variant] = {}
 	match parsed[0]:
 		'event':
-			await dialog_box.hide_dialog()
+			dialog_box.hide_dialog()
 			Events.dialog_event.emit(text)
 			await Events.dialog_event_ended
 			return

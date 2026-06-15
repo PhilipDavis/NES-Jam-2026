@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://fhjc4omqj3g0" path="res://display/fader/fades.png" id="3_bc54p"]
 [ext_resource type="Texture2D" uid="uid://djy170qxsb0b5" path="res://menu/The-Cursed-Prince-Title.png" id="4_043lm"]
 [ext_resource type="FontFile" uid="uid://480upapctiyo" path="res://fonts/Pixuf.ttf" id="4_pbjm4"]
+[ext_resource type="Texture2D" uid="uid://ca2pbded3ia40" path="res://menu/NES_JAM.webp" id="5_iesyu"]
 [ext_resource type="AudioStream" uid="uid://bxegs32cnsu7s" path="res://menu/audio/menu_theme.mp3" id="5_s4hbh"]
 [ext_resource type="AudioStream" uid="uid://cprb75o1b7dc7" path="res://menu/audio/menu_in.wav" id="5_v6yed"]
 [ext_resource type="AudioStream" uid="uid://c0xxdftnfc4c0" path="res://menu/audio/menu_out.wav" id="6_s4hbh"]
@@ -15,6 +16,98 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_o0hb3"]
 atlas = ExtResource("3_bc54p")
 region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5xy8"]
+atlas = ExtResource("5_iesyu")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0n8t"]
+atlas = ExtResource("5_iesyu")
+region = Rect2(56, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmd6c"]
+atlas = ExtResource("5_iesyu")
+region = Rect2(112, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h81yq"]
+atlas = ExtResource("5_iesyu")
+region = Rect2(168, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eorms"]
+atlas = ExtResource("5_iesyu")
+region = Rect2(224, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2dg8"]
+atlas = ExtResource("5_iesyu")
+region = Rect2(280, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4h5o"]
+atlas = ExtResource("5_iesyu")
+region = Rect2(336, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbvex"]
+atlas = ExtResource("5_iesyu")
+region = Rect2(392, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uysh8"]
+atlas = ExtResource("5_iesyu")
+region = Rect2(448, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm5mm"]
+atlas = ExtResource("5_iesyu")
+region = Rect2(504, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxffa"]
+atlas = ExtResource("5_iesyu")
+region = Rect2(560, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0uss"]
+atlas = ExtResource("5_iesyu")
+region = Rect2(616, 0, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_crfae"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5xy8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0n8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmd6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h81yq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eorms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2dg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4h5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbvex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uysh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pm5mm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxffa")
+}, {
+"duration": 25.0,
+"texture": SubResource("AtlasTexture_e0uss")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 12.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crfae"]
 bg_color = Color(0, 0, 0, 1)
@@ -221,6 +314,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 texture = ExtResource("4_043lm")
 
+[node name="NESJam" type="AnimatedSprite2D" parent="MainPage" unique_id=1101733325]
+position = Vector2(225, 14)
+sprite_frames = SubResource("SpriteFrames_crfae")
+
 [node name="OptionsPage" type="Control" parent="." unique_id=234403257]
 visible = false
 layout_mode = 3
@@ -418,7 +515,6 @@ text = "Back"
 alignment = 0
 
 [node name="CreditsContainer" type="PanelContainer" parent="CreditsPage" unique_id=702246895]
-visible = false
 clip_children = 2
 custom_minimum_size = Vector2(0, 188)
 custom_maximum_size = Vector2(-1, 188)
@@ -486,7 +582,7 @@ offset_bottom = 238.0
 theme_override_fonts/normal_font = ExtResource("4_pbjm4")
 theme_override_font_sizes/normal_font_size = 8
 text = "(c) Copyright 2026
-Philip Davis (pdw3), Roone Mägi (Aureolin), and Amanda Mägi"
+Philip Davis (pdw3), Roone Mägi (Aureolin), Yorllin, and Amanda Mägi"
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 3

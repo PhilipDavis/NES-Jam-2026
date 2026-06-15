@@ -110,7 +110,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Flying",
-"speed": 28.0
+"speed": 84.0
 }]
 
 [node name="Fly" type="CharacterBody2D" unique_id=2023194139]

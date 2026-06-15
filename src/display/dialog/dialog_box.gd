@@ -19,6 +19,11 @@ func _ready() -> void:
 
 func show_dialog(left_sprite_frames: SpriteFrames, raw_text: String, right_sprite_frames: SpriteFrames) -> void:
 	var text = tr(raw_text, 'dialog')
+	
+	# HACK: make the narrator text more vertically centered
+	if not left_sprite_frames and not right_sprite_frames:
+		text = '\n' + text
+	
 	dialog_text.text = text
 	dialog_text.visible_characters = 0
 	set_process_input(true)

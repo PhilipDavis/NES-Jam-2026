@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	_update_movement(delta)
 	_update_state(delta)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	set_drag_line_length(position.y - origin.y)
 
 func _update_timers(delta: float) -> void:

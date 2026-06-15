@@ -1,6 +1,11 @@
 #
 # Arranged from top of tower to bottom
 #
+screen_final
+#screen_aureolin_03
+screen_aureolin_02
+screen_aureolin_01
+screen_04
 screen_03
 screen_02
 screen_01

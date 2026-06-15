@@ -27,7 +27,7 @@ func set_setting(section: String, name: String, value: Variant) -> void:
 			_load_difficulty(value)
 
 func _load_difficulty(value: String) -> void:
-	difficulty = load('res://core/difficulty/%s_difficulty.tres' % value)
+	difficulty = load('res://core/difficulty/%s_difficulty.tres' % value.to_lower())
 	assert(difficulty)
 
 func _read_settings() -> void:
@@ -38,9 +38,9 @@ func _read_settings() -> void:
 		return
 	
 	for section in config.get_sections():
-		for name in config.get_section_keys(section):
-			var key := _make_key(section, name)
-			var value = config.get_value(section, name)
+		for setting_name in config.get_section_keys(section):
+			var key := _make_key(section, setting_name)
+			var value = config.get_value(section, setting_name)
 			settings.set(key, value)
 			if key == 'game:difficulty':
 				_load_difficulty(value)

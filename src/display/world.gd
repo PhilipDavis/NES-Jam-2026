@@ -8,6 +8,7 @@ var screen_map: Dictionary[String, PackedScene] = {}
 var screen_name_by_index: Dictionary[int, String] = {}
 var screen_index_by_name: Dictionary[String, int] = {}
 var is_loaded_by_index: Dictionary[int, bool] = {}
+var final_screen_index := -1
 var next_y_offset := 0.0
 
 func _ready() -> void:
@@ -16,6 +17,9 @@ func _ready() -> void:
 
 func get_screen_index(screen_name: String) -> int:
 	return screen_index_by_name.get(screen_name, 0)
+
+func is_final_screen(screen_index: int) -> bool:
+	return screen_index == final_screen_index
 
 func tear_down() -> void:
 	# Discard all the loaded screens
@@ -73,7 +77,7 @@ func _load_screen(index: int) -> void:
 	
 	if not screen_name_by_index.has(index):
 		# No more screens!
-		Events.game_ended.emit()
+		Events.game_ended.emit(true)
 		return
 	
 	# Instantiate the screen and at it to the top of the growing tower
@@ -129,3 +133,5 @@ func _load_screen_metadata() -> void:
 		screen_name_by_index[index] = screen_name
 		screen_index_by_name[screen_name] = index
 		index += 1
+	
+	final_screen_index = index - 1

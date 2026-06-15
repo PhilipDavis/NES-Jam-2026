@@ -75,8 +75,11 @@ msgstr "Kontseptsioon"
 msgid "Programming"
 msgstr "Programmeerimine"
 
-msgid "Artwork"
-msgstr "Graafika"
+msgid "Lead Artist"
+msgstr "Põhiartist"
+
+msgid "Additional Art"
+msgstr "Lisagraafika"
 
 msgid "Music"
 msgstr "Muusika"
@@ -188,3 +191,17 @@ msgstr "*Hullumeelne naer*"
 msgctxt "dialog"
 msgid "Oh no! the curse..."
 msgstr "Oh ei! needus..."
+
+msgctxt "dialog"
+msgid "Horrible night to have a curse"
+msgstr "Õudne öö, et olla needuse all"
+
+#
+# High Score
+#
+
+msgid "You Finished In"
+msgstr "Sinu aeg"
+
+msgid "Your Personal Best"
+msgstr "Sinu isiklik rekord"
