@@ -115,7 +115,7 @@ func _on_start_requested(go: GameOptions) -> void:
 		music.play(Music.Song.Standard)
 	
 	# Start playing!
-	Events.game_started.emit()
+	Events.game_started.emit(game_options.demo_mode)
 	is_clock_running = true
 
 func _on_game_paused() -> void:

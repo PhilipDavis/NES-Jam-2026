@@ -14,7 +14,11 @@ func _ready() -> void:
 	Events.player_jumped.connect(_on_player_jumped)
 	Events.player_landed.connect(_on_player_landed)
 
-func _on_game_started() -> void:
+func _on_game_started(demo_mode: bool) -> void:
+	if demo_mode:
+		queue_free()
+		return
+	
 	if Settings.get_setting('tutorial', 'wall-jump', false):
 		is_done = true
 		Events.tutorial_step_completed.emit('wall-jump')

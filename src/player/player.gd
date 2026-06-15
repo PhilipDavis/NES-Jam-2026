@@ -135,7 +135,7 @@ func reset(input: InputStrategy) -> void:
 	position = Vector2i(0, 80 + 112)
 	_play_animation('Idle')
 
-func _on_game_started() -> void:
+func _on_game_started(_demo_mode: bool) -> void:
 	set_process(true)
 	set_physics_process(true)
 	is_game_on = true

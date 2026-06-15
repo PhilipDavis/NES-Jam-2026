@@ -7,7 +7,11 @@ func _ready() -> void:
 	Events.game_started.connect(_on_game_started)
 	Events.player_jumped.connect(_on_player_jumped)
 
-func _on_game_started() -> void:
+func _on_game_started(demo_mode: bool) -> void:
+	if demo_mode:
+		queue_free()
+		return
+	
 	if Settings.get_setting('tutorial', 'ground-jump', false):
 		Events.tutorial_step_completed.emit('ground-jump')
 		var parent := get_parent()

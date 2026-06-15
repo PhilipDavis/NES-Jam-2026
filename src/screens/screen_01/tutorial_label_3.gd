@@ -13,7 +13,11 @@ func _ready() -> void:
 	Events.player_jumped.connect(_on_player_jumped)
 	Events.player_attacked.connect(_on_player_attacked)
 
-func _on_game_started() -> void:
+func _on_game_started(demo_mode: bool) -> void:
+	if demo_mode:
+		queue_free()
+		return
+	
 	if Settings.get_setting('tutorial', 'attack', false):
 		is_done = true
 		Events.tutorial_step_completed.emit('attack')

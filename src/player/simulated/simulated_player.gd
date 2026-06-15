@@ -27,7 +27,7 @@ func _ready() -> void:
 	Events.game_started.connect(_on_game_started)
 	Events.game_ended.connect(_on_game_ended)
 
-func _on_game_started() -> void:
+func _on_game_started(_demo_mode: bool) -> void:
 	is_game_on = true
 	current_frame = 0
 
