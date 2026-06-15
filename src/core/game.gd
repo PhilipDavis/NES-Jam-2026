@@ -136,6 +136,7 @@ func _on_princess_saved() -> void:
 	var difficulty := Settings.get_setting('game', 'difficulty', 'Normal') as String
 	var best_time := Settings.get_setting('difficulty_%s' % difficulty, 'best_time', -1) as int
 	if game_time < best_time or best_time == -1:
+		best_time = game_time
 		# Save the new best time (but only if no cheat codes were used)
 		if not game_options.invincible and game_options.starting_level == 'screen_01':
 			Settings.set_setting('difficulty_%s' % difficulty, 'best_time', game_time)
